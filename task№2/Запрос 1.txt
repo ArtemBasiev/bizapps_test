@@ -1,0 +1,11 @@
+
+*********************************************************
+    ТОП 10 активных пользователей за последний месяц
+*********************************************************
+select first 10  us.name_user
+from users  us
+ join   blogs bl on bl.id_user = us.id_user
+ join posts p on p.id_blog = bl.id_blog
+ where   p.cr_date between '2018-12-01' and '2018-12-31'
+ group by  us.name_user
+ order by count(p.id_post) desc
