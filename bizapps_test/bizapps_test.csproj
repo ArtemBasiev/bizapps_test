@@ -61,6 +61,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\bizapps_db.mdf" />
+    <Content Include="App_Data\bizapps_db_log.ldf">
+      <DependentUpon>bizapps_db.mdf</DependentUpon>
+    </Content>
     <Content Include="DataBase\BIZ_TEST.FDB" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -75,6 +79,8 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DBSQLServerUtils.cs" />
+    <Compile Include="DbUtils.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
