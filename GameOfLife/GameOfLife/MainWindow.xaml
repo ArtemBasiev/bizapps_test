@@ -1,0 +1,22 @@
+﻿<Window x:Class="GameOfLife.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Game of Life" MaxHeight="630" MinHeight="630" MaxWidth="800" MinWidth="800"  Foreground="{x:Null}" Icon="Images/icons8-редактор-реестра-16.png">
+
+    <Grid Name="MainGrid">
+        <StackPanel>
+            <ToolBar>
+                <Button Name="ButtonNextGen" Content="NextGeneration" Click="ButtonNextGen_Click"/>
+                <Button Name="AutoGeneration" Content="AutoGenerationOn" Click="AutoGeneration_Click" Margin="8,0,0,0" />
+                <Button Name="StopAutoGeneration" Content="AutoGenerationOff" Click="StopAutoGeneration_Click" Margin="8,0,0,0" />
+                <Button Name="ButtonClear" Content="ClearField" Click="ButtonClear_Click" Margin="8,0,0,0"  />
+                <Button Name="ButtonHelp" Content="Help"  Margin="8,0,0,0" Click="ButtonHelp_Click"  />
+                <Label HorizontalAlignment="Right"  Content="Generation:" Margin="237,0,0,0" />
+                <Label Name ="GenerationCountLabel"  HorizontalAlignment="Right"  />
+
+            </ToolBar>
+            <Grid Name="PlayingGrid" Height="560" />
+        </StackPanel>
+
+    </Grid>
+</Window>
