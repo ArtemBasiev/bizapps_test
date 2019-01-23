@@ -48,7 +48,7 @@ namespace bizapps_test
         protected void cr_kat_Click(object sender, EventArgs e)
         {
 
-            //----------------Заполняем список категорий с помощью метода MakeCategory класса CategoryOperations----------------------
+            //----------------Создаем новую категорию с помощью метода MakeCategory класса CategoryOperations----------------------
             try
             {
   
