@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище BizappsTestModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Blog">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BlogName" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="CreationDate" Type="date" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BlogUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="UserPassword" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryName" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Post">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Body" Type="text" />
+    <Property Name="CreationDate" Type="date" Nullable="false" />
+    <Property Name="BlogId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RelationBlogCategory">
+    <Key>
+      <PropertyRef Name="BlogId" />
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="BlogId" Type="int" Nullable="false" />
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RelationPostCategory">
+    <Key>
+      <PropertyRef Name="PostId" />
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="PostId" Type="int" Nullable="false" />
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Blog_UserId">
+    <End Role="BlogUser" Type="Self.BlogUser" Multiplicity="1" />
+    <End Role="Blog" Type="Self.Blog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BlogUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Blog">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Post_BlogId">
+    <End Role="Blog" Type="Self.Blog" Multiplicity="1" />
+    <End Role="Post" Type="Self.Post" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Blog">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Post">
+        <PropertyRef Name="BlogId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RelationBlogCategory_BlogId">
+    <End Role="Blog" Type="Self.Blog" Multiplicity="1" />
+    <End Role="RelationBlogCategory" Type="Self.RelationBlogCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Blog">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RelationBlogCategory">
+        <PropertyRef Name="BlogId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RelationBlogCategory_CategoryId">
+    <End Role="Category" Type="Self.Category" Multiplicity="1" />
+    <End Role="RelationBlogCategory" Type="Self.RelationBlogCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RelationBlogCategory">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RelationPostCategory_CategoryId">
+    <End Role="Category" Type="Self.Category" Multiplicity="1" />
+    <End Role="RelationPostCategory" Type="Self.RelationPostCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RelationPostCategory">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RelationPostCategory_PostId">
+    <End Role="Post" Type="Self.Post" Multiplicity="1" />
+    <End Role="RelationPostCategory" Type="Self.RelationPostCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Post">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RelationPostCategory">
+        <PropertyRef Name="PostId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище BizappsTestModelContainer">
+    <EntitySet Name="Blog" EntityType="Self.Blog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BlogUser" EntityType="Self.BlogUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Post" EntityType="Self.Post" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RelationBlogCategory" EntityType="Self.RelationBlogCategory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RelationPostCategory" EntityType="Self.RelationPostCategory" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Blog_UserId" Association="Self.FK_Blog_UserId">
+      <End Role="BlogUser" EntitySet="BlogUser" />
+      <End Role="Blog" EntitySet="Blog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Post_BlogId" Association="Self.FK_Post_BlogId">
+      <End Role="Blog" EntitySet="Blog" />
+      <End Role="Post" EntitySet="Post" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RelationBlogCategory_BlogId" Association="Self.FK_RelationBlogCategory_BlogId">
+      <End Role="Blog" EntitySet="Blog" />
+      <End Role="RelationBlogCategory" EntitySet="RelationBlogCategory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RelationBlogCategory_CategoryId" Association="Self.FK_RelationBlogCategory_CategoryId">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="RelationBlogCategory" EntitySet="RelationBlogCategory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RelationPostCategory_CategoryId" Association="Self.FK_RelationPostCategory_CategoryId">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="RelationPostCategory" EntitySet="RelationPostCategory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RelationPostCategory_PostId" Association="Self.FK_RelationPostCategory_PostId">
+      <End Role="Post" EntitySet="Post" />
+      <End Role="RelationPostCategory" EntitySet="RelationPostCategory" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

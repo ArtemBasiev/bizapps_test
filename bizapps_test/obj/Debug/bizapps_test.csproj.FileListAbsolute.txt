@@ -1,8 +1,0 @@
-c:\users\artem\documents\visual studio 2013\Projects\bizapps_test\bizapps_test\bin\bizapps_test.dll.config
-c:\users\artem\documents\visual studio 2013\Projects\bizapps_test\bizapps_test\bin\bizapps_test.dll
-c:\users\artem\documents\visual studio 2013\Projects\bizapps_test\bizapps_test\bin\bizapps_test.pdb
-c:\users\artem\documents\visual studio 2013\Projects\bizapps_test\bizapps_test\obj\Debug\bizapps_test.csprojResolveAssemblyReference.cache
-c:\users\artem\documents\visual studio 2013\Projects\bizapps_test\bizapps_test\obj\Debug\bizapps_test.dll
-c:\users\artem\documents\visual studio 2013\Projects\bizapps_test\bizapps_test\obj\Debug\bizapps_test.pdb
-C:\Users\ARTEM\documents\visual studio 2013\Projects\bizapps_test\bizapps_test\bin\FirebirdSql.Data.FirebirdClient.dll
-C:\Users\ARTEM\documents\visual studio 2013\Projects\bizapps_test\bizapps_test\bin\FirebirdSql.Data.FirebirdClient.pdb
