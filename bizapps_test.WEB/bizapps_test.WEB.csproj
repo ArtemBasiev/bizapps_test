@@ -42,6 +42,8 @@
       <HintPath>..\packages\AutoMapper.8.0.0\lib\net461\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="DevExpress.Web.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.Controls.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -93,7 +95,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CategoryUpdateDelete.aspx" />
+    <Content Include="ChangeUser.aspx" />
+    <Content Include="Default.aspx" />
+    <Content Include="MainPage.aspx" />
     <Content Include="packages.config" />
+    <Content Include="MasterPage.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -102,15 +109,39 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Default.aspx" />
+    <Content Include="CategoryCreation.aspx" />
+    <Content Include="PostCreation.aspx" />
+    <Content Include="PostUpdate.aspx" />
+    <Content Include="SpecialItems\ItemPost.ascx" />
     <Content Include="StyleTest.css" />
+    <Content Include="UserCreation.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\DIConfiguration.cs" />
     <Compile Include="App_Start\NinjectWeb.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
-    <Compile Include="CategoryOperations.cs" />
+    <Compile Include="CategoryCreation.aspx.cs">
+      <DependentUpon>CategoryCreation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CategoryCreation.aspx.designer.cs">
+      <DependentUpon>CategoryCreation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CategoryUpdateDelete.aspx.cs">
+      <DependentUpon>CategoryUpdateDelete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CategoryUpdateDelete.aspx.designer.cs">
+      <DependentUpon>CategoryUpdateDelete.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ChangeUser.aspx.cs">
+      <DependentUpon>ChangeUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ChangeUser.aspx.designer.cs">
+      <DependentUpon>ChangeUser.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -118,8 +149,50 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MainPage.aspx.cs">
+      <DependentUpon>MainPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MainPage.aspx.designer.cs">
+      <DependentUpon>MainPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPage.Master.cs">
+      <DependentUpon>MasterPage.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPage.Master.designer.cs">
+      <DependentUpon>MasterPage.Master</DependentUpon>
+    </Compile>
     <Compile Include="Models\CategoryViewModel.cs" />
+    <Compile Include="PostCreation.aspx.cs">
+      <DependentUpon>PostCreation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PostCreation.aspx.designer.cs">
+      <DependentUpon>PostCreation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PostUpdate.aspx.cs">
+      <DependentUpon>PostUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PostUpdate.aspx.designer.cs">
+      <DependentUpon>PostUpdate.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SpecialItems\ItemPost.ascx.cs">
+      <DependentUpon>ItemPost.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SpecialItems\ItemPost.ascx.designer.cs">
+      <DependentUpon>ItemPost.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserCreation.aspx.cs">
+      <DependentUpon>UserCreation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserCreation.aspx.designer.cs">
+      <DependentUpon>UserCreation.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\bizapps_test.BLL\bizapps_test.BLL.csproj">
@@ -127,6 +200,10 @@
       <Name>bizapps_test.BLL</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

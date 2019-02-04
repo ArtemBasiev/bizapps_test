@@ -7,19 +7,10 @@
 // </автоматически создаваемое>
 //------------------------------------------------------------------------------
 
-namespace bizapps_test {
+namespace bizapps_test.WEB {
     
     
     public partial class Default {
-        
-        /// <summary>
-        /// form1 элемент управления.
-        /// </summary>
-        /// <remarks>
-        /// Автоматически создаваемое поле.
-        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
         /// headlabel элемент управления.
@@ -40,15 +31,6 @@ namespace bizapps_test {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// KategoryList элемент управления.
-        /// </summary>
-        /// <remarks>
-        /// Автоматически создаваемое поле.
-        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.BulletedList KategoryList;
-        
-        /// <summary>
         /// Label2 элемент управления.
         /// </summary>
         /// <remarks>
@@ -58,39 +40,21 @@ namespace bizapps_test {
         protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// Label3 элемент управления.
+        /// LabelUsers элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
+        protected global::System.Web.UI.WebControls.Label LabelUsers;
         
         /// <summary>
-        /// Text1 элемент управления.
+        /// UserList элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Text1;
-        
-        /// <summary>
-        /// LabelMes элемент управления.
-        /// </summary>
-        /// <remarks>
-        /// Автоматически создаваемое поле.
-        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelMes;
-        
-        /// <summary>
-        /// cr_kat элемент управления.
-        /// </summary>
-        /// <remarks>
-        /// Автоматически создаваемое поле.
-        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button cr_kat;
+        protected global::System.Web.UI.WebControls.BulletedList UserList;
     }
 }

@@ -13,7 +13,8 @@ namespace bizapps_test.WEB.App_Start
         public static void SetupDI(IKernel kernel)
         {
             kernel.Bind<ICategoryService>().To<CategoryService>();
-
+            kernel.Bind<IBlogUserService>().To<BlogUserService>();
+            kernel.Bind<IPostService>().To<PostService>().InTransientScope();
         }
     }
 }
