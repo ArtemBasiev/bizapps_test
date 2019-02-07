@@ -20,15 +20,15 @@ namespace bizapps_test.WEB
     public partial class CategoryUpdateDelete : System.Web.UI.Page
     {
 
-        //[Ninject.Inject]
-        CategoryService categoryService { get; set; }
+        [Ninject.Inject]
+        public ICategoryService categoryService { get; set; }
         
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!this.IsPostBack)
             {
-                categoryService = new CategoryService();
-                CategoryDTO updatingCategory = categoryService.GetCategory(Convert.ToInt32(Request.QueryString["CategoryId"]));
+                //categoryService = new CategoryService();
+                CategoryDTO updatingCategory = categoryService.GetCategoryById(Convert.ToInt32(Request.QueryString["CategoryId"]));
                 CategoryNameText.Text = updatingCategory.CategoryName;
             }
         }
@@ -37,7 +37,7 @@ namespace bizapps_test.WEB
         {
             try
             {
-                categoryService = new CategoryService();
+                //categoryService = new CategoryService();
                 categoryService.UpdateCategory(new CategoryDTO
                 {
                     Id = Convert.ToInt32(Request.QueryString["CategoryId"]),
@@ -56,7 +56,7 @@ namespace bizapps_test.WEB
         {
             try
             {
-                categoryService = new CategoryService();
+                //categoryService = new CategoryService();
                 categoryService.DeleteCategory(new CategoryDTO { Id = Convert.ToInt32(Request.QueryString["CategoryId"]) });
                 Response.Redirect("~/CategoryCreation.aspx");
             }

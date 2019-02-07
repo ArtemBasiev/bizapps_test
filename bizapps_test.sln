@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bizapps_test.WEB", "bizapps
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bizapps_test.DAL.Tests", "bizapps_test.DAL.Tests\bizapps_test.DAL.Tests.csproj", "{D887A315-AD3E-41D3-9719-C2138D04FB99}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bizapps_test.BLL.Tests", "bizapps_test.BLL.Tests\bizapps_test.BLL.Tests.csproj", "{EE61C999-1A95-462D-BA85-8ED24E829ADE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bizapps_test.WEB.Tests", "bizapps_test.WEB.Tests\bizapps_test.WEB.Tests.csproj", "{98E93B00-6A2C-4D26-B245-8AF6B80D6C36}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{D887A315-AD3E-41D3-9719-C2138D04FB99}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D887A315-AD3E-41D3-9719-C2138D04FB99}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D887A315-AD3E-41D3-9719-C2138D04FB99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE61C999-1A95-462D-BA85-8ED24E829ADE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE61C999-1A95-462D-BA85-8ED24E829ADE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE61C999-1A95-462D-BA85-8ED24E829ADE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE61C999-1A95-462D-BA85-8ED24E829ADE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98E93B00-6A2C-4D26-B245-8AF6B80D6C36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98E93B00-6A2C-4D26-B245-8AF6B80D6C36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98E93B00-6A2C-4D26-B245-8AF6B80D6C36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98E93B00-6A2C-4D26-B245-8AF6B80D6C36}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

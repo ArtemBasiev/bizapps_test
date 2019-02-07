@@ -5,8 +5,7 @@ C:\Users\ARTEM\documents\visual studio 2013\Projects\bizapps_test\bizapps_test.D
 C:\Users\ARTEM\documents\visual studio 2013\Projects\bizapps_test\bizapps_test.DAL\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\ARTEM\documents\visual studio 2013\Projects\bizapps_test\bizapps_test.DAL\bin\Debug\EntityFramework.xml
 C:\Users\ARTEM\documents\visual studio 2013\Projects\bizapps_test\bizapps_test.DAL\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\ARTEM\documents\visual studio 2013\Projects\bizapps_test\bizapps_test.DAL\obj\Debug\bizapps_test.DAL.csprojResolveAssemblyReference.cache
-C:\Users\ARTEM\documents\visual studio 2013\Projects\bizapps_test\bizapps_test.DAL\obj\Debug\bizapps_test.DAL.dll
-C:\Users\ARTEM\documents\visual studio 2013\Projects\bizapps_test\bizapps_test.DAL\obj\Debug\bizapps_test.DAL.pdb
 C:\Users\ARTEM\documents\visual studio 2013\Projects\bizapps_test\bizapps_test.DAL\bin\Debug\ru\EntityFramework.resources.dll
 C:\Users\ARTEM\documents\visual studio 2013\Projects\bizapps_test\bizapps_test.DAL\bin\Debug\ru\EntityFramework.SqlServer.resources.dll
+C:\Users\ARTEM\documents\visual studio 2013\Projects\bizapps_test\bizapps_test.DAL\obj\Debug\bizapps_test.DAL.dll
+C:\Users\ARTEM\documents\visual studio 2013\Projects\bizapps_test\bizapps_test.DAL\obj\Debug\bizapps_test.DAL.pdb

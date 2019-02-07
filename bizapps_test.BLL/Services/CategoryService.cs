@@ -4,28 +4,33 @@ using bizapps_test.DAL.Entities;
 using bizapps_test.BLL.Infrastructure;
 using bizapps_test.BLL.Interfaces;
 using bizapps_test.BLL.DTO;
-using AutoMapper;
+using bizapps_test.DAL.Interfaces;
 using Ninject;
 using System.Data.SqlClient;
 
 
 namespace bizapps_test.BLL.Services
 {
+   
+
     public class CategoryService: ICategoryService
     {
+        [Ninject.Inject]
+        public ICategoryRepository categoryRepository { get; set; }
 
+        public CategoryService(ICategoryRepository categoryrepository)
+        {
+            categoryRepository = categoryrepository;
+        }
 
-        public void CreateCategory(CategoryDTO categoryDTO)
+        public int CreateCategory(CategoryDTO categoryDTO)
         {
             //----------------------------------------Добавляем новую категорию--------------------------------
             try
             {
-                Category category = new Category
-                {
-          
-                    CategoryName = categoryDTO.CategoryName
-                };
-                category.InsertCategory();
+
+
+                return  categoryRepository.CreateCategory(new Category(categoryDTO.CategoryName));
             }
             catch (SqlException e)
             {
@@ -35,17 +40,12 @@ namespace bizapps_test.BLL.Services
 
         }
 
-        public void UpdateCategory(CategoryDTO categoryDTO)
+        public int UpdateCategory(CategoryDTO categoryDTO)
         {
             //----------------------------------------Обновляем существующую категорию--------------------------------
             try
             {
-                Category category = new Category
-                {
-                    Id = categoryDTO.Id,
-                    CategoryName = categoryDTO.CategoryName
-                };
-                category.UpdateCategory();
+               return categoryRepository.UpdateCategory(new Category(categoryDTO.Id, categoryDTO.CategoryName));
             }
             catch(SqlException e)
             {
@@ -55,17 +55,12 @@ namespace bizapps_test.BLL.Services
         }
 
 
-        public void DeleteCategory(CategoryDTO categoryDTO)
+        public int DeleteCategory(CategoryDTO categoryDTO)
         {
             //----------------------------------------Удаляем категорию--------------------------------
             try
             {
-                Category category = new Category
-                {
-
-                    Id = categoryDTO.Id
-                };
-                category.DeleteCategory();
+               return categoryRepository.DeleteCategory(new Category(categoryDTO.Id));
             }
             catch (SqlException e)
             {
@@ -75,12 +70,12 @@ namespace bizapps_test.BLL.Services
 
         }
 
-        public IEnumerable<CategoryDTO> GetCategories()
+        public IEnumerable<CategoryDTO> GetAllCategories()
         {
             try
             { 
                      //-----------------------------Получаем список категорий---------------------------------------
-            IEnumerable<Category> categories = new Category().GetAllCategories();
+                IEnumerable<Category> categories = categoryRepository.GetAllCategories();
             List<CategoryDTO> DTOCategories = new List<CategoryDTO>();
             foreach(Category c in categories)
             {
@@ -105,7 +100,7 @@ namespace bizapps_test.BLL.Services
             try
             {
                 //-----------------------------Получаем список категорий---------------------------------------
-                IEnumerable<Category> categories = new Category().GetPostCategories(postId);
+                IEnumerable<Category> categories = categoryRepository.GetPostCategories(postId);
                 List<CategoryDTO> DTOCategories = new List<CategoryDTO>();
                 foreach (Category c in categories)
                 {
@@ -126,18 +121,16 @@ namespace bizapps_test.BLL.Services
         }
 
 
-        public CategoryDTO GetCategory(int categoryId)
+        public CategoryDTO GetCategoryById(int categoryId)
         {
             try
             {
                 //-----------------------------Получаем категорию---------------------------------------
-                Category category =  new Category();
-                category.GetCategory(categoryId);
-                CategoryDTO newcatDTO = new CategoryDTO();
-                newcatDTO.Id = category.Id;
-                newcatDTO.CategoryName = category.CategoryName;
-
-
+                Category category = categoryRepository.GetCategoryById(categoryId);
+                CategoryDTO newcatDTO = new CategoryDTO {
+                    Id = category.Id,
+                    CategoryName = category.CategoryName
+                };
 
                 return newcatDTO;
             }

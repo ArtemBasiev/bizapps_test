@@ -1,0 +1,4 @@
+C:\Users\ARTEM\documents\visual studio 2013\Projects\bizapps_test\bizapps_test.BLL\Fakes\System.ValueTuple.fakes : warning : Невозможно создать заглушку для FxResources.System.ValueTuple.SR: тип является запечатанным.
+C:\Users\ARTEM\documents\visual studio 2013\Projects\bizapps_test\bizapps_test.BLL\Fakes\System.ValueTuple.fakes : warning : Невозможно создать заглушку для System.SR: тип является запечатанным.
+C:\Users\ARTEM\documents\visual studio 2013\Projects\bizapps_test\bizapps_test.BLL\Fakes\System.ValueTuple.fakes : warning : Невозможно создать оболочку совместимости для FxResources.System.ValueTuple.SR: тип невидим для exported or assembly(System.ValueTuple.4.0.3.0.Fakes).
+C:\Users\ARTEM\documents\visual studio 2013\Projects\bizapps_test\bizapps_test.BLL\Fakes\System.ValueTuple.fakes : warning : Невозможно создать оболочку совместимости для System.SR: тип невидим для exported or assembly(System.ValueTuple.4.0.3.0.Fakes).

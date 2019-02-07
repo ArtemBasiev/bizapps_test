@@ -5,13 +5,24 @@ using bizapps_test.BLL.Infrastructure;
 using bizapps_test.BLL.Interfaces;
 using bizapps_test.BLL.DTO;
 using System.Data.SqlClient;
+using bizapps_test.DAL.Interfaces;
 
 namespace bizapps_test.BLL.Services
 {
     public class PostService: IPostService
     {
+        //[Ninject.Inject]
+        public ICategoryRepository categoryRepository { get; private set; }
+        public IPostRepository postRepository { get; private set; }
 
-        public void CreatePost(PostDTO postDTO, int userId, List<CategoryDTO> categoryListDTO)
+        public PostService(IPostRepository postrepository, ICategoryRepository categoryrepository)
+        {
+            categoryRepository = categoryrepository;
+            postRepository = postrepository;
+        }
+   
+
+        public int CreatePost(PostDTO postDTO, int userId, List<CategoryDTO> categoryListDTO)
         {
             //----------------------------------------Добавляем новый пост--------------------------------
             try
@@ -21,16 +32,15 @@ namespace bizapps_test.BLL.Services
                     throw new ApplicationException("Пост должен принадлежать хотя бы к одной из категорий");
                 }
 
-                int newpostId;
-                Post post = new Post(postDTO.Title, postDTO.Body);
-                post.InsertPost(userId, out newpostId);
+                
+                 int newpostId = postRepository.CreatePost(new Post(postDTO.Title, postDTO.Body), userId);
 
                 foreach (CategoryDTO categoryDTO in categoryListDTO)
                 {
-                    Category newcategory = new Category(categoryDTO.Id, categoryDTO.CategoryName);
-                    post.AddCategoryToPost(newcategory, newpostId);
+                   
+                    postRepository.AddCategoryToPost(categoryDTO.Id, newpostId);
                 }
-
+                return newpostId;
               
             }
             catch (SqlException e)
@@ -41,15 +51,14 @@ namespace bizapps_test.BLL.Services
 
         }
 
-        public void UpdatePost(PostDTO postDTO, List<CategoryDTO> categoryListDTO)
+        public int UpdatePost(PostDTO postDTO, List<CategoryDTO> categoryListDTO)
         {
             //----------------------------------------Обновляем существующий пост--------------------------------
             try
             {
-                Post post = new Post(postDTO.Id, postDTO.Title, postDTO.Body);
-                post.UpdatePost();
 
-                IEnumerable<Category> postCategories = new Category().GetPostCategories(post.Id);
+                int updpostid = postRepository.UpdatePost(new Post(postDTO.Id, postDTO.Title, postDTO.Body));
+                IEnumerable<Category> postCategories = categoryRepository.GetPostCategories(updpostid);
                 int IsIdentic;
                 foreach(Category postCat in postCategories)
                 {
@@ -65,16 +74,18 @@ namespace bizapps_test.BLL.Services
 
                     if (IsIdentic == 0)
                     {
-                        post.DeleteCategoryFromPost(postCat);
+                        postRepository.DeleteCategoryFromPost(postCat.Id, updpostid);
                     }
 
                 }
 
                 foreach (CategoryDTO catDTO in categoryListDTO)
                 {
-                    Category newcat = new Category(catDTO.Id);
-                    post.AddCategoryToPost(newcat, post.Id);
+
+                    postRepository.AddCategoryToPost(catDTO.Id, updpostid);
                 }
+                return updpostid;
+                    
             }
             catch (SqlException e)
             {
@@ -84,13 +95,12 @@ namespace bizapps_test.BLL.Services
         }
 
 
-        public void DeletePost(PostDTO postDTO)
+        public int DeletePost(PostDTO postDTO)
         {
             //----------------------------------------Удаляем пост, а так-же все связанные с ним сущности--------------------------------
             try
             {
-                Post post = new Post(postDTO.Id);
-                post.DeletePost();
+              return  postRepository.DeletePost(new Post(postDTO.Id));
             }
             catch (SqlException e)
             {
@@ -100,12 +110,12 @@ namespace bizapps_test.BLL.Services
 
         }
 
-        public IEnumerable<PostDTO> GetAllUserPosts(int userId)
+        public IEnumerable<PostDTO> GetUserPosts(int userId)
         {
             try
             {
                 //-----------------------------Получаем список всех постов пользователя---------------------------------------
-                IEnumerable<Post> posts = new Post().GetAllUserPosts(userId);
+                IEnumerable<Post> posts = postRepository.GetUserPosts(userId);
                 List<PostDTO> DTOposts = new List<PostDTO>();
                 foreach (Post post in posts)
                 {
@@ -132,14 +142,14 @@ namespace bizapps_test.BLL.Services
             try
             {
                 //-----------------------------Получаем пост по идентификатору---------------------------------------
-                Post post = new Post();
-                post.GetPost(postId);
-                PostDTO postDTO = new PostDTO();
-                postDTO.Id = post.Id;
-                postDTO.Title = post.Title;
-                postDTO.Body = post.Body;
+                Post post = postRepository.GetPostById(postId);
 
-
+                PostDTO postDTO = new PostDTO
+                {
+                    Id =post.Id,
+                    Title = post.Title,
+                    Body =post.Body
+                };
 
                 return postDTO;
             }

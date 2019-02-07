@@ -10,19 +10,21 @@ using bizapps_test.BLL.Interfaces;
 using bizapps_test.WEB.SpecialItems;
 using System.Collections;
 using System.Drawing;
+using Ninject;
 
 namespace bizapps_test.WEB
 {
     public partial class ChangeUser : System.Web.UI.Page
     {
-        BlogUserService bloguserService { get; set; }
+        [Ninject.Inject]
+        public IBlogUserService bloguserService { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
             {
-                bloguserService = new BlogUserService(); 
-                BlogUserDTO bloguserDTO = bloguserService.GetBlogUser(Convert.ToInt32(Session["UserId"]));
+                //bloguserService = new BlogUserService();
+                BlogUserDTO bloguserDTO = bloguserService.GetBlogUserById(Convert.ToInt32(Session["UserId"]));
                 TextBoxUserName.Text = bloguserDTO.UserName;
                 TextBoxUserPassword.Text = bloguserDTO.UserPassword;
                 TextBoxBlogName.Text = bloguserDTO.BlogName;
@@ -34,7 +36,7 @@ namespace bizapps_test.WEB
         {
             try
             {
-                bloguserService = new BlogUserService(); 
+                //bloguserService = new BlogUserService(); 
                 bloguserService.DeleteBlogUser(new BlogUserDTO { Id = Convert.ToInt32(Session["UserId"]) });
                 Response.Redirect("~/Default.aspx");
             }
@@ -51,7 +53,7 @@ namespace bizapps_test.WEB
         {
             try
             {
-                bloguserService = new BlogUserService(); 
+                //bloguserService = new BlogUserService(); 
                 bloguserService.UpdateBlogUser(new BlogUserDTO 
                    {
                     Id = Convert.ToInt32(Session["UserId"]) ,

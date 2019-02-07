@@ -31,7 +31,7 @@ namespace bizapps_test.WEB
                 try
                 {
                     //------------------Заполняем список категорий поста---------------------------
-                    foreach (var i in categoryService.GetCategories())
+                    foreach (var i in categoryService.GetAllCategories())
                     {
                         int IsEquals=0;
                         foreach (var j in (List<CategoryDTO>)categoryService.GetPostCategories(Convert.ToInt32(Request.QueryString["PostId"])))

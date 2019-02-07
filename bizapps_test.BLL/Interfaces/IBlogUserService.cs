@@ -7,10 +7,10 @@ namespace bizapps_test.BLL.Interfaces
 {
    public interface IBlogUserService
     {
-        void CreateBlogUser(BlogUserDTO bloguserDTO);
-        void DeleteBlogUser(BlogUserDTO bloguserDTO);
-        void UpdateBlogUser(BlogUserDTO bloguserDTO);
-        BlogUserDTO GetBlogUser(int userId);
+        int CreateBlogUser(BlogUserDTO bloguserDTO);
+        int DeleteBlogUser(BlogUserDTO bloguserDTO);
+        int UpdateBlogUser(BlogUserDTO bloguserDTO);
+        BlogUserDTO GetBlogUserById(int userId);
         IEnumerable<BlogUserDTO> GetAllUsers();
     }
 }

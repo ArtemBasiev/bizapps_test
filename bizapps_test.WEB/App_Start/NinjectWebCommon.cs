@@ -9,6 +9,7 @@ namespace bizapps_test.WEB.App_Start
     using Ninject;
     using Ninject.Web.Common;
     using bizapps_test.BLL.Services;
+    using bizapps_test.BLL.Infrastructure;
 
     public static class NinjectWebCommon 
     {
@@ -38,7 +39,7 @@ namespace bizapps_test.WEB.App_Start
         /// <returns>The created kernel.</returns>
         private static IKernel CreateKernel()
         {
-            var kernel = new StandardKernel();
+            var kernel = new StandardKernel(new ServiceModule());
             try
             {
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
@@ -61,7 +62,6 @@ namespace bizapps_test.WEB.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             DIConfiguration.SetupDI(kernel);
-            RegisterObjects.Register(kernel);
 
         }        
     }

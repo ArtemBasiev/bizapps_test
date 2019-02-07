@@ -31,7 +31,7 @@ namespace bizapps_test.WEB
                 try
                 {
 
-                    foreach (var i in categoryService.GetCategories())
+                    foreach (var i in categoryService.GetAllCategories())
                     {
 
                         CategoryCheckBoxList.Items.Add(new ListItem(i.CategoryName, i.Id.ToString()));

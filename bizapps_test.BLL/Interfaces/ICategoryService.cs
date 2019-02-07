@@ -7,11 +7,11 @@ namespace bizapps_test.BLL.Interfaces
 {
     public interface ICategoryService
     {
-        void CreateCategory(CategoryDTO categoryDto);
-        void DeleteCategory(CategoryDTO categoryDTO);
-        void UpdateCategory(CategoryDTO categoryDTO);
-        CategoryDTO GetCategory(int categiryId);
-        IEnumerable<CategoryDTO> GetCategories();
+        int CreateCategory(CategoryDTO categoryDto);
+        int DeleteCategory(CategoryDTO categoryDTO);
+        int UpdateCategory(CategoryDTO categoryDTO);
+        CategoryDTO GetCategoryById(int categiryId);
+        IEnumerable<CategoryDTO> GetAllCategories();
         IEnumerable<CategoryDTO> GetPostCategories(int postId);
 
     }

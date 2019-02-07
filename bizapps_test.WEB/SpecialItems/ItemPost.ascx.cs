@@ -20,8 +20,8 @@ namespace bizapps_test.WEB.SpecialItems
         public string PostBody{ get; set; }
         public string PostCategories { get; set; }
 
-        //[Ninject.Inject]
-        //public IPostService postService { get; set; }
+      
+        public IPostService postService { get; set; }
 
 
         protected void Page_Load(object sender, EventArgs e)
@@ -37,8 +37,10 @@ namespace bizapps_test.WEB.SpecialItems
             //----------------Удаляем пост----------------------
             //try
             //{
-            PostService ps = new PostService();
-                ps.DeletePost(new PostDTO {
+
+
+            postService.DeletePost(new PostDTO
+            {
                     Id = PostId
                 });
                 Response.Redirect(Request.Path);
@@ -47,7 +49,7 @@ namespace bizapps_test.WEB.SpecialItems
             //}
             //catch (Exception ex)
             //{
-            //    LabelMes.ForeColor = Color.Red;
+                //LabelMes.ForeColor = Color.Red;
             //    LabelMes.Text = "Ошибка" + ex.Message;
             //}
         }

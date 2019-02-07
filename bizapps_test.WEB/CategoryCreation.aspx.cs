@@ -30,7 +30,7 @@ namespace bizapps_test.WEB
                 CategoryList.Items.Clear();
 
 
-                foreach (var i in categoryService.GetCategories())
+                foreach (var i in categoryService.GetAllCategories())
                 {
                     CategoryList.Items.Add(new ListItem(i.CategoryName, i.Id.ToString()));
                 }

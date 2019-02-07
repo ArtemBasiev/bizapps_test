@@ -1,0 +1,29 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="bizapps_test.WEB.Tests.MasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+ 
+     <link rel="stylesheet" href="StyleTest.css"/>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+         <div id ="headdiv" style="text-align:center"">
+                  <asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server">
+                  </asp:ContentPlaceHolder>
+         </div>
+           <div aria-orientation="horizontal" id="div_union" style="display: inline-block; position: absolute; left: auto; float: none;">
+   
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+            </asp:ContentPlaceHolder>
+          
+        
+     </div>
+    </form>
+</body>
+</html>

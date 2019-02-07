@@ -23,28 +23,32 @@ namespace bizapps_test.WEB
         protected void Page_Load(object sender, EventArgs e)
         {
             //----------------Заполняем список пользователей----------------------
-            try
+            if(!IsPostBack)
             {
-                UserList.Items.Clear();
-             
-
-
-               foreach (var i in bloguserService.GetAllUsers())
+                try
                 {
-                    ListItem userItem = new ListItem();
-                    userItem.Text = i.UserName.ToString();
-                    userItem.Value = i.Id.ToString();
-                    UserList.Items.Add(userItem);
-                   
+                    //UserList.Items.Clear();
+
+
+
+                    foreach (var i in bloguserService.GetAllUsers())
+                    {
+                        ListItem userItem = new ListItem();
+                        userItem.Text = i.UserName.ToString();
+                        userItem.Value = i.Id.ToString();
+                        UserList.Items.Add(userItem);
+
+                    }
+
+
                 }
-
-
+                catch (Exception ex)
+                {
+                    LabelUsers.ForeColor = Color.Red;
+                    LabelUsers.Text = ex.Message;
+                }
             }
-            catch (Exception ex)
-            {
-                LabelUsers.ForeColor = Color.Red;
-                LabelUsers.Text = ex.Message;
-            }
+            
         }
 
         protected void UserList_Click(object sender, BulletedListEventArgs e)
