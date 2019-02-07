@@ -34,7 +34,7 @@ namespace bizapps_test.WEB
                     foreach (var i in categoryService.GetAllCategories())
                     {
                         int IsEquals=0;
-                        foreach (var j in (List<CategoryDTO>)categoryService.GetPostCategories(Convert.ToInt32(Request.QueryString["PostId"])))
+                        foreach (var j in (List<CategoryDto>)categoryService.GetPostCategories(Convert.ToInt32(Request.QueryString["PostId"])))
                         {
                             if(i.Id==j.Id)
                             {
@@ -56,7 +56,7 @@ namespace bizapps_test.WEB
                         }
                     }
 
-                    PostDTO UpdatedPost = postService.GetPost(Convert.ToInt32(Request.QueryString["PostId"]));
+                    PostDto UpdatedPost = postService.GetPost(Convert.ToInt32(Request.QueryString["PostId"]));
                     TitleText.Text = UpdatedPost.Title;
                     BodyText.Text = UpdatedPost.Body;
 
@@ -75,17 +75,17 @@ namespace bizapps_test.WEB
             //----------------Сохраняем изменения----------------------
             try
             {
-                List<CategoryDTO> postCategories = new List<CategoryDTO>();
+                List<CategoryDto> postCategories = new List<CategoryDto>();
 
                 foreach (ListItem categoryItem in CategoryCheckBoxList.Items)
                 {
                     if (categoryItem.Selected == true)
                     {
-                        postCategories.Add(new CategoryDTO { Id = Convert.ToInt32(categoryItem.Value) });
+                        postCategories.Add(new CategoryDto { Id = Convert.ToInt32(categoryItem.Value) });
                     }
                 }
 
-                postService.UpdatePost(new PostDTO
+                postService.UpdatePost(new PostDto
                 {
                     Id=Convert.ToInt32(Request.QueryString["PostId"]),
                     Title = TitleText.Text,

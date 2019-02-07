@@ -30,7 +30,7 @@ namespace bizapps_test.WEB.Tests
 
                     //categoryService = new CategoryService();
                     int CategoryId = (Convert.ToInt32(Request.QueryString["CategoryId"]));
-                    CategoryDTO updatingCategory = categoryService.GetCategoryById(CategoryId);
+                    CategoryDto updatingCategory = categoryService.GetCategoryById(CategoryId);
                     CategoryNameText.Text = updatingCategory.CategoryName;
                 
              
@@ -42,7 +42,7 @@ namespace bizapps_test.WEB.Tests
             try
             {
                 //categoryService = new CategoryService();
-                categoryService.UpdateCategory(new CategoryDTO
+                categoryService.UpdateCategory(new CategoryDto
                 {
                     Id = Convert.ToInt32(Request.QueryString["CategoryId"]),
                     CategoryName = CategoryNameText.Text
@@ -61,7 +61,7 @@ namespace bizapps_test.WEB.Tests
             try
             {
                 //categoryService = new CategoryService();
-                categoryService.DeleteCategory(new CategoryDTO { Id = Convert.ToInt32(Request.QueryString["CategoryId"]) });
+                categoryService.DeleteCategory(new CategoryDto { Id = Convert.ToInt32(Request.QueryString["CategoryId"]) });
                 Response.Redirect("~/CategoryCreation.aspx");
             }
             catch (Exception ex)

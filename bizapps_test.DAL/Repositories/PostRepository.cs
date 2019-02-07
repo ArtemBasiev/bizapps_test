@@ -13,11 +13,11 @@ namespace bizapps_test.DAL.Repositories
 {
     public class PostRepository: IPostRepository
     {
-        public static SqlConnection con = DBUtil.GetDBConnection();
+        public static SqlConnection Con = DBUtil.GetDBConnection();
 
         public int CreatePost(Post post, int userId)
         {
-            SqlCommand cmd = new SqlCommand("IUDPost", con);
+            SqlCommand cmd = new SqlCommand("IUDPost", Con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add(new SqlParameter("@Flag", SqlDbType.Char, 1));
             cmd.Parameters["@Flag"].Value = "I";
@@ -33,7 +33,7 @@ namespace bizapps_test.DAL.Repositories
             cmd.Parameters["@NewPostId"].Value = ParameterDirection.InputOutput;
             try
             {
-                con.Open();
+                Con.Open();
                 cmd.ExecuteNonQuery();
                 return (int)cmd.Parameters["@NewPostId"].Value;
             }
@@ -43,13 +43,13 @@ namespace bizapps_test.DAL.Repositories
             }
             finally
             {
-                con.Close();
+                Con.Close();
             }
         }
 
         public int UpdatePost(Post post)
         {
-            SqlCommand cmd = new SqlCommand("IUDPost", con);
+            SqlCommand cmd = new SqlCommand("IUDPost", Con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add(new SqlParameter("@Flag", SqlDbType.Char, 1));
             cmd.Parameters["@Flag"].Value = "U";
@@ -65,7 +65,7 @@ namespace bizapps_test.DAL.Repositories
             cmd.Parameters["@NewPostId"].Value = ParameterDirection.InputOutput;
             try
             {
-                con.Open();
+                Con.Open();
                 cmd.ExecuteNonQuery();
                 return (int)cmd.Parameters["@NewPostId"].Value;
             }
@@ -75,12 +75,12 @@ namespace bizapps_test.DAL.Repositories
             }
             finally
             {
-                con.Close();
+                Con.Close();
             }
         }
         public int DeletePost(Post post)
         {
-            SqlCommand cmd = new SqlCommand("IUDPost", con);
+            SqlCommand cmd = new SqlCommand("IUDPost",Con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add(new SqlParameter("@Flag", SqlDbType.Char, 1));
             cmd.Parameters["@Flag"].Value = "D";
@@ -96,7 +96,7 @@ namespace bizapps_test.DAL.Repositories
             cmd.Parameters["@NewPostId"].Value = ParameterDirection.InputOutput;
             try
             {
-                con.Open();
+                Con.Open();
                 cmd.ExecuteNonQuery();
                 return (int)cmd.Parameters["@NewPostId"].Value;
             }
@@ -106,26 +106,26 @@ namespace bizapps_test.DAL.Repositories
             }
             finally
             {
-                con.Close();
+                Con.Close();
             }
         }
 
         public IEnumerable<Post> GetUserPosts(int userId)
         {
-            List<Post> Posts = new List<Post> { };
-            SqlCommand cmd = new SqlCommand("select * from GetAllUserPosts(" + userId + ")", con);
+            List<Post> posts = new List<Post> { };
+            SqlCommand cmd = new SqlCommand("select * from GetAllUserPosts(" + userId + ")", Con);
             try
             {
-                con.Open();
+                Con.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
                     Post post = new Post((int)reader["PostId"], (string)reader["Title"], (string)reader["Body"]);
-                    Posts.Add(post);
+                    posts.Add(post);
                 }
                 reader.Close();
-                return Posts;
+                return posts;
             }
             catch (SqlException e)
             {
@@ -133,17 +133,17 @@ namespace bizapps_test.DAL.Repositories
             }
             finally
             {
-                con.Close();
+                Con.Close();
             }
         }
 
         public Post GetPostById(int postId)
         {
-            SqlCommand cmd = new SqlCommand("select * from GetPost(" + postId + ")", con);
+            SqlCommand cmd = new SqlCommand("select * from GetPost(" + postId + ")", Con);
 
             try
             {
-                con.Open();
+                Con.Open();
                 SqlDataReader reader = cmd.ExecuteReader(CommandBehavior.SingleRow);
 
                 reader.Read();
@@ -158,14 +158,14 @@ namespace bizapps_test.DAL.Repositories
             }
             finally
             {
-                con.Close();
+                Con.Close();
             }
         }
 
 
         public void AddCategoryToPost(int categoryId, int postId)
         {
-            SqlCommand cmd = new SqlCommand("AddDeleteCategoryPost", con);
+            SqlCommand cmd = new SqlCommand("AddDeleteCategoryPost", Con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add(new SqlParameter("@Flag", SqlDbType.Char, 1));
             cmd.Parameters["@Flag"].Value = "I";
@@ -175,7 +175,7 @@ namespace bizapps_test.DAL.Repositories
             cmd.Parameters["@CategoryId"].Value = categoryId;
             try
             {
-                con.Open();
+                Con.Open();
                 cmd.ExecuteNonQuery();
             }
             catch (SqlException e)
@@ -184,14 +184,14 @@ namespace bizapps_test.DAL.Repositories
             }
             finally
             {
-                con.Close();
+                Con.Close();
             }
         }
 
 
         public void DeleteCategoryFromPost(int categoryId, int postId)
         {
-            SqlCommand cmd = new SqlCommand("AddDeleteCategoryPost", con);
+            SqlCommand cmd = new SqlCommand("AddDeleteCategoryPost", Con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add(new SqlParameter("@Flag", SqlDbType.Char, 1));
             cmd.Parameters["@Flag"].Value = "D";
@@ -201,7 +201,7 @@ namespace bizapps_test.DAL.Repositories
             cmd.Parameters["@CategoryId"].Value = categoryId;
             try
             {
-                con.Open();
+                Con.Open();
                 cmd.ExecuteNonQuery();
             }
             catch (SqlException e)
@@ -211,7 +211,7 @@ namespace bizapps_test.DAL.Repositories
 
             finally
             {
-                con.Close();
+                Con.Close();
             }
         }
 

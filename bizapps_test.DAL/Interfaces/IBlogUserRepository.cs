@@ -9,14 +9,14 @@ namespace bizapps_test.DAL.Interfaces
 {
     public interface IBlogUserRepository
     {
-        int CreateBlogUser(BlogUser bloguser);
+        int CreateBlogUser(BlogUser blogUser);
 
-        int UpdateBlogUser(BlogUser bloguser);
+        int UpdateBlogUser(BlogUser blogUser);
 
-         int DeleteBlogUser(BlogUser bloguser);
+         int DeleteBlogUser(BlogUser blogUser);
 
          IEnumerable<BlogUser> GetAllBlogUsers();
 
-         BlogUser GetBlogUserById(int bloguserId);
+         BlogUser GetBlogUserById(int blogUserId);
     }
 }

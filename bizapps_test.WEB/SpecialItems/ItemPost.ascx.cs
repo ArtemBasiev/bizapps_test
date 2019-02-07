@@ -39,7 +39,7 @@ namespace bizapps_test.WEB.SpecialItems
             //{
 
 
-            postService.DeletePost(new PostDTO
+            postService.DeletePost(new PostDto
             {
                     Id = PostId
                 });

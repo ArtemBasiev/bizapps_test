@@ -14,8 +14,6 @@ namespace bizapps_test.DAL.Entities
         public int Id { get; private set; }
         public string CategoryName { get; private set; }
 
-        //public static SqlConnection con = DBUtil.GetDBConnection();
-
         public Category(int catId, string categoryName)
         {
  

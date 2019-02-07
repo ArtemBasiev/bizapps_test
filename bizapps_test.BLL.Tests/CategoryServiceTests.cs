@@ -12,12 +12,12 @@ namespace bizapps_test.BLL.Tests
     [TestClass]
     public class CategoryServiceTests
     {
-        public CategoryDTO categoryDTO { get; set; }
+        public CategoryDto categoryDTO { get; set; }
 
         [TestInitialize]
         public void TestInitialize()
         {
-            categoryDTO = new CategoryDTO();
+            categoryDTO = new CategoryDto();
         }
 
         [TestMethod]
@@ -123,7 +123,7 @@ namespace bizapps_test.BLL.Tests
             ICategoryRepository categoryRepository = Mock.Of<ICategoryRepository>(categories => categories.GetAllCategories() == new List<Category>{new Category(expectedCategoryId)});
 
             CategoryService categoryService = new CategoryService(categoryRepository);
-            List<CategoryDTO> gettedCategories = (List<CategoryDTO>)categoryService.GetAllCategories();
+            List<CategoryDto> gettedCategories = (List<CategoryDto>)categoryService.GetAllCategories();
             int resultCategoryId = gettedCategories[0].Id;
 
             Assert.AreEqual(expectedCategoryId, resultCategoryId);
@@ -147,7 +147,7 @@ namespace bizapps_test.BLL.Tests
             ICategoryRepository categoryRepository = Mock.Of<ICategoryRepository>(categories => categories.GetPostCategories(It.IsAny<int>()) == new List<Category> { new Category(expectedCategoryId) });
 
             CategoryService categoryService = new CategoryService(categoryRepository);
-            List<CategoryDTO> gettedCategories = (List<CategoryDTO>)categoryService.GetPostCategories(1);
+            List<CategoryDto> gettedCategories = (List<CategoryDto>)categoryService.GetPostCategories(1);
             int resultCategoryId = gettedCategories[0].Id;
 
             Assert.AreEqual(expectedCategoryId, resultCategoryId);

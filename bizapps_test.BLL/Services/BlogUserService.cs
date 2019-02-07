@@ -14,20 +14,20 @@ namespace bizapps_test.BLL.Services
    public class BlogUserService: IBlogUserService
     {
        [Ninject.Inject]
-       public IBlogUserRepository bloguserRepository { get; private set; }
+       public IBlogUserRepository BloguserRepository { get; private set; }
 
-       public BlogUserService(IBlogUserRepository bloguserrepository)
+       public BlogUserService(IBlogUserRepository bloguserRepository)
        {
-           bloguserRepository = bloguserrepository;
+           BloguserRepository = bloguserRepository;
        }
 
-       public int CreateBlogUser(BlogUserDTO bloguserDTO)
+       public int CreateBlogUser(BlogUserDto bloguserDto)
         {
             //----------------------------------------Добавляем нового пользователя--------------------------------
             try
             {
 
-              return  bloguserRepository.CreateBlogUser(new BlogUser(bloguserDTO.UserName, bloguserDTO.UserPassword, bloguserDTO.BlogName));
+              return  BloguserRepository.CreateBlogUser(new BlogUser(bloguserDto.UserName, bloguserDto.UserPassword, bloguserDto.BlogName));
 
             }
             catch (SqlException e)
@@ -38,12 +38,12 @@ namespace bizapps_test.BLL.Services
 
         }
 
-       public int UpdateBlogUser(BlogUserDTO bloguserDTO)
+       public int UpdateBlogUser(BlogUserDto bloguserDTO)
         {
             //----------------------------------------Обновляем существующего пользователя--------------------------------
             try
             {
-              return  bloguserRepository.UpdateBlogUser(new BlogUser(bloguserDTO.Id, bloguserDTO.UserName, bloguserDTO.UserPassword,  bloguserDTO.BlogName));
+              return  BloguserRepository.UpdateBlogUser(new BlogUser(bloguserDTO.Id, bloguserDTO.UserName, bloguserDTO.UserPassword,  bloguserDTO.BlogName));
             }
             catch (SqlException e)
             {
@@ -53,12 +53,12 @@ namespace bizapps_test.BLL.Services
         }
 
 
-       public int DeleteBlogUser(BlogUserDTO bloguserDTO)
+       public int DeleteBlogUser(BlogUserDto bloguserDto)
         {
             //----------------------------------------Удаляем пользователя, а так-же все связанные с ним сущности--------------------------------
             try
             {
-               return bloguserRepository.DeleteBlogUser(new BlogUser(bloguserDTO.Id));
+               return BloguserRepository.DeleteBlogUser(new BlogUser(bloguserDto.Id));
             }
             catch (SqlException e)
             {
@@ -68,23 +68,23 @@ namespace bizapps_test.BLL.Services
 
         }
 
-       public IEnumerable<BlogUserDTO> GetAllUsers()
+       public IEnumerable<BlogUserDto> GetAllUsers()
         {
             try
             {
                 //-----------------------------Получаем список всех пользователей---------------------------------------
-                IEnumerable<BlogUser> users = bloguserRepository.GetAllBlogUsers();
-                List<BlogUserDTO> DTOusers = new List<BlogUserDTO>();
+                IEnumerable<BlogUser> users = BloguserRepository.GetAllBlogUsers();
+                List<BlogUserDto> userDtos = new List<BlogUserDto>();
                 foreach (BlogUser bu in users)
                 {
-                    BlogUserDTO newbuDTO = new BlogUserDTO();
-                    newbuDTO.Id = bu.Id;
-                    newbuDTO.UserName = bu.UserName;
-                    DTOusers.Add(newbuDTO);
+                    BlogUserDto newbuDto = new BlogUserDto();
+                    newbuDto.Id = bu.Id;
+                    newbuDto.UserName = bu.UserName;
+                    userDtos.Add(newbuDto);
                 }
 
 
-                return DTOusers;
+                return userDtos;
             }
             catch (SqlException e)
             {
@@ -94,20 +94,20 @@ namespace bizapps_test.BLL.Services
         }
 
 
-       public BlogUserDTO GetBlogUserById(int userId)
+       public BlogUserDto GetBlogUserById(int userId)
         {
             try
             {
                 //-----------------------------Получаем пользователя---------------------------------------
-                BlogUser user = bloguserRepository.GetBlogUserById(userId);
+                BlogUser user = BloguserRepository.GetBlogUserById(userId);
                 
-                BlogUserDTO newbuDTO = new BlogUserDTO();
-                newbuDTO.Id = user.Id;
-                newbuDTO.UserName = user.UserName;
-                newbuDTO.UserPassword = user.UserPassword;
-                newbuDTO.BlogName = user.BlogName;
+                BlogUserDto newbuDto = new BlogUserDto();
+                newbuDto.Id = user.Id;
+                newbuDto.UserName = user.UserName;
+                newbuDto.UserPassword = user.UserPassword;
+                newbuDto.BlogName = user.BlogName;
 
-                return newbuDTO;
+                return newbuDto;
             }
             catch (SqlException e)
             {

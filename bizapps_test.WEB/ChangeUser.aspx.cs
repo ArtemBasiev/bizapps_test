@@ -24,7 +24,7 @@ namespace bizapps_test.WEB
             if(!IsPostBack)
             {
                 //bloguserService = new BlogUserService();
-                BlogUserDTO bloguserDTO = bloguserService.GetBlogUserById(Convert.ToInt32(Session["UserId"]));
+                BlogUserDto bloguserDTO = bloguserService.GetBlogUserById(Convert.ToInt32(Session["UserId"]));
                 TextBoxUserName.Text = bloguserDTO.UserName;
                 TextBoxUserPassword.Text = bloguserDTO.UserPassword;
                 TextBoxBlogName.Text = bloguserDTO.BlogName;
@@ -37,7 +37,7 @@ namespace bizapps_test.WEB
             try
             {
                 //bloguserService = new BlogUserService(); 
-                bloguserService.DeleteBlogUser(new BlogUserDTO { Id = Convert.ToInt32(Session["UserId"]) });
+                bloguserService.DeleteBlogUser(new BlogUserDto { Id = Convert.ToInt32(Session["UserId"]) });
                 Response.Redirect("~/Default.aspx");
             }
             catch(Exception ex)
@@ -54,7 +54,7 @@ namespace bizapps_test.WEB
             try
             {
                 //bloguserService = new BlogUserService(); 
-                bloguserService.UpdateBlogUser(new BlogUserDTO 
+                bloguserService.UpdateBlogUser(new BlogUserDto 
                    {
                     Id = Convert.ToInt32(Session["UserId"]) ,
                     UserName = TextBoxUserName.Text,

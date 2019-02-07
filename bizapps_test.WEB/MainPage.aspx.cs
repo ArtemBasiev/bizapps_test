@@ -27,13 +27,13 @@ namespace bizapps_test.WEB
             //try
             //{
            
-                 BlogUserDTO userDTO = bloguserService.GetBlogUserById((int)Session["UserId"]);
+                 BlogUserDto userDTO = bloguserService.GetBlogUserById((int)Session["UserId"]);
                 LabelUserName.Text = userDTO.UserName;
                 LabelBlogName.Text = userDTO.BlogName;
 
-                IEnumerable<PostDTO> posts = postService.GetUserPosts(userDTO.Id);
+                IEnumerable<PostDto> posts = postService.GetUserPosts(userDTO.Id);
 
-                foreach (PostDTO post in posts)
+                foreach (PostDto post in posts)
                 {
                     ItemPost newpost = (ItemPost)Page.LoadControl(@"~\SpecialItems\ItemPost.ascx");
                     newpost.PostId = post.Id;
@@ -41,8 +41,8 @@ namespace bizapps_test.WEB
                     newpost.PostBody = post.Body;
                     newpost.postService = this.postService;
                     string categoryString="";
-                    IEnumerable<CategoryDTO> postCategories = categoryService.GetPostCategories(post.Id);
-                    foreach ( CategoryDTO category in postCategories)
+                    IEnumerable<CategoryDto> postCategories = categoryService.GetPostCategories(post.Id);
+                    foreach ( CategoryDto category in postCategories)
                     {
                         categoryString += category.CategoryName + ", "; 
                     }

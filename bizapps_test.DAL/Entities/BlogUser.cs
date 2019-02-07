@@ -53,10 +53,6 @@ namespace bizapps_test.DAL.Entities
             this.Id = userId;
         }
 
-         public BlogUser()
-         {
-         }
-
 
        // public void GetBlogUser(int userId)
        // {

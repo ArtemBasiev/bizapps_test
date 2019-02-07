@@ -12,12 +12,12 @@ namespace bizapps_test.BLL.Tests
     [TestClass]
     public class BlogUserServiceTests
     {
-        public BlogUserDTO bloguserDTO { get; set; }
+        public BlogUserDto bloguserDTO { get; set; }
 
         [TestInitialize]
         public void TestInitialize()
         {
-            bloguserDTO = new BlogUserDTO();
+            bloguserDTO = new BlogUserDto();
         }
 
         [TestMethod]
@@ -123,7 +123,7 @@ namespace bizapps_test.BLL.Tests
             IBlogUserRepository bloguserRepository = Mock.Of<IBlogUserRepository>(blogusers => blogusers.GetAllBlogUsers() == new List<BlogUser> { new BlogUser(expectedUserId) });
 
             BlogUserService bloguserService = new BlogUserService(bloguserRepository);
-            List<BlogUserDTO> gettedBlogUsers = (List<BlogUserDTO>)bloguserService.GetAllUsers();
+            List<BlogUserDto> gettedBlogUsers = (List<BlogUserDto>)bloguserService.GetAllUsers();
             int  resultUserId = gettedBlogUsers[0].Id;
 
             Assert.AreEqual(expectedUserId, resultUserId);

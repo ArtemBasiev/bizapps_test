@@ -31,7 +31,7 @@ namespace bizapps_test.WEB
             try
             {
 
-                bloguserService.CreateBlogUser(new BlogUserDTO
+                bloguserService.CreateBlogUser(new BlogUserDto
                 {
                     UserName =LoginText.Text,
                     UserPassword = TextPassword.Text,

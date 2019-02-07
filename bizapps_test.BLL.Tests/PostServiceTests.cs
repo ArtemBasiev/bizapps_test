@@ -12,13 +12,13 @@ namespace bizapps_test.BLL.Tests
     [TestClass]
     public class PostServiceTests
     {
-        public PostDTO postDTO { get; set; }
+        public PostDto postDTO { get; set; }
         public Mock<ICategoryRepository> categoryRepository { get; set; }
 
         [TestInitialize]
         public void TestInitialize()
         {
-            postDTO = new PostDTO();
+            postDTO = new PostDto();
             categoryRepository = new Mock<ICategoryRepository>();
         }
 
@@ -30,7 +30,7 @@ namespace bizapps_test.BLL.Tests
             postRepository.Setup(Id => Id.CreatePost(It.IsAny<Post>(), It.IsAny<int>())).Returns(expectedPostId);
 
             PostService postService = new PostService(postRepository.Object, categoryRepository.Object);
-            int resultPostId = postService.CreatePost(postDTO, 2, new List<CategoryDTO> {new CategoryDTO()});
+            int resultPostId = postService.CreatePost(postDTO, 2, new List<CategoryDto> {new CategoryDto()});
 
             Assert.AreEqual(expectedPostId, resultPostId);
         }
@@ -43,7 +43,7 @@ namespace bizapps_test.BLL.Tests
             postRepository.Setup(Id => Id.CreatePost(It.IsAny<Post>(), It.IsAny<int>())).Throws(new ApplicationException());
 
             PostService postService = new PostService(postRepository.Object, categoryRepository.Object);
-            postService.CreatePost(postDTO, 2, new List<CategoryDTO> { new CategoryDTO() });
+            postService.CreatePost(postDTO, 2, new List<CategoryDto> { new CategoryDto() });
         }
 
 
@@ -55,7 +55,7 @@ namespace bizapps_test.BLL.Tests
             postRepository.Setup(Id => Id.UpdatePost(It.IsAny<Post>())).Returns(expectedPostId);
 
             PostService postService = new PostService(postRepository.Object, categoryRepository.Object);
-            int resultPostId = postService.UpdatePost(postDTO, new List<CategoryDTO> { new CategoryDTO() });
+            int resultPostId = postService.UpdatePost(postDTO, new List<CategoryDto> { new CategoryDto() });
 
             Assert.AreEqual(expectedPostId, resultPostId);
         }
@@ -68,7 +68,7 @@ namespace bizapps_test.BLL.Tests
             postRepository.Setup(Id => Id.UpdatePost(It.IsAny<Post>())).Throws(new ApplicationException());
 
             PostService postService = new PostService(postRepository.Object, categoryRepository.Object);
-            postService.UpdatePost(postDTO, new List<CategoryDTO> { new CategoryDTO() });
+            postService.UpdatePost(postDTO, new List<CategoryDto> { new CategoryDto() });
         }
 
 
@@ -128,7 +128,7 @@ namespace bizapps_test.BLL.Tests
             IPostRepository postRepository = Mock.Of<IPostRepository>(posts => posts.GetUserPosts(It.IsAny<int>()) == new List<Post> { new Post(expectedPostId) });
 
             PostService postService = new PostService(postRepository, categoryRepository.Object);
-            List<PostDTO> gettedPosts = (List<PostDTO>)postService.GetUserPosts(2);
+            List<PostDto> gettedPosts = (List<PostDto>)postService.GetUserPosts(2);
             int resultPostId = gettedPosts[0].Id;
 
             Assert.AreEqual(expectedPostId, resultPostId);

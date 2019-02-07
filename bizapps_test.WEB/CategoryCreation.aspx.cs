@@ -51,7 +51,7 @@ namespace bizapps_test.WEB
             try
             {
 
-                categoryService.CreateCategory(new CategoryDTO 
+                categoryService.CreateCategory(new CategoryDto 
                 {
                     CategoryName = Text1.Text
                 });         

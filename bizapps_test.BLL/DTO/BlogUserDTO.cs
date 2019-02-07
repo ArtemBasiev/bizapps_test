@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace bizapps_test.BLL.DTO
 {
-   public class BlogUserDTO
+   public class BlogUserDto
     {
         public int Id { get; set; }
         public string UserName { get; set; }

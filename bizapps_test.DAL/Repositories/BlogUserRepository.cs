@@ -13,28 +13,28 @@ namespace bizapps_test.DAL.Repositories
 {
     public class BlogUserRepository: IBlogUserRepository
     {
-        public static SqlConnection con = DBUtil.GetDBConnection();
+        public static SqlConnection Con = DBUtil.GetDBConnection();
 
 
-        public int CreateBlogUser(BlogUser bloguser)
+        public int CreateBlogUser(BlogUser blogUser)
         {
-            SqlCommand cmd = new SqlCommand("IUDBlogUser", con);
+            SqlCommand cmd = new SqlCommand("IUDBlogUser", Con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add(new SqlParameter("@Flag", SqlDbType.Char, 1));
             cmd.Parameters["@Flag"].Value = "I";
             cmd.Parameters.Add(new SqlParameter("@UserId", SqlDbType.Int));
             cmd.Parameters["@UserId"].Value = 0;
             cmd.Parameters.Add(new SqlParameter("@UserName", SqlDbType.VarChar, 50));
-            cmd.Parameters["@UserName"].Value = bloguser.UserName;
+            cmd.Parameters["@UserName"].Value = blogUser.UserName;
             cmd.Parameters.Add(new SqlParameter("@UserPassword", SqlDbType.VarChar, 50));
-            cmd.Parameters["@UserPassword"].Value = bloguser.UserPassword;
+            cmd.Parameters["@UserPassword"].Value = blogUser.UserPassword;
             cmd.Parameters.Add(new SqlParameter("@BlogName", SqlDbType.VarChar, 50));
-            cmd.Parameters["@BlogName"].Value = bloguser.BlogName;
+            cmd.Parameters["@BlogName"].Value = blogUser.BlogName;
             cmd.Parameters.Add(new SqlParameter("@NewUserId", SqlDbType.Int, 50, ParameterDirection.InputOutput, false, 0, 0, "@NewPostId", DataRowVersion.Original, null));
             cmd.Parameters["@NewUserId"].Value = ParameterDirection.InputOutput;
             try
             {
-                con.Open();
+                Con.Open();
                 cmd.ExecuteNonQuery();
                 return (int)cmd.Parameters["@NewUserId"].Value;
             }
@@ -44,29 +44,29 @@ namespace bizapps_test.DAL.Repositories
             }
             finally
             {
-                con.Close();
+                Con.Close();
             }
         }
 
-        public int UpdateBlogUser(BlogUser bloguser)
+        public int UpdateBlogUser(BlogUser blogUser)
         {
-            SqlCommand cmd = new SqlCommand("IUDBlogUser", con);
+            SqlCommand cmd = new SqlCommand("IUDBlogUser",Con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add(new SqlParameter("@Flag", SqlDbType.Char, 1));
             cmd.Parameters["@Flag"].Value = "U";
             cmd.Parameters.Add(new SqlParameter("@UserId", SqlDbType.Int));
-            cmd.Parameters["@UserId"].Value = bloguser.Id;
+            cmd.Parameters["@UserId"].Value = blogUser.Id;
             cmd.Parameters.Add(new SqlParameter("@UserName", SqlDbType.VarChar, 50));
-            cmd.Parameters["@UserName"].Value = bloguser.UserName;
+            cmd.Parameters["@UserName"].Value = blogUser.UserName;
             cmd.Parameters.Add(new SqlParameter("@UserPassword", SqlDbType.VarChar, 50));
-            cmd.Parameters["@UserPassword"].Value = bloguser.UserPassword;
+            cmd.Parameters["@UserPassword"].Value = blogUser.UserPassword;
             cmd.Parameters.Add(new SqlParameter("@BlogName", SqlDbType.VarChar, 50));
-            cmd.Parameters["@BlogName"].Value = bloguser.BlogName;
+            cmd.Parameters["@BlogName"].Value = blogUser.BlogName;
             cmd.Parameters.Add(new SqlParameter("@NewUserId", SqlDbType.Int, 50, ParameterDirection.InputOutput, false, 0, 0, "@NewPostId", DataRowVersion.Original, null));
             cmd.Parameters["@NewUserId"].Value = ParameterDirection.InputOutput;
             try
             {
-                con.Open();
+                Con.Open();
                 cmd.ExecuteNonQuery();
                 return (int)cmd.Parameters["@NewUserId"].Value;
             }
@@ -76,18 +76,18 @@ namespace bizapps_test.DAL.Repositories
             }
             finally
             {
-                con.Close();
+                Con.Close();
             }
         }
 
-        public int DeleteBlogUser(BlogUser bloguser)
+        public int DeleteBlogUser(BlogUser blogUser)
         {
-            SqlCommand cmd = new SqlCommand("IUDBlogUser", con);
+            SqlCommand cmd = new SqlCommand("IUDBlogUser", Con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add(new SqlParameter("@Flag", SqlDbType.Char, 1));
             cmd.Parameters["@Flag"].Value = "D";
             cmd.Parameters.Add(new SqlParameter("@UserId", SqlDbType.Int));
-            cmd.Parameters["@UserId"].Value = bloguser.Id;
+            cmd.Parameters["@UserId"].Value = blogUser.Id;
             cmd.Parameters.Add(new SqlParameter("@UserName", SqlDbType.VarChar, 50));
             cmd.Parameters["@UserName"].Value = "";
             cmd.Parameters.Add(new SqlParameter("@UserPassword", SqlDbType.VarChar, 50));
@@ -98,7 +98,7 @@ namespace bizapps_test.DAL.Repositories
             cmd.Parameters["@NewUserId"].Value = ParameterDirection.InputOutput;
             try
             {
-                con.Open();
+                Con.Open();
                 cmd.ExecuteNonQuery();
                 return (int)cmd.Parameters["@NewUserId"].Value;
             }
@@ -108,26 +108,26 @@ namespace bizapps_test.DAL.Repositories
             }
             finally
             {
-                con.Close();
+                Con.Close();
             }
         }
 
         public IEnumerable<BlogUser> GetAllBlogUsers()
         {
-            List<BlogUser> Users = new List<BlogUser> { };
-            SqlCommand cmd = new SqlCommand("select * from GetAllUsers()", con);
+            List<BlogUser> users = new List<BlogUser> { };
+            SqlCommand cmd = new SqlCommand("select * from GetAllUsers()", Con);
             try
             {
-                con.Open();
+                Con.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
                     BlogUser user = new BlogUser((int)reader["UserId"], (string)reader["UserName"]);
-                    Users.Add(user);
+                    users.Add(user);
                 }
                 reader.Close();
-                return Users;
+                return users;
             }
             catch (SqlException e)
             {
@@ -135,24 +135,24 @@ namespace bizapps_test.DAL.Repositories
             }
             finally
             {
-                con.Close();
+                Con.Close();
             }
         }
 
-        public BlogUser GetBlogUserById(int bloguserId)
+        public BlogUser GetBlogUserById(int blogUserId)
         {
-            SqlCommand cmd = new SqlCommand("select * from GetBlogUser(" + bloguserId + ")", con);
+            SqlCommand cmd = new SqlCommand("select * from GetBlogUser(" + blogUserId + ")", Con);
 
             try
             {
-                con.Open();
+                Con.Open();
                 SqlDataReader reader = cmd.ExecuteReader(CommandBehavior.SingleRow);
 
                 reader.Read();
-                BlogUser bloguser = new BlogUser((int)reader["UserId"], (string)reader["UserName"],(string)reader["UserPassword"], (string)reader["BlogName"]);
+                BlogUser blogUser = new BlogUser((int)reader["UserId"], (string)reader["UserName"],(string)reader["UserPassword"], (string)reader["BlogName"]);
                 reader.Close();
 
-                return bloguser;
+                return blogUser;
 
             }
             catch (SqlException e)
@@ -161,7 +161,7 @@ namespace bizapps_test.DAL.Repositories
             }
             finally
             {
-                con.Close();
+                Con.Close();
             }
         }
 

@@ -77,11 +77,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DTO\BlogUserDTO.cs" />
-    <Compile Include="DTO\CategoryDTO.cs" />
-    <Compile Include="DTO\PostDTO.cs" />
+    <Compile Include="DTO\BlogUserDto.cs" />
+    <Compile Include="DTO\CategoryDto.cs" />
+    <Compile Include="DTO\PostDto.cs" />
     <Compile Include="Infrastructure\ServiceModule.cs" />
-    <Compile Include="Infrastructure\ValidationException.cs" />
     <Compile Include="Interfaces\IBlogUserService.cs" />
     <Compile Include="Interfaces\ICategoryService.cs" />
     <Compile Include="Interfaces\IPostService.cs" />

@@ -54,17 +54,17 @@ namespace bizapps_test.WEB
             //----------------Создаем новый пост----------------------
             try
             {
-                List<CategoryDTO> postCategories = new List<CategoryDTO>();
+                List<CategoryDto> postCategories = new List<CategoryDto>();
 
                 foreach(ListItem categoryItem in CategoryCheckBoxList.Items)
                 {
                     if (categoryItem.Selected == true)
                     {
-                        postCategories.Add(new CategoryDTO{Id=Convert.ToInt32(categoryItem.Value) });
+                        postCategories.Add(new CategoryDto{Id=Convert.ToInt32(categoryItem.Value) });
                     }
                 }
 
-                postService.CreatePost(new PostDTO
+                postService.CreatePost(new PostDto
                 {
                     Title = TitleText.Text,
                     Body = BodyText.Text
