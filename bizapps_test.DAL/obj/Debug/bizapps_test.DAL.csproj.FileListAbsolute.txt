@@ -9,3 +9,17 @@ C:\Users\ARTEM\documents\visual studio 2013\Projects\bizapps_test\bizapps_test.D
 C:\Users\ARTEM\documents\visual studio 2013\Projects\bizapps_test\bizapps_test.DAL\bin\Debug\ru\EntityFramework.SqlServer.resources.dll
 C:\Users\ARTEM\documents\visual studio 2013\Projects\bizapps_test\bizapps_test.DAL\obj\Debug\bizapps_test.DAL.dll
 C:\Users\ARTEM\documents\visual studio 2013\Projects\bizapps_test\bizapps_test.DAL\obj\Debug\bizapps_test.DAL.pdb
+C:\Users\basiev.a\Documents\Visual Studio 2017\Projects\bizapps_test\bizapps_test.DAL\bin\Debug\bizapps_test.DAL.dll.config
+C:\Users\basiev.a\Documents\Visual Studio 2017\Projects\bizapps_test\bizapps_test.DAL\bin\Debug\bizapps_test.DAL.dll
+C:\Users\basiev.a\Documents\Visual Studio 2017\Projects\bizapps_test\bizapps_test.DAL\bin\Debug\bizapps_test.DAL.pdb
+C:\Users\basiev.a\Documents\Visual Studio 2017\Projects\bizapps_test\bizapps_test.DAL\bin\Debug\EntityFramework.dll
+C:\Users\basiev.a\Documents\Visual Studio 2017\Projects\bizapps_test\bizapps_test.DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\basiev.a\Documents\Visual Studio 2017\Projects\bizapps_test\bizapps_test.DAL\bin\Debug\EntityFramework.xml
+C:\Users\basiev.a\Documents\Visual Studio 2017\Projects\bizapps_test\bizapps_test.DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\basiev.a\Documents\Visual Studio 2017\Projects\bizapps_test\bizapps_test.DAL\bin\Debug\ru\EntityFramework.resources.dll
+C:\Users\basiev.a\Documents\Visual Studio 2017\Projects\bizapps_test\bizapps_test.DAL\bin\Debug\ru\EntityFramework.SqlServer.resources.dll
+C:\Users\basiev.a\Documents\Visual Studio 2017\Projects\bizapps_test\bizapps_test.DAL\obj\Debug\bizapps_test.DAL.csprojAssemblyReference.cache
+C:\Users\basiev.a\Documents\Visual Studio 2017\Projects\bizapps_test\bizapps_test.DAL\obj\Debug\bizapps_test.DAL.csproj.CoreCompileInputs.cache
+C:\Users\basiev.a\Documents\Visual Studio 2017\Projects\bizapps_test\bizapps_test.DAL\obj\Debug\bizapps_test.DAL.csproj.CopyComplete
+C:\Users\basiev.a\Documents\Visual Studio 2017\Projects\bizapps_test\bizapps_test.DAL\obj\Debug\bizapps_test.DAL.dll
+C:\Users\basiev.a\Documents\Visual Studio 2017\Projects\bizapps_test\bizapps_test.DAL\obj\Debug\bizapps_test.DAL.pdb

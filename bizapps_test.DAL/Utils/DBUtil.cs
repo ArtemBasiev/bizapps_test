@@ -21,7 +21,7 @@ namespace bizapps_test.DAL.Utils
             }
             else
             {
-                datasource = @"DESKTOP-5QPRQC5\SQLEXPRESS";
+                datasource = @"VMSMF-TRAINEE\SQLEXPRESS";
                 database = "BizappsTest";
                 //string username = @"DESKTOP-5QPRQC5\ARTEM";
                 //string password = @"Tema190797";

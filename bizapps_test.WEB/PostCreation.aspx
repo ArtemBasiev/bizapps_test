@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="PostCreation.aspx.cs" Inherits="bizapps_test.WEB.PostCreation" %>
 
-<%@ Register Assembly="DevExpress.Web.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
+
 
 <asp:Content ID="HeadContent" ContentPlaceHolderID="head" runat="server">
     <title>Создание поста</title>

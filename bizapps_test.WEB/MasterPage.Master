@@ -5,25 +5,80 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
- 
-     <link rel="stylesheet" href="StyleTest.css"/>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="Content/bootstrap-theme.css" rel="stylesheet" />
+    <%-- <link rel="stylesheet" href="StyleTest.css"/>--%>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <form id="form1" runat="server">
-         <div id ="headdiv" style="text-align:center"">
-                  <asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server">
-                  </asp:ContentPlaceHolder>
+    <nav class="navbar navbar-default ">
+         <div id ="headdiv" class="container" style="text-align:center;">
+     
+             <ul class ="navbar navbar-nav " >
+                 <li class="btn navbar-btn"><asp:HyperLink runat="server" NavigateUrl="~/Default.aspx" Text="Main page"></asp:HyperLink></li>
+                 <li class="btn navbar-btn">Category</li>
+                 <li class="btn navbar-btn">About</li>
+                 <li class="btn navbar-btn">Contacts</li>
+             </ul>
+      
+             <ul class ="navbar navbar-nav navbar-right" style="margin-right:100px;">
+                 <li class="btn navbar-btn"><asp:HyperLink runat="server" NavigateUrl="~/Default.aspx" Text="Exit"></asp:HyperLink></li>
+             </ul>
+                
          </div>
-           <div aria-orientation="horizontal" id="div_union" style="display: inline-block; position: absolute; left: auto; float: none;">
-   
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+    </nav>
+ <%--   <div class="container-fluid">
+           <asp:ContentPlaceHolder  ID="ContentPlaceHolder3" runat="server">
+           </asp:ContentPlaceHolder>
+
+    </div>--%>
         
-            </asp:ContentPlaceHolder>
+
+    
+        <div class="container">
+             <div class="row centered">
+                
+            <div class="col-lg-7" >
+               
+                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1"   runat="server">
+        
+                   </asp:ContentPlaceHolder>
+                
+                
+            </div>
+                
+            <div class="col-lg-3 " style=" margin-left:5%; padding:5px; ">
+                <div class="panel panel-default" style="min-height:200px;">
+                      <asp:ContentPlaceHolder ID="ContentPlaceHolder2"  runat="server">
+        
+                   </asp:ContentPlaceHolder>  
+
+                </div>
+                 
+                   
+
+                
+            </div>
+            
+
+        </div>
+
+        </div>
+       
+
+
+
+          
+   
+         
           
         
-     </div>
-    </form>
+       
+   
+    <script src="Scripts/jquery-1.9.0.js"></script>
+    <script src="Scripts/bootstrap.js"></script>
+
+
 </body>
 </html>

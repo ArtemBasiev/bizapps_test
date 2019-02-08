@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -28,18 +29,24 @@ namespace bizapps_test.WEB
             //{
            
                  BlogUserDto userDTO = bloguserService.GetBlogUserById((int)Session["UserId"]);
-                LabelUserName.Text = userDTO.UserName;
-                LabelBlogName.Text = userDTO.BlogName;
+                //LabelUserName.Text = userDTO.UserName;
+                //LabelBlogName.Text = userDTO.BlogName;
 
                 IEnumerable<PostDto> posts = postService.GetUserPosts(userDTO.Id);
+               
+                  DataTable dt = new DataTable();
+                  dt.Columns.Add("Title");
+                  dt.Columns.Add("Body");
+                  dt.Columns.Add("Categories");
 
-                foreach (PostDto post in posts)
+            foreach (PostDto post in posts)
                 {
-                    ItemPost newpost = (ItemPost)Page.LoadControl(@"~\SpecialItems\ItemPost.ascx");
-                    newpost.PostId = post.Id;
-                    newpost.PostTitle = post.Title;
-                    newpost.PostBody = post.Body;
-                    newpost.postService = this.postService;
+               
+                    //ItemPost newpost = (ItemPost)Page.LoadControl(@"~\SpecialItems\ItemPost.ascx");
+                    //newpost.PostId = post.Id;
+                    //newpost.PostTitle = post.Title;
+                    //newpost.PostBody = post.Body;
+                    //newpost.postService = this.postService;
                     string categoryString="";
                     IEnumerable<CategoryDto> postCategories = categoryService.GetPostCategories(post.Id);
                     foreach ( CategoryDto category in postCategories)
@@ -50,22 +57,28 @@ namespace bizapps_test.WEB
                     {
                         categoryString = categoryString.Remove(categoryString.Length - 2);
                     }
-                  
 
-                    newpost.PostCategories = categoryString;
-                    this.div_list_user.Controls.Add(newpost);
-                    
-                    
-                }
-            
+                DataRow newRow = dt.NewRow();
+                newRow["Title"] = post.Title;
+                newRow["Body"] = post.Body;
+                newRow["Categories"] = categoryString;
+                dt.Rows.Add(newRow);
+                //newpost.PostCategories = categoryString;
+                //this.form_list_user.Controls.Add(newpost);
 
+
+
+            }
+
+            this.main_gridview.DataSource= dt;
+            this.main_gridview.DataBind();
 
             //}
             //catch(Exception ex)
             //{
             //    LabelUserName.Text = ex.Message;
             //}
-            
+
         }
     }
 }

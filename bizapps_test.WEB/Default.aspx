@@ -2,25 +2,36 @@
 
 <asp:Content ID="HeadContent" ContentPlaceHolderID="head" runat="server">
     <title>Выберите пользователя</title>
+   <%-- <link href="Content/bootstrap.css" rel="stylesheet" />--%>
     </asp:Content> 
 
 
-<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="server">
+<%--<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="server">
    <br/> <asp:Label ID="headlabel" runat="server" Text="Выберите пользователя"></asp:Label>   
-</asp:Content>
+</asp:Content>--%>
 
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-     <div aria-orientation="horizontal" style="display: block; position: relative; left: 0px; width:40%; height:500px; float: left; top: 0px; text-align: left; padding-left: 20px; padding-top: 20px;" id="div_links">
-                <asp:HyperLink runat="server" NavigateUrl="~/UserCreation.aspx"><asp:Label ID="Label1" runat="server" Text="Создать пользователя"></asp:Label><br/></asp:HyperLink><br/>
+<asp:Content ID="Content2" CssClass="container centered" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
+   
+        <div class="container centered"  id="div_links">
+                <asp:HyperLink runat="server" Class="alert-link" NavigateUrl="~/UserCreation.aspx"><asp:Label ID="Label1" runat="server" Text="Создать пользователя"></asp:Label><br/></asp:HyperLink><br/>
                 <asp:HyperLink runat="server" NavigateUrl="~/CategoryCreation.aspx" ><asp:Label ID="Label2" runat="server" Text="Создать категорию"></asp:Label><br/></asp:HyperLink><br/>
       </div>
+        </asp:Content>
 
-       <div aria-orientation="horizontal" style="display: block; position: static; left: 0px; float:inherit; width:50%; top: 0px; text-align:center; padding-left: 40px; padding-top: 20px;" id="div_list_user">
-                <asp:Label ID="LabelUsers" runat="server" Text="Пользователи"></asp:Label><br/>
+<asp:Content ID="Content1" CssClass="container center-block" CssStyle="float: none; margin: 0 auto;" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+       <div class="container"  id="div_list_user">
+           <form class="center-block" runat="server">
+                 <asp:Label ID="LabelUsers" CssClass="text-danger" runat="server" Text="Пользователи" CssStyle="float:none"></asp:Label><br/>
                  <asp:BulletedList ID="UserList"  runat="server"  DisplayMode="LinkButton" OnClick="UserList_Click">
                      
                  </asp:BulletedList>
+
+           </form>
+              
           
       </div>
-</asp:Content>
+   
+   <%-- <script src="Scripts/bootstrap.js"></script>
+     <script src="Scripts/jquery-1.9.0.js"></script>--%>
+    </asp:Content>
