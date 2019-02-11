@@ -18,5 +18,8 @@ namespace bizapps_test.DAL.Interfaces
          IEnumerable<BlogUser> GetAllBlogUsers();
 
          BlogUser GetBlogUserById(int blogUserId);
+
+         BlogUser GetBlogUserByNameAndPassword(string userName, string userPassword);
+
     }
 }

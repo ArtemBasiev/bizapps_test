@@ -12,6 +12,7 @@ namespace bizapps_test.BLL.Interfaces
         int UpdatePost(PostDto postDto, List<CategoryDto> categoryListDto);
         PostDto GetPost(int postId);
         IEnumerable<PostDto> GetUserPosts(int userId);
+        IEnumerable<PostDto> GetUserPostsByUserName(string userName);
 
     }
 }

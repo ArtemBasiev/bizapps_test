@@ -115,5 +115,23 @@ namespace bizapps_test.BLL.Services
             }
 
         }
+
+       public BlogUserDto GetBlogUserNameAndPassword(BlogUserDto incomingUser)
+        {
+            try
+            {
+                //-----------------------------Получаем пользователя---------------------------------------
+                BlogUser user = BloguserRepository.GetBlogUserByNameAndPassword(incomingUser.UserName, incomingUser.UserPassword);
+
+                BlogUserDto newbuDto = new BlogUserDto();
+                newbuDto.UserName = user.UserName;
+
+                return newbuDto;
+            }
+            catch (SqlException e)
+            {
+                throw new ApplicationException(e.Message);
+            }
+        }
     }
 }

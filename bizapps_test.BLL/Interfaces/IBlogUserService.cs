@@ -11,6 +11,7 @@ namespace bizapps_test.BLL.Interfaces
         int DeleteBlogUser(BlogUserDto blogUserDto);
         int UpdateBlogUser(BlogUserDto blogUserDto);
         BlogUserDto GetBlogUserById(int userId);
+        BlogUserDto GetBlogUserNameAndPassword(BlogUserDto incomingUser);
         IEnumerable<BlogUserDto> GetAllUsers();
     }
 }

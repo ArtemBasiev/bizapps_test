@@ -2,13 +2,8 @@
 
 <asp:Content ID="HeadContent" ContentPlaceHolderID="head" runat="server">
     <title>Выберите пользователя</title>
-   <%-- <link href="Content/bootstrap.css" rel="stylesheet" />--%>
     </asp:Content> 
 
-
-<%--<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="server">
-   <br/> <asp:Label ID="headlabel" runat="server" Text="Выберите пользователя"></asp:Label>   
-</asp:Content>--%>
 
 
 <asp:Content ID="Content2" CssClass="container centered" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
@@ -32,6 +27,4 @@
           
       </div>
    
-   <%-- <script src="Scripts/bootstrap.js"></script>
-     <script src="Scripts/jquery-1.9.0.js"></script>--%>
     </asp:Content>

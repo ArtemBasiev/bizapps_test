@@ -165,5 +165,40 @@ namespace bizapps_test.DAL.Repositories
             }
         }
 
+        public BlogUser GetBlogUserByNameAndPassword(string userName, string userPassword)
+        {
+            SqlCommand cmd = new SqlCommand("select * from CompareUserLoginPassword('" + userName + "', '"+ userPassword + "')", Con);
+
+            try
+            {
+                Con.Open();
+                SqlDataReader reader = cmd.ExecuteReader(CommandBehavior.SingleRow);
+
+                reader.Read();
+                if(reader.HasRows)
+                {
+                    BlogUser blogUser = new BlogUser((string)reader["UserName"]);
+                    reader.Close();
+                    return blogUser;
+                }
+                else
+                {
+                    reader.Close();
+                    throw new ApplicationException("Failed data");
+                }
+                
+               
+
+            }
+            catch (SqlException e)
+            {
+                throw new ApplicationException(e.Message);
+            }
+            finally
+            {
+                Con.Close();
+            }
+        }
+
     }
 }

@@ -7,13 +7,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link href="Content/bootstrap.css" rel="stylesheet" />
     <link href="Content/bootstrap-theme.css" rel="stylesheet" />
+    <link href="fonts/stylesheet.css" rel="stylesheet" />
     <%-- <link rel="stylesheet" href="StyleTest.css"/>--%>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <nav class="navbar navbar-default ">
-         <div id ="headdiv" class="container" style="text-align:center;">
+    <nav class="navbar  header">
+         <div id ="headdiv" class="container " style="text-align:center;">
      
              <ul class ="navbar navbar-nav " >
                  <li class="btn navbar-btn"><asp:HyperLink runat="server" NavigateUrl="~/Default.aspx" Text="Main page"></asp:HyperLink></li>
@@ -28,43 +29,25 @@
                 
          </div>
     </nav>
- <%--   <div class="container-fluid">
-           <asp:ContentPlaceHolder  ID="ContentPlaceHolder3" runat="server">
-           </asp:ContentPlaceHolder>
-
-    </div>--%>
         
 
     
-        <div class="container">
-             <div class="row centered">
-                
-            <div class="col-lg-7" >
-               
-                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1"   runat="server">
-        
-                   </asp:ContentPlaceHolder>
-                
-                
-            </div>
-                
-            <div class="col-lg-3 " style=" margin-left:5%; padding:5px; ">
-                <div class="panel panel-default" style="min-height:200px;">
-                      <asp:ContentPlaceHolder ID="ContentPlaceHolder2"  runat="server">
-        
-                   </asp:ContentPlaceHolder>  
-
-                </div>
-                 
-                   
-
-                
-            </div>
-            
-
+        <div class="container" style="margin-bottom:60px; height:100%;" >
+                      <form runat="server" role="form" >
+                       <asp:ContentPlaceHolder ID="ContentPlaceHolder1"   runat="server">
+                        </asp:ContentPlaceHolder>
+                   </form>                  
         </div>
 
-        </div>
+       <div class="navbar-fixed-bottom footer" >
+          
+               <div class="container-fluid">
+                   <div class="container">
+                       <span> 2019  All rights reserved</span>
+                   </div>
+              </div>
+
+       </div>
        
 
 

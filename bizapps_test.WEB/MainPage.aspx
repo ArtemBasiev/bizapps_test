@@ -17,48 +17,46 @@
 </asp:Content>--%>
 
 <asp:Content ID="Content1" CssClass="container" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
-       <div    runat="server"> 
-           <form runat="server" id="form_list_user" >
-               <asp:GridView ID="main_gridview" AutoGenerateColumns="false" runat="server"  PageSize="1">
+    
+    <div class="row centered">
+                
+            <div class="col-lg-7" >
+          
+               <asp:GridView ID="main_gridview" OnPageIndexChanging="main_gridview_PageIndexChanging" GridLines="None" Width="700px"   AutoGenerateColumns="false" PagerStyle-HorizontalAlign="Center" AllowPaging="true" runat="server"   PageSize="3">
                    <Columns>
                     <asp:TemplateField >
                        <ItemTemplate>
-                           <div class="panel panel-default">
+                           <div class="panel panel-default" style="border-radius: 2px;">
                                <div class="panel-heading">
-                                   <%# Eval("Title") %>  
-                                   <asp:Button ID="buttonChange" CssClass="btn btn-group-sm btn-info" Text="Change" runat="server"/>
-                                   <asp:Button ID="buttonDelete" CssClass="btn btn-group-sm btn-danger" Text="Change" runat="server"/>
+                                 <p3>
+                                      <%# Eval("Title") %>  
+                                 </p3> 
+                                   <asp:Button ID="buttonChange" CssClass="btn btn-group-sm btn-info right" CssStyle="float: right;" Text="Change" runat="server"/>
+                                   <asp:Button ID="buttonDelete" CssClass="btn btn-group-sm btn-danger right" CssStyle="float: right;" Text="Change" runat="server"/>
                                </div>
-                                <div class="panel-body">
+                                <div class="panel-body" style="min-height:300px;">
                                     <%# Eval("Body") %> 
                                </div>
                                 <div class="panel-footer">
-                                     <%# Eval("Categories") %> 
+                                   <asp:Label Text="Categories: " runat="server"/> <%# Eval("Categories") %> 
                                </div>
-
-
                            </div>
                        </ItemTemplate>
-
-
-                       
-
                    </asp:TemplateField>
                    </Columns>
-                  
-
                </asp:GridView>
+          
+            </div>  
+            <div class="col-lg-3 " style=" margin-left:5%; padding:5px; margin-top:14px;">
+                <div class="panel panel-default" style="min-height:200px; padding:10px; border-radius: 2px;">
+                     <asp:HyperLink ID="linkCreatePost" NavigateUrl="~/PostCreation.aspx" Text="Добавить пост" runat="server" /><br/>
+                </div>
+            </div>
+        </div>
+    
 
 
-           </form>
-      
-      </div>
 </asp:Content>
 
-<asp:Content ID="Content2" CssClass="container" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
-     <div  id="div_links">
-               <asp:HyperLink ID="linkCreatePost" NavigateUrl="~/PostCreation.aspx" Text="Добавить пост" runat="server" /><br/>
-      </div>
-    </asp:Content>
+
 

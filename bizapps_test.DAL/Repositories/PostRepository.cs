@@ -137,6 +137,33 @@ namespace bizapps_test.DAL.Repositories
             }
         }
 
+       public IEnumerable<Post> GetUserPostsByUserName(string userName)
+        {
+            List<Post> posts = new List<Post> { };
+            SqlCommand cmd = new SqlCommand("select * from GetUserPostsByName('" + userName + "')", Con);
+            try
+            {
+                Con.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Post post = new Post((int)reader["PostId"], (string)reader["Title"], (string)reader["Body"]);
+                    posts.Add(post);
+                }
+                reader.Close();
+                return posts;
+            }
+            catch (SqlException e)
+            {
+                throw new ApplicationException(e.Message);
+            }
+            finally
+            {
+                Con.Close();
+            }
+        }
+
         public Post GetPostById(int postId)
         {
             SqlCommand cmd = new SqlCommand("select * from GetPost(" + postId + ")", Con);

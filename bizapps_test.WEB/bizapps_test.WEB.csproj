@@ -95,6 +95,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AutorizationPage.aspx" />
     <Content Include="CategoryUpdateDelete.aspx" />
     <Content Include="ChangeUser.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -103,12 +104,61 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Default.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\stylesheet.css" />
     <Content Include="MainPage.aspx" />
     <Content Include="packages.config" />
     <Content Include="MasterPage.Master" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\HelveticaNeueCyr-Black.eot" />
+    <Content Include="fonts\HelveticaNeueCyr-Black.ttf" />
+    <Content Include="fonts\HelveticaNeueCyr-Black.woff" />
+    <Content Include="fonts\HelveticaNeueCyr-BlackItalic.eot" />
+    <Content Include="fonts\HelveticaNeueCyr-BlackItalic.ttf" />
+    <Content Include="fonts\HelveticaNeueCyr-BlackItalic.woff" />
+    <Content Include="fonts\HelveticaNeueCyr-Bold.eot" />
+    <Content Include="fonts\HelveticaNeueCyr-Bold.ttf" />
+    <Content Include="fonts\HelveticaNeueCyr-Bold.woff" />
+    <Content Include="fonts\HelveticaNeueCyr-BoldItalic.eot" />
+    <Content Include="fonts\HelveticaNeueCyr-BoldItalic.ttf" />
+    <Content Include="fonts\HelveticaNeueCyr-BoldItalic.woff" />
+    <Content Include="fonts\HelveticaNeueCyr-Heavy.eot" />
+    <Content Include="fonts\HelveticaNeueCyr-Heavy.ttf" />
+    <Content Include="fonts\HelveticaNeueCyr-Heavy.woff" />
+    <Content Include="fonts\HelveticaNeueCyr-HeavyItalic.eot" />
+    <Content Include="fonts\HelveticaNeueCyr-HeavyItalic.ttf" />
+    <Content Include="fonts\HelveticaNeueCyr-HeavyItalic.woff" />
+    <Content Include="fonts\HelveticaNeueCyr-Italic.eot" />
+    <Content Include="fonts\HelveticaNeueCyr-Italic.ttf" />
+    <Content Include="fonts\HelveticaNeueCyr-Italic.woff" />
+    <Content Include="fonts\HelveticaNeueCyr-Light.eot" />
+    <Content Include="fonts\HelveticaNeueCyr-Light.ttf" />
+    <Content Include="fonts\HelveticaNeueCyr-Light.woff" />
+    <Content Include="fonts\HelveticaNeueCyr-LightItalic.eot" />
+    <Content Include="fonts\HelveticaNeueCyr-LightItalic.ttf" />
+    <Content Include="fonts\HelveticaNeueCyr-LightItalic.woff" />
+    <Content Include="fonts\HelveticaNeueCyr-Medium.eot" />
+    <Content Include="fonts\HelveticaNeueCyr-Medium.ttf" />
+    <Content Include="fonts\HelveticaNeueCyr-Medium.woff" />
+    <Content Include="fonts\HelveticaNeueCyr-MediumItalic.eot" />
+    <Content Include="fonts\HelveticaNeueCyr-MediumItalic.ttf" />
+    <Content Include="fonts\HelveticaNeueCyr-MediumItalic.woff" />
+    <Content Include="fonts\HelveticaNeueCyr-Roman.eot" />
+    <Content Include="fonts\HelveticaNeueCyr-Roman.ttf" />
+    <Content Include="fonts\HelveticaNeueCyr-Roman.woff" />
+    <Content Include="fonts\HelveticaNeueCyr-Thin.eot" />
+    <Content Include="fonts\HelveticaNeueCyr-Thin.ttf" />
+    <Content Include="fonts\HelveticaNeueCyr-Thin.woff" />
+    <Content Include="fonts\HelveticaNeueCyr-ThinItalic.eot" />
+    <Content Include="fonts\HelveticaNeueCyr-ThinItalic.ttf" />
+    <Content Include="fonts\HelveticaNeueCyr-ThinItalic.woff" />
+    <Content Include="fonts\HelveticaNeueCyr-UltraLight.eot" />
+    <Content Include="fonts\HelveticaNeueCyr-UltraLight.ttf" />
+    <Content Include="fonts\HelveticaNeueCyr-UltraLight.woff" />
+    <Content Include="fonts\HelveticaNeueCyr-UltraLightItalic.eot" />
+    <Content Include="fonts\HelveticaNeueCyr-UltraLightItalic.ttf" />
+    <Content Include="fonts\HelveticaNeueCyr-UltraLightItalic.woff" />
     <None Include="Scripts\jquery-1.9.0.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -135,6 +185,13 @@
     <Compile Include="App_Start\DIConfiguration.cs" />
     <Compile Include="App_Start\NinjectWeb.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
+    <Compile Include="AutorizationPage.aspx.cs">
+      <DependentUpon>AutorizationPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AutorizationPage.aspx.designer.cs">
+      <DependentUpon>AutorizationPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CategoryCreation.aspx.cs">
       <DependentUpon>CategoryCreation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -193,6 +250,7 @@
       <DependentUpon>PostUpdate.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SignGenerator.cs" />
     <Compile Include="SpecialItems\ItemPost.ascx.cs">
       <DependentUpon>ItemPost.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

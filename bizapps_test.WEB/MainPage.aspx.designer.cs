@@ -13,15 +13,6 @@ namespace bizapps_test.WEB {
     public partial class MainPage {
         
         /// <summary>
-        /// form_list_user control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form_list_user;
-        
-        /// <summary>
         /// main_gridview control.
         /// </summary>
         /// <remarks>

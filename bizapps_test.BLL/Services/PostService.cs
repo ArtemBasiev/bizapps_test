@@ -135,6 +135,31 @@ namespace bizapps_test.BLL.Services
 
         }
 
+        public IEnumerable<PostDto> GetUserPostsByUserName(string userName)
+        {
+            try
+            {
+                //-----------------------------Получаем список всех постов пользователя---------------------------------------
+                IEnumerable<Post> posts = PostRepository.GetUserPostsByUserName(userName);
+                List<PostDto> dtoPosts = new List<PostDto>();
+                foreach (Post post in posts)
+                {
+                    PostDto newpostDto = new PostDto();
+                    newpostDto.Id = post.Id;
+                    newpostDto.Title = post.Title;
+                    newpostDto.Body = post.Body;
+                    dtoPosts.Add(newpostDto);
+                }
+
+
+                return dtoPosts;
+            }
+            catch (SqlException e)
+            {
+                throw new ApplicationException(e.Message);
+            }
+        }
+
 
         public PostDto GetPost(int postId)
         {

@@ -27,51 +27,34 @@ namespace bizapps_test.WEB
         {
             //try
             //{
-           
-                 BlogUserDto userDTO = bloguserService.GetBlogUserById((int)Session["UserId"]);
-                //LabelUserName.Text = userDTO.UserName;
-                //LabelBlogName.Text = userDTO.BlogName;
+            //LabelUserName.Text = userDTO.UserName;
+            //LabelBlogName.Text = userDTO.BlogName;
+            HttpCookie login = Request.Cookies["login"];
+            HttpCookie sign = Request.Cookies["sign"];
 
-                IEnumerable<PostDto> posts = postService.GetUserPosts(userDTO.Id);
-               
-                  DataTable dt = new DataTable();
-                  dt.Columns.Add("Title");
-                  dt.Columns.Add("Body");
-                  dt.Columns.Add("Categories");
-
-            foreach (PostDto post in posts)
+            if(login!= null && sign!=null)
+            {
+                if (sign.Value == SignGenerator.GetSign(login.Value+"byte"))
                 {
-               
-                    //ItemPost newpost = (ItemPost)Page.LoadControl(@"~\SpecialItems\ItemPost.ascx");
-                    //newpost.PostId = post.Id;
-                    //newpost.PostTitle = post.Title;
-                    //newpost.PostBody = post.Body;
-                    //newpost.postService = this.postService;
-                    string categoryString="";
-                    IEnumerable<CategoryDto> postCategories = categoryService.GetPostCategories(post.Id);
-                    foreach ( CategoryDto category in postCategories)
-                    {
-                        categoryString += category.CategoryName + ", "; 
-                    }
-                    if (categoryString.Trim() != "")
-                    {
-                        categoryString = categoryString.Remove(categoryString.Length - 2);
-                    }
+                    BindDataList();
+                }
+                else
+                {
+                    Response.Redirect("~/AutorizationPage.aspx");
 
-                DataRow newRow = dt.NewRow();
-                newRow["Title"] = post.Title;
-                newRow["Body"] = post.Body;
-                newRow["Categories"] = categoryString;
-                dt.Rows.Add(newRow);
-                //newpost.PostCategories = categoryString;
-                //this.form_list_user.Controls.Add(newpost);
-
+                }
 
 
             }
+            else
+            {
+                Response.Redirect("~/AutorizationPage.aspx");
+               
+            }
+          
+          
 
-            this.main_gridview.DataSource= dt;
-            this.main_gridview.DataBind();
+
 
             //}
             //catch(Exception ex)
@@ -79,6 +62,57 @@ namespace bizapps_test.WEB
             //    LabelUserName.Text = ex.Message;
             //}
 
+        }
+
+        protected void BindDataList()
+        {
+            //BlogUserDto userDTO = bloguserService.GetBlogUserByUserName((int)Session["UserId"]);
+            
+            IEnumerable<PostDto> posts = postService.GetUserPostsByUserName(Request.Cookies["login"].Value);
+
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Title");
+            dt.Columns.Add("Body");
+            dt.Columns.Add("Categories");
+
+            foreach (PostDto post in posts)
+            {
+
+                string categoryString = "";
+                IEnumerable<CategoryDto> postCategories = categoryService.GetPostCategories(post.Id);
+                foreach (CategoryDto category in postCategories)
+                {
+                    categoryString += category.CategoryName + ", ";
+                }
+                if (categoryString.Trim() != "")
+                {
+                    categoryString = categoryString.Remove(categoryString.Length - 2);
+                }
+
+                DataRow newRow = dt.NewRow();
+                newRow["Title"] = post.Title;
+                newRow["Body"] = post.Body;
+
+                if(categoryString=="")
+                {
+                    categoryString = "Without category";
+                }
+                newRow["Categories"] = categoryString;
+                dt.Rows.Add(newRow);
+
+
+            }
+
+            this.main_gridview.DataSource = dt;
+            this.main_gridview.DataBind();
+
+        }
+
+        protected void main_gridview_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            main_gridview.PageIndex = e.NewPageIndex;
+            main_gridview.DataBind();
+            BindDataList();
         }
     }
 }
