@@ -25,32 +25,28 @@ namespace bizapps_test.WEB
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //try
+            //HttpCookie login = Request.Cookies["login"];
+            //HttpCookie sign = Request.Cookies["sign"];
+
+            //if(login!= null && sign!=null)
             //{
-            //LabelUserName.Text = userDTO.UserName;
-            //LabelBlogName.Text = userDTO.BlogName;
-            HttpCookie login = Request.Cookies["login"];
-            HttpCookie sign = Request.Cookies["sign"];
-
-            if(login!= null && sign!=null)
-            {
-                if (sign.Value == SignGenerator.GetSign(login.Value+"byte"))
-                {
+            //    if (sign.Value == SignGenerator.GetSign(login.Value+"byte"))
+            //    {
                     BindDataList();
-                }
-                else
-                {
-                    Response.Redirect("~/AutorizationPage.aspx");
+            //    }
+            //    else
+            //    {
+            //        Response.Redirect("~/AutorizationPage.aspx");
 
-                }
+            //    }
 
 
-            }
-            else
-            {
-                Response.Redirect("~/AutorizationPage.aspx");
+            //}
+            //else
+            //{
+            //    Response.Redirect("~/AutorizationPage.aspx");
                
-            }
+            //}
           
           
 
@@ -68,7 +64,7 @@ namespace bizapps_test.WEB
         {
             //BlogUserDto userDTO = bloguserService.GetBlogUserByUserName((int)Session["UserId"]);
             
-            IEnumerable<PostDto> posts = postService.GetUserPostsByUserName(Request.Cookies["login"].Value);
+            IEnumerable<PostDto> posts = postService.GetUserPostsByUserName("userA");
 
             DataTable dt = new DataTable();
             dt.Columns.Add("Title");
