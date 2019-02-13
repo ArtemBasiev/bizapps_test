@@ -15,8 +15,18 @@ namespace bizapps_test.DAL.Entities
         public int Id { get; private set; }
         public string Title { get; private set; }
         public string Body { get; private set; }
+        public DateTime CreationDate { get; private set; }
 
         public static SqlConnection Con = DBUtil.GetDBConnection();
+
+
+        public Post(int postId, string title, string body, DateTime creationDate)
+        {
+            this.Id = postId;
+            this.Title = title;
+            this.Body = body;
+            this.CreationDate = creationDate;
+        }
 
 
         public Post(int postId, string title, string body)

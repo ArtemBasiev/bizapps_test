@@ -120,6 +120,31 @@ namespace bizapps_test.BLL.Services
 
         }
 
+        public IEnumerable<CategoryDto> GetBlogCategories(string userName)
+
+        {
+            try
+            {
+                //-----------------------------Получаем список категорий---------------------------------------
+                IEnumerable<Category> categories = CategoryRepository.GetBlogCategories(userName);
+                List<CategoryDto> dtoCategories = new List<CategoryDto>();
+                foreach (Category c in categories)
+                {
+                    CategoryDto newcatDto = new CategoryDto();
+                    newcatDto.Id = c.Id;
+                    newcatDto.CategoryName = c.CategoryName;
+                    dtoCategories.Add(newcatDto);
+                }
+
+
+                return dtoCategories;
+            }
+            catch (SqlException e)
+            {
+                throw new ApplicationException(e.Message);
+            }
+
+        }
 
         public CategoryDto GetCategoryById(int categoryId)
         {

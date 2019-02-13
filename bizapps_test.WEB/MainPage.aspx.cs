@@ -5,7 +5,6 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using bizapps_test.BLL.Services;
 using bizapps_test.BLL.DTO;
 using bizapps_test.BLL.Interfaces;
 using bizapps_test.WEB.SpecialItems;
@@ -25,82 +24,91 @@ namespace bizapps_test.WEB
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //HttpCookie login = Request.Cookies["login"];
-            //HttpCookie sign = Request.Cookies["sign"];
-
-            //if(login!= null && sign!=null)
-            //{
-            //    if (sign.Value == SignGenerator.GetSign(login.Value+"byte"))
-            //    {
-                    BindDataList();
-            //    }
-            //    else
-            //    {
-            //        Response.Redirect("~/AutorizationPage.aspx");
-
-            //    }
+            if (!IsPostBack)
+            {
+                BindDataList();
+            }
+         
 
 
-            //}
-            //else
-            //{
-            //    Response.Redirect("~/AutorizationPage.aspx");
-               
-            //}
-          
-          
-
-
-
-            //}
-            //catch(Exception ex)
-            //{
-            //    LabelUserName.Text = ex.Message;
-            //}
 
         }
 
         protected void BindDataList()
         {
-            //BlogUserDto userDTO = bloguserService.GetBlogUserByUserName((int)Session["UserId"]);
-            
-            IEnumerable<PostDto> posts = postService.GetUserPostsByUserName("userA");
+                IEnumerable<PostDto> posts;
 
-            DataTable dt = new DataTable();
-            dt.Columns.Add("Title");
-            dt.Columns.Add("Body");
-            dt.Columns.Add("Categories");
+                string categoryOption;
+              
+                    
+                    if (Request.QueryString["category"] == null)
+                    {
+                        Response.Redirect("~/MainPage.aspx?category=allcategories");
+                    }
+                    else { }
 
-            foreach (PostDto post in posts)
-            {
+                  categoryOption = Request.QueryString["category"];
 
-                string categoryString = "";
-                IEnumerable<CategoryDto> postCategories = categoryService.GetPostCategories(post.Id);
-                foreach (CategoryDto category in postCategories)
+
+            if (categoryOption == "allcategories" && categoryOption != null)
                 {
-                    categoryString += category.CategoryName + ", ";
+                   posts = postService.GetUserPostsByUserName("admin");
                 }
-                if (categoryString.Trim() != "")
+                else
                 {
-                    categoryString = categoryString.Remove(categoryString.Length - 2);
+                    if (categoryOption == "withoutcategory" && categoryOption != null)
+                    {
+                        posts = postService.GetPostsByUserNameWithoutCategory("admin");
+                    }
+                    else
+                    {
+                        posts = postService.GetPostsByUserNameAndCategory("admin", Convert.ToInt32(Request.QueryString["category"]));
+                    }
                 }
+                DataTable dt = new DataTable();
+                dt.Columns.Add("PostId");
+                dt.Columns.Add("Title");
+                dt.Columns.Add("CreationDate");
+                //dt.Columns.Add("Body");
+                dt.Columns.Add("Categories");
 
-                DataRow newRow = dt.NewRow();
-                newRow["Title"] = post.Title;
-                newRow["Body"] = post.Body;
-
-                if(categoryString=="")
+                foreach (PostDto post in posts)
                 {
-                    categoryString = "Without category";
+
+                    string categoryString = "";
+                    IEnumerable<CategoryDto> postCategories = categoryService.GetPostCategories(post.Id);
+                    foreach (CategoryDto category in postCategories)
+                    {
+                        categoryString += category.CategoryName + ", ";
+                    }
+                    if (categoryString.Trim() != "")
+                    {
+                        categoryString = categoryString.Remove(categoryString.Length - 2);
+                    }
+
+                    DataRow newRow = dt.NewRow();
+                    newRow["Title"] = post.Title;
+                    newRow["PostId"] = post.Id;
+                    newRow["CreationDate"] = post.CreationDate.ToString("D");
+                    //newRow["Body"] = post.Body;
+
+                    if (categoryString == "")
+                    {
+                        categoryString = "Without category";
+                    }
+                    newRow["Categories"] = categoryString;
+                    dt.Rows.Add(newRow);
+
+
                 }
-                newRow["Categories"] = categoryString;
-                dt.Rows.Add(newRow);
 
+                this.main_gridview.DataSource = dt;
+                this.main_gridview.DataBind();
 
-            }
+            //}
+           
 
-            this.main_gridview.DataSource = dt;
-            this.main_gridview.DataBind();
+           
 
         }
 
@@ -110,5 +118,14 @@ namespace bizapps_test.WEB
             main_gridview.DataBind();
             BindDataList();
         }
+
+        protected void ButtonShowMore_OnServerClick(object sender, EventArgs e)
+        {
+           var btn = (Control)sender;
+           HiddenField hfPostId =  (HiddenField)btn.Parent.FindControl("PostId");
+           Response.Redirect("~/ViewPostPage.aspx?PostId="+ hfPostId.Value);
+        }
+
+     
     }
 }

@@ -21,5 +21,8 @@ namespace bizapps_test.DAL.Interfaces
 
         Category GetCategoryById(int categoryId);
 
+        IEnumerable<Category> GetBlogCategories(string userName);
+
+
     }
 }

@@ -13,6 +13,8 @@ namespace bizapps_test.BLL.Interfaces
         PostDto GetPost(int postId);
         IEnumerable<PostDto> GetUserPosts(int userId);
         IEnumerable<PostDto> GetUserPostsByUserName(string userName);
+        IEnumerable<PostDto> GetPostsByUserNameWithoutCategory(string userName);
+        IEnumerable<PostDto> GetPostsByUserNameAndCategory(string userName, int categoryId);
 
     }
 }

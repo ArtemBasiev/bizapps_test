@@ -22,12 +22,21 @@
                      <a class="navbar-brand brand" href="#">  itBL<i class="glyphicon glyphicon-cog"> </i>GER</a>
                  </div>
                  <div class="col-lg-9">
-                 <ul class ="navbar navbar-nav navbar-right list-inline" >
+             <%--    <ul class ="navbar navbar-nav navbar-right list-inline" id="navbarlist" runat="server">
                      <li ><asp:HyperLink runat="server" NavigateUrl="~/MainPage.aspx" Text="Main page"></asp:HyperLink></li>
                      <li >Category</li>
                      <li >About</li>
                      <li >Contacts</li>
-                 </ul>
+                 </ul>--%>
+                     
+                     <asp:BulletedList DisplayMode="HyperLink" class ="navbar navbar-nav navbar-right list-inline" id="navbarlist" runat="server">
+                         <Items>
+                             <asp:ListItem Value="~/MainPage.aspx" Text="MainPage"></asp:ListItem>
+                             <asp:ListItem Text="Categories"></asp:ListItem>
+                             <asp:ListItem Text="About"> </asp:ListItem>
+                             <asp:ListItem Text="Contacts"></asp:ListItem>
+                         </Items>
+                     </asp:BulletedList>
                  </div>
              </div>
 
@@ -36,12 +45,10 @@
          </div>
     </nav>
         
-
-    
         <div class="container" style=" height: auto;" >
                       <form runat="server" role="form" >
-                          <div class="row" style="height: auto;">
-                          <div class="col-lg-9" style="padding-right: 0; padding-left: 0;" >
+                          <div class="row" style="height: auto; margin-bottom: 60px;">
+                          <div class="col-lg-9" style="padding-right: 30px; padding-left: 0;" >
                               <asp:ContentPlaceHolder ID="ContentPlaceHolder1"   runat="server">
                               </asp:ContentPlaceHolder>
                             
@@ -49,15 +56,28 @@
                           <div class="col-lg-3 sidebarcontainer"  >
                               <asp:ContentPlaceHolder ID="ContentPlaceHolder2"   runat="server">
                               </asp:ContentPlaceHolder>
-                              <div class="panel panel-default sidebar" id="loginform">
-                                 <asp:Login runat="server">
+                             
+                                 <asp:Login ID="AuthForm" OnLoggedIn="AuthForm_OnLoggedIn" OnAuthenticate="AuthForm_OnAuthenticate" Visible="False" runat="server">
                                             <LayoutTemplate>
+                                                <div class="panel panel-default sidebar" id="loginform">
                                                 <h4>Log In</h4>
                                                 <asp:TextBox ID="UserName" CssClass="loginformtextbox" placeholder="Login" runat="server"></asp:TextBox>
                                                 <asp:TextBox ID="Password" CssClass="loginformtextbox" placeholder="Password" TextMode="Password" runat="server"></asp:TextBox>
-
+                                                 <asp:Button ID="Login" Text="LogIn" runat="server"/>
+                                                </div>
                                             </LayoutTemplate>
                                  </asp:Login>
+                             
+
+                              <div class="panel panel-default sidebar" style="text-align: left;" id="loginform">
+                                  <h4 >CATEGORIES</h4>
+                                  <div id="categorycontainer">
+                                      <asp:BulletedList ID="CategoryList" DisplayMode="LinkButton" OnClick="CategoryList_OnClick" runat="server">
+                                          <asp:ListItem  Text="All categories" Value="allcategories"/> 
+                                          <asp:ListItem Text="Without category" Value="withoutcategory"/> 
+                                      </asp:BulletedList>
+                                  </div>
+                                
                               </div>
                           </div>
                           </div>
@@ -90,6 +110,11 @@
    
     <script src="Scripts/jquery-1.9.0.js"></script>
     <script src="Scripts/bootstrap.js"></script>
+  <%-- <script>
+       function CategoryList_OnClick() {
+           document.getElementById("CategoryList").CategoryList.toggle('activeitem');
+       }
+   </script>--%>
 
 
 </body>

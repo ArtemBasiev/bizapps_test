@@ -181,5 +181,32 @@ namespace bizapps_test.DAL.Repositories
             }
         }
 
+
+       public  IEnumerable<Category> GetBlogCategories(string userName)
+        {
+            List<Category> categories = new List<Category> { };
+            SqlCommand cmd = new SqlCommand("select * from GetBlogCategories('" + userName + "')", Con);
+            try
+            {
+                Con.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Category cat = new Category((int)reader["CategoryId"], (string)reader["CategoryName"]);
+                    categories.Add(cat);
+                }
+                reader.Close();
+                return categories;
+            }
+            catch (SqlException e)
+            {
+                throw new ApplicationException(e.Message);
+            }
+            finally
+            {
+                Con.Close();
+            }
+        }
     }
 }

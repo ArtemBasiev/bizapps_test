@@ -23,6 +23,10 @@ namespace bizapps_test.DAL.Interfaces
 
         IEnumerable<Post> GetUserPostsByUserName(string userName);
 
+        IEnumerable<Post> GetPostsByUserNameWithoutCategory(string userName);
+
+        IEnumerable<Post> GetPostsByUserNameAndCategory(string userName, int categoryId);
+
         Post GetPostById(int postId);
 
          void AddCategoryToPost(int categoryId, int postId);

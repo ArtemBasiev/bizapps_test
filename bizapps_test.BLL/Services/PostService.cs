@@ -122,6 +122,7 @@ namespace bizapps_test.BLL.Services
                     newpostDto.Id = post.Id;
                     newpostDto.Title = post.Title;
                     newpostDto.Body = post.Body;
+                    newpostDto.CreationDate = post.CreationDate;
                     dtoPosts.Add(newpostDto);
                 }
 
@@ -148,6 +149,60 @@ namespace bizapps_test.BLL.Services
                     newpostDto.Id = post.Id;
                     newpostDto.Title = post.Title;
                     newpostDto.Body = post.Body;
+                    newpostDto.CreationDate = post.CreationDate;
+                    dtoPosts.Add(newpostDto);
+                }
+
+
+                return dtoPosts;
+            }
+            catch (SqlException e)
+            {
+                throw new ApplicationException(e.Message);
+            }
+        }
+
+
+        public IEnumerable<PostDto> GetPostsByUserNameWithoutCategory(string userName)
+        {
+            try
+            {
+                //-----------------------------Получаем список всех постов пользователя---------------------------------------
+                IEnumerable<Post> posts = PostRepository.GetPostsByUserNameWithoutCategory(userName);
+                List<PostDto> dtoPosts = new List<PostDto>();
+                foreach (Post post in posts)
+                {
+                    PostDto newpostDto = new PostDto();
+                    newpostDto.Id = post.Id;
+                    newpostDto.Title = post.Title;
+                    newpostDto.Body = post.Body;
+                    newpostDto.CreationDate = post.CreationDate;
+                    dtoPosts.Add(newpostDto);
+                }
+
+
+                return dtoPosts;
+            }
+            catch (SqlException e)
+            {
+                throw new ApplicationException(e.Message);
+            }
+        }
+
+        public  IEnumerable<PostDto> GetPostsByUserNameAndCategory(string userName, int categoryId)
+        {
+            try
+            {
+                //-----------------------------Получаем список всех постов пользователя---------------------------------------
+                IEnumerable<Post> posts = PostRepository.GetPostsByUserNameAndCategory(userName, categoryId);
+                List<PostDto> dtoPosts = new List<PostDto>();
+                foreach (Post post in posts)
+                {
+                    PostDto newpostDto = new PostDto();
+                    newpostDto.Id = post.Id;
+                    newpostDto.Title = post.Title;
+                    newpostDto.Body = post.Body;
+                    newpostDto.CreationDate = post.CreationDate;
                     dtoPosts.Add(newpostDto);
                 }
 
@@ -172,7 +227,8 @@ namespace bizapps_test.BLL.Services
                 {
                     Id =post.Id,
                     Title = post.Title,
-                    Body =post.Body
+                    Body =post.Body,
+                    CreationDate = post.CreationDate
                 };
 
                 return postDto;

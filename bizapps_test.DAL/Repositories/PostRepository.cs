@@ -121,7 +121,7 @@ namespace bizapps_test.DAL.Repositories
 
                 while (reader.Read())
                 {
-                    Post post = new Post((int)reader["PostId"], (string)reader["Title"], (string)reader["Body"]);
+                    Post post = new Post((int)reader["PostId"], (string)reader["Title"], "", (DateTime)reader["CreationDate"]);
                     posts.Add(post);
                 }
                 reader.Close();
@@ -148,7 +148,61 @@ namespace bizapps_test.DAL.Repositories
 
                 while (reader.Read())
                 {
-                    Post post = new Post((int)reader["PostId"], (string)reader["Title"], (string)reader["Body"]);
+                    Post post = new Post((int)reader["PostId"], (string)reader["Title"], "", (DateTime)reader["CreationDate"]);
+                    posts.Add(post);
+                }
+                reader.Close();
+                return posts;
+            }
+            catch (SqlException e)
+            {
+                throw new ApplicationException(e.Message);
+            }
+            finally
+            {
+                Con.Close();
+            }
+        }
+
+        public IEnumerable<Post> GetPostsByUserNameWithoutCategory(string userName)
+        {
+            List<Post> posts = new List<Post> { };
+            SqlCommand cmd = new SqlCommand("select * from GetUserPostsWithoutCategory('" + userName + "')", Con);
+            try
+            {
+                Con.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Post post = new Post((int)reader["PostId"], (string)reader["Title"], "", (DateTime)reader["CreationDate"]);
+                    posts.Add(post);
+                }
+                reader.Close();
+                return posts;
+            }
+            catch (SqlException e)
+            {
+                throw new ApplicationException(e.Message);
+            }
+            finally
+            {
+                Con.Close();
+            }
+        }
+
+        public IEnumerable<Post> GetPostsByUserNameAndCategory(string userName, int categoryId)
+        {
+            List<Post> posts = new List<Post> { };
+            SqlCommand cmd = new SqlCommand("select * from GetUserPostsByUserNameAndCategory('" + userName + "', "+categoryId+")", Con);
+            try
+            {
+                Con.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Post post = new Post((int)reader["PostId"], (string)reader["Title"], "", (DateTime)reader["CreationDate"]);
                     posts.Add(post);
                 }
                 reader.Close();
@@ -174,7 +228,7 @@ namespace bizapps_test.DAL.Repositories
                 SqlDataReader reader = cmd.ExecuteReader(CommandBehavior.SingleRow);
 
                 reader.Read();
-                Post post = new Post((int)reader["PostId"], (string)reader["Title"], (string)reader["Body"]);
+                Post post = new Post((int)reader["PostId"], (string)reader["Title"], (string)reader["Body"], (DateTime)reader["CreationDate"]);
                 reader.Close();
                 return post;
 

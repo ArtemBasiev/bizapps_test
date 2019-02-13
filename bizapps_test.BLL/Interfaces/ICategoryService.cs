@@ -13,6 +13,7 @@ namespace bizapps_test.BLL.Interfaces
         CategoryDto GetCategoryById(int categoryId);
         IEnumerable<CategoryDto> GetAllCategories();
         IEnumerable<CategoryDto> GetPostCategories(int postId);
+        IEnumerable<CategoryDto> GetBlogCategories(string userName);
 
     }
 }

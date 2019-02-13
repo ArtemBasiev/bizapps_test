@@ -10,60 +10,42 @@
 namespace bizapps_test.WEB {
     
     
-    public partial class MasterPage {
+    public partial class ViewPostPage {
         
         /// <summary>
-        /// head control.
+        /// PostTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PostTitle;
         
         /// <summary>
-        /// navbarlist control.
+        /// labelDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.BulletedList navbarlist;
+        protected global::System.Web.UI.WebControls.Label labelDate;
         
         /// <summary>
-        /// ContentPlaceHolder1 control.
+        /// divBodyHolder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder1;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divBodyHolder;
         
         /// <summary>
-        /// ContentPlaceHolder2 control.
+        /// markPostCategories control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder2;
-        
-        /// <summary>
-        /// AuthForm control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Login AuthForm;
-        
-        /// <summary>
-        /// CategoryList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.BulletedList CategoryList;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl markPostCategories;
     }
 }

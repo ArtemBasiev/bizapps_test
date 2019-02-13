@@ -180,6 +180,7 @@
     <Content Include="SpecialItems\ItemPost.ascx" />
     <Content Include="StyleTest.css" />
     <Content Include="UserCreation.aspx" />
+    <Content Include="ViewPostPage.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -265,6 +266,13 @@
     </Compile>
     <Compile Include="UserCreation.aspx.designer.cs">
       <DependentUpon>UserCreation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewPostPage.aspx.cs">
+      <DependentUpon>ViewPostPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewPostPage.aspx.designer.cs">
+      <DependentUpon>ViewPostPage.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
