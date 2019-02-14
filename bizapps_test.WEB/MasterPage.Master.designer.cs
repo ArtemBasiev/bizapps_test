@@ -28,7 +28,7 @@ namespace bizapps_test.WEB {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.BulletedList navbarlist;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl navbarlist;
         
         /// <summary>
         /// ContentPlaceHolder1 control.
@@ -49,6 +49,15 @@ namespace bizapps_test.WEB {
         protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder2;
         
         /// <summary>
+        /// CategoryList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.BulletedList CategoryList;
+        
+        /// <summary>
         /// AuthForm control.
         /// </summary>
         /// <remarks>
@@ -58,12 +67,21 @@ namespace bizapps_test.WEB {
         protected global::System.Web.UI.WebControls.Login AuthForm;
         
         /// <summary>
-        /// CategoryList control.
+        /// adminpanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.BulletedList CategoryList;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl adminpanel;
+        
+        /// <summary>
+        /// ButtonLogOut control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton ButtonLogOut;
     }
 }

@@ -13,6 +13,7 @@ using bizapps_test.BLL.Infrastructure;
 using bizapps_test.BLL.Interfaces;
 using System.Web.Routing;
 using bizapps_test.BLL.DTO;
+using bizapps_test.WEB.SpecialItems;
 
 namespace bizapps_test.WEB
 {
@@ -25,16 +26,20 @@ namespace bizapps_test.WEB
 
         protected void Page_Load(object sender, EventArgs e)
         {
+
             //----------------Заполняем checkboxlist категорий с помощью метода GetCategories----------------------
-            if (!this.IsPostBack)
-            {
-                try
-                {
+            //if (!this.IsPostBack)
+            //{
+            //preBodyHolder.InnerText = "<p><p/>   <p><p/>   <p><p/>  <p><p/>  <p><p/>";
+            //}
+            try
+
+        {
 
                     foreach (var i in categoryService.GetAllCategories())
                     {
-
-                        CategoryCheckBoxList.Items.Add(new ListItem(i.CategoryName, i.Id.ToString()));
+                        CategoryCheckBox newCategoryCheckBox = new CategoryCheckBox(i.CategoryName, i.Id);
+                        CategoryCheckBoxPanel.Controls.Add(newCategoryCheckBox);
 
                     }
 
@@ -45,8 +50,8 @@ namespace bizapps_test.WEB
                     LabelMes.ForeColor = Color.Red;
                     LabelMes.Text = ex.Message;
                 }
-            }
-           
+            //}
+
         }
 
         protected void ButtonCreatePost_Click(object sender, EventArgs e)
@@ -56,19 +61,19 @@ namespace bizapps_test.WEB
             {
                 List<CategoryDto> postCategories = new List<CategoryDto>();
 
-                foreach(ListItem categoryItem in CategoryCheckBoxList.Items)
+                foreach (CategoryCheckBox categoryItem in CategoryCheckBoxPanel.Controls)
                 {
-                    if (categoryItem.Selected == true)
+                    if (categoryItem.Checked == true)
                     {
-                        postCategories.Add(new CategoryDto{Id=Convert.ToInt32(categoryItem.Value) });
+                        postCategories.Add(new CategoryDto { Id = categoryItem.CategoryId});
                     }
                 }
 
                 postService.CreatePost(new PostDto
                 {
-                    Title = TitleText.Text,
-                    Body = BodyText.Text
-                }, (int)Session["UserId"],
+                    Title = textboxPostTitle.Text,
+                    Body = preBodyHolder.InnerText
+                }, 1,
                 postCategories);
 
                 Response.Redirect("~/MainPage.aspx");

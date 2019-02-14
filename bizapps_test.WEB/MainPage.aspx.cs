@@ -28,7 +28,6 @@ namespace bizapps_test.WEB
             {
                 BindDataList();
             }
-         
 
 
 
@@ -43,14 +42,17 @@ namespace bizapps_test.WEB
                     
                     if (Request.QueryString["category"] == null)
                     {
-                        Response.Redirect("~/MainPage.aspx?category=allcategories");
+                         categoryOption = "allcategories";
                     }
-                    else { }
+                    else
+                    {
+                        categoryOption = Request.QueryString["category"];
+            }
 
-                  categoryOption = Request.QueryString["category"];
+                 
 
 
-            if (categoryOption == "allcategories" && categoryOption != null)
+            if (categoryOption == "allcategories" && categoryOption!= null)
                 {
                    posts = postService.GetUserPostsByUserName("admin");
                 }

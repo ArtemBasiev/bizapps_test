@@ -266,6 +266,24 @@ body {
     color: #f3f9ff;
 }
 
+    .sidebar button {
+       
+        background-color: #32485c;
+        border: none;
+        border-radius: 3px;
+        color: #f3f9ff;
+        font-size: 13px;
+    }
+
+        .sidebar button:hover {
+            color: #09b09a;
+        }
+
+        .sidebar button:focus, .sidebar button:active {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
 .sidebarcontainer {
     min-height: 100vh;
     background-color: #2c3d50;
@@ -308,7 +326,28 @@ body {
         box-shadow: none !important;
         border-color: #09b09a;
     }
-        .blogpanel {
+
+.Login {
+    background-color: #32485c;
+    border: none;
+    border-radius: 3px;
+    color: #f3f9ff;
+    font-size: 13px;
+    width: 65px;
+    height: 24px;
+}
+
+
+.Login:hover {
+    color: #09b09a;
+}
+
+    .Login:focus, .Login:active {
+        outline: none !important;
+        box-shadow: none !important;
+    }
+
+    .blogpanel {
     margin: 0;
     border-top: 0;
     border-left: 0;
@@ -365,7 +404,7 @@ body {
     width: 100%;
 }
 
-#CategoryList {
+.SideBarList {
     padding: 0;
     margin-top: 10px;
     list-style: none;
@@ -375,37 +414,45 @@ body {
     
 }
 
-#CategoryList li {
-    padding: 4px;
-}
-
-    #CategoryList.activeitem {
-        color: red;
+    .SideBarList li {
+        padding: 4px;
     }
 
 
-#categorycontainer a {
+
+.sidebarlistcontainer a {
     text-decoration: none;
     color: #f3f9ff;
 }
 
-    #categorycontainer a:hover, #categorycontainer a:focus, #categorycontainer a:active {
+    .sidebarlistcontainer a:hover, .sidebarlistcontainer a:focus, .sidebarlistcontainer a:active {
         text-decoration: none;
         color: #09b09a;
         border-bottom: 3px solid #09b09a;
     }
 
-#divBodyHolder {
+.divBodyHolder {
     text-align: left;
-    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
     min-height: 600px;
+    border-radius: 3px;
+    overflow-x: hidden;
 }
+
+.preBodyHolder:active, .preBodyHolder:hover, .preBodyHolder:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: #09b09a;
+    border-width: 2px;
+}
+
 #PostTitle {
     margin-top: 0;
     
 }
 
-#PostViewContainer {
+.PostViewContainer {
     width: 100%;
     background-color: #ffffff;
     padding: 30px;
@@ -423,3 +470,49 @@ body {
     border-radius: 3px;
     font-style: italic;
 }
+
+.textboxPostTitle {
+    border: 1px solid #697d91;
+    background-image: none;
+    background: #f5f5f5;
+    border-radius: 3px;
+    padding-left: 5px;
+    margin: 0;
+    font-size: 15px;
+    width: 25px;
+}
+
+    .textboxPostTitle:active, .textboxPostTitle:hover, .textboxPostTitle:focus {
+        outline: none !important;
+        box-shadow: none !important;
+        border-color: #09b09a;
+        border-width: 1px;
+        
+    }
+.CategoryCheckBoxPanel label {
+    padding-right: 10px;
+    font-style: italic;
+    color: #4f7b93;
+    font-size: 13px;
+}
+
+.buttonOnWhitePanel {
+    margin-top: 10px;
+    background-color: #4f7b93;
+    color: #ffffff;
+    border-radius: 3px;
+    border: none;
+    width: 120px;
+    height: 30px;
+    font-size: 15px;
+
+}
+
+
+    .buttonOnWhitePanel:hover, .buttonOnWhitePanel:active, .buttonOnWhitePanel:focus {
+        outline: none !important;
+        box-shadow: none !important;
+        color: #09b09a;
+       
+    
+    }

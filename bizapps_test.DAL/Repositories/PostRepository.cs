@@ -140,7 +140,7 @@ namespace bizapps_test.DAL.Repositories
        public IEnumerable<Post> GetUserPostsByUserName(string userName)
         {
             List<Post> posts = new List<Post> { };
-            SqlCommand cmd = new SqlCommand("select * from GetUserPostsByName('" + userName + "')", Con);
+            SqlCommand cmd = new SqlCommand("select * from GetUserPostsByName('" + userName + "') order by CreationDate desc", Con);
             try
             {
                 Con.Open();
@@ -167,7 +167,7 @@ namespace bizapps_test.DAL.Repositories
         public IEnumerable<Post> GetPostsByUserNameWithoutCategory(string userName)
         {
             List<Post> posts = new List<Post> { };
-            SqlCommand cmd = new SqlCommand("select * from GetUserPostsWithoutCategory('" + userName + "')", Con);
+            SqlCommand cmd = new SqlCommand("select * from GetUserPostsWithoutCategory('" + userName + "') order by CreationDate desc", Con);
             try
             {
                 Con.Open();
@@ -194,7 +194,7 @@ namespace bizapps_test.DAL.Repositories
         public IEnumerable<Post> GetPostsByUserNameAndCategory(string userName, int categoryId)
         {
             List<Post> posts = new List<Post> { };
-            SqlCommand cmd = new SqlCommand("select * from GetUserPostsByUserNameAndCategory('" + userName + "', "+categoryId+")", Con);
+            SqlCommand cmd = new SqlCommand("select * from GetUserPostsByUserNameAndCategory('" + userName + "', "+categoryId+ ") order by CreationDate desc", Con);
             try
             {
                 Con.Open();

@@ -16,11 +16,25 @@ namespace bizapps_test.WEB
         [Ninject.Inject]
         public ICategoryService CategoryService { get; set; }
 
+        [Ninject.Inject]
+        public IBlogUserService BlogUserService { get; set; }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Request.QueryString["user"]=="admin")
             {
-                AuthForm.Visible = true;
+                if (Request.Cookies["login"] != null && Request.Cookies["sign"] != null)
+                {
+                    if (Request.Cookies["sign"].Value == SignGenerator.GetSign(Request.Cookies["login"].Value + "byte"))
+                    {
+                        AuthForm.Visible = false;
+                    }
+                }
+                else
+                {
+                    AuthForm.Visible = true;
+                }
+               
             }
 
             if (!IsPostBack)
@@ -31,6 +45,15 @@ namespace bizapps_test.WEB
                 {
                     ListItem listitem = new ListItem(category.CategoryName, category.Id.ToString());
                     this.CategoryList.Items.Add(listitem);
+                }
+            }
+
+
+            if (Request.Cookies["login"] != null && Request.Cookies["sign"] != null)
+            {
+                if (Request.Cookies["sign"].Value == SignGenerator.GetSign(Request.Cookies["login"].Value+"byte"))
+                {
+                    adminpanel.Visible = true;
                 }
             }
         }
@@ -44,20 +67,44 @@ namespace bizapps_test.WEB
 
         protected void AuthForm_OnAuthenticate(object sender, AuthenticateEventArgs e)
         {
-            if (Membership.ValidateUser(AuthForm.UserName, AuthForm.Password))
-            {
-                e.Authenticated = true;
-            }
-            else
-            {
-                e.Authenticated = false;
-            }
+ 
+                try
+                {
+                    BlogUserDto bloguserDto = new BlogUserDto();
+                    bloguserDto.UserName = AuthForm.UserName;
+                    bloguserDto.UserPassword = AuthForm.Password;
+
+                    BlogUserDto newbloguserDto = BlogUserService.GetBlogUserNameAndPassword(bloguserDto);
+                    HttpCookie login = new HttpCookie("login", newbloguserDto.UserName);
+                    HttpCookie sign = new HttpCookie("sign", SignGenerator.GetSign(newbloguserDto.UserName + "byte"));
+
+                    Response.Cookies.Add(login);
+                    Response.Cookies.Add(sign);
+                    e.Authenticated = true;
+                  
+               
+                }
+                catch (Exception exception)
+                {
+                    e.Authenticated = false;
+                }
+
         }
 
         protected void AuthForm_OnLoggedIn(object sender, EventArgs e)
         {
-            ListItem newitem = new ListItem("Adminka");
-            navbarlist.Items.Add(newitem);
+            Response.Redirect("~/MainPage.aspx");
+        }
+
+
+        protected void ButtonLogOut_OnServerClick(object sender, EventArgs e)
+        {
+            if (Request.Cookies["login"] != null&& Request.Cookies["sign"] != null)
+            {
+                Response.Cookies["login"].Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies["sign"].Expires = DateTime.Now.AddDays(-1);
+                Response.Redirect("~/MainPage.aspx");
+            }
         }
     }
 }

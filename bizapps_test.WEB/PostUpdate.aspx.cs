@@ -13,6 +13,7 @@ using bizapps_test.BLL.Infrastructure;
 using bizapps_test.BLL.Interfaces;
 using System.Web.Routing;
 using bizapps_test.BLL.DTO;
+using bizapps_test.WEB.SpecialItems;
 
 namespace bizapps_test.WEB
 {
@@ -43,22 +44,21 @@ namespace bizapps_test.WEB
                         }
 
                         if (IsEquals==1)
-                        {
-                            ListItem newItem = new ListItem(i.CategoryName, i.Id.ToString());
-                            newItem.Selected = true;
-                            CategoryCheckBoxList.Items.Add(newItem);
+                        { 
+                            CategoryCheckBoxPanel.Controls.Add(new CategoryCheckBox(i.CategoryName, i.Id, true));
+
                         }
 
 
                         else
                         {
-                            CategoryCheckBoxList.Items.Add(new ListItem(i.CategoryName, i.Id.ToString()));
+                            CategoryCheckBoxPanel.Controls.Add(new CategoryCheckBox(i.CategoryName, i.Id));
                         }
                     }
 
                     PostDto UpdatedPost = postService.GetPost(Convert.ToInt32(Request.QueryString["PostId"]));
-                    TitleText.Text = UpdatedPost.Title;
-                    BodyText.Text = UpdatedPost.Body;
+                    textboxPostTitle.Text = UpdatedPost.Title;
+                    preBodyHolder.InnerText = UpdatedPost.Body;
 
 
                 }
@@ -72,30 +72,47 @@ namespace bizapps_test.WEB
 
         protected void ButtonUpdatePost_Click(object sender, EventArgs e)
         {
-            //----------------Сохраняем изменения----------------------
+           // ----------------Сохраняем изменения----------------------
             try
             {
                 List<CategoryDto> postCategories = new List<CategoryDto>();
 
-                foreach (ListItem categoryItem in CategoryCheckBoxList.Items)
+                foreach (CategoryCheckBox categoryItem in CategoryCheckBoxPanel.Controls)
                 {
-                    if (categoryItem.Selected == true)
+                    if (categoryItem.Checked == true)
                     {
-                        postCategories.Add(new CategoryDto { Id = Convert.ToInt32(categoryItem.Value) });
+                        postCategories.Add(new CategoryDto { Id = categoryItem.CategoryId });
                     }
                 }
 
                 postService.UpdatePost(new PostDto
                 {
-                    Id=Convert.ToInt32(Request.QueryString["PostId"]),
-                    Title = TitleText.Text,
-                    Body = BodyText.Text
+                    Id = Convert.ToInt32(Request.QueryString["PostId"]),
+                    Title = textboxPostTitle.Text,
+                    Body = preBodyHolder.InnerText
                 },
                 postCategories);
 
+                Response.Redirect("~/ViewPostPage.aspx?PostId="+Request.QueryString["PostId"]);
+
+
+            }
+            catch (Exception ex)
+            {
+                LabelMes.ForeColor = Color.Red;
+                LabelMes.Text = "Ошибка" + ex.Message;
+            }
+        }
+
+        protected void ButtonDeletePost_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                postService.DeletePost(new PostDto
+                {
+                    Id = Convert.ToInt32(Request.QueryString["PostId"])
+                });
                 Response.Redirect("~/MainPage.aspx");
-
-
             }
             catch (Exception ex)
             {

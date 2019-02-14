@@ -8,21 +8,20 @@
 
 <asp:Content ID="Content1" CssClass="container" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     
-    <div id="PostViewContainer">
+    <div class="PostViewContainer">
         <img class="postimage" id="imgpostview" src="Images/img-post-default.jpg"/>
         <p style="text-align: justify;">   
             <h2 id="PostTitle" runat="server"></h2>
             <asp:Label ID="labelDate" CssClass="text-right" runat="server"></asp:Label>
         </p>
         
-        <div id="divBodyHolder" runat="server">
+        <div class="divBodyHolder" id="divBodyHolder" runat="server">
      
         </div>
-    <span id="markPostCategories" runat="server">
+    <span id="markPostCategories" runat="server">      
+    </span> <br/>
         
-    </span>
-        
-
+      <asp:Button ID="ButtonChangePost" Text="Change post" CssClass="buttonOnWhitePanel" OnClick="ButtonChangePost_OnClick" runat="server"/>
     </div>
     
 

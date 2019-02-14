@@ -253,6 +253,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SignGenerator.cs" />
+    <Compile Include="SpecialItems\CategoryCheckBox.cs" />
     <Compile Include="SpecialItems\ItemPost.ascx.cs">
       <DependentUpon>ItemPost.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

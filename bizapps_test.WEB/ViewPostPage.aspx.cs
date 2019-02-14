@@ -51,5 +51,10 @@ namespace bizapps_test.WEB
             }
             
         }
+
+        protected void ButtonChangePost_OnClick(object sender, EventArgs e)
+        {
+           Response.Redirect("~/PostUpdate.aspx?PostId="+Request.QueryString["PostId"]);
+        }
     }
 }

@@ -13,94 +13,40 @@ namespace bizapps_test.WEB {
     public partial class PostCreation {
         
         /// <summary>
-        /// linkDefault control.
+        /// ImageFileUpload control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink linkDefault;
+        protected global::System.Web.UI.WebControls.FileUpload ImageFileUpload;
         
         /// <summary>
-        /// HyperLinkMainPage control.
+        /// textboxPostTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLinkMainPage;
+        protected global::System.Web.UI.WebControls.TextBox textboxPostTitle;
         
         /// <summary>
-        /// LabelPostCreate control.
+        /// preBodyHolder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelPostCreate;
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea preBodyHolder;
         
         /// <summary>
-        /// LabelCategory control.
+        /// CategoryCheckBoxPanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelCategory;
-        
-        /// <summary>
-        /// CategoryCheckBoxList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBoxList CategoryCheckBoxList;
-        
-        /// <summary>
-        /// LabelTitle control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelTitle;
-        
-        /// <summary>
-        /// TitleText control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TitleText;
-        
-        /// <summary>
-        /// LabelContent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelContent;
-        
-        /// <summary>
-        /// BodyText control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox BodyText;
-        
-        /// <summary>
-        /// LabelMes control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelMes;
+        protected global::System.Web.UI.WebControls.Panel CategoryCheckBoxPanel;
         
         /// <summary>
         /// ButtonCreatePost control.
@@ -110,5 +56,14 @@ namespace bizapps_test.WEB {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button ButtonCreatePost;
+        
+        /// <summary>
+        /// LabelMes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelMes;
     }
 }
