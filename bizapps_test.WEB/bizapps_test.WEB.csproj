@@ -105,7 +105,12 @@
     <Content Include="Default.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\stylesheet.css" />
+    <Content Include="Images\graphic-design-2.jpg" />
     <Content Include="Images\img-post-default.jpg" />
+    <Content Include="Images\Jasper-Technologies_1.jpg" />
+    <Content Include="Images\manwithlaptop.jpg" />
+    <Content Include="Images\MfgTech_2.jpg" />
+    <Content Include="Images\tech.jpeg" />
     <Content Include="MainPage.aspx" />
     <Content Include="packages.config" />
     <Content Include="MasterPage.Master" />

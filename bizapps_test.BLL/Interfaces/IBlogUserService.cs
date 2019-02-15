@@ -13,5 +13,6 @@ namespace bizapps_test.BLL.Interfaces
         BlogUserDto GetBlogUserById(int userId);
         BlogUserDto GetBlogUserNameAndPassword(BlogUserDto incomingUser);
         IEnumerable<BlogUserDto> GetAllUsers();
+        int GetAdminPermission(string userName);
     }
 }

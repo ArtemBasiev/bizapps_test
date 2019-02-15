@@ -4,28 +4,29 @@
     
    
 <asp:Content ID="HeadContent" ContentPlaceHolderID="head" runat="server">
-    <title>Добавление категории</title>
+    <title>Category creation</title>
     </asp:Content> 
 
-
-<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="server">
-         <asp:HyperLink ID="linkDefault" NavigateUrl="~/Default.aspx" Text="Выйти" runat="server" style="float: left;"/> 
-  <br/>  <asp:Label ID="headlabel" runat="server" Text="Модуль создания категорий"></asp:Label>   
-</asp:Content>
  
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-       <div aria-orientation="horizontal" style="display: block; position: relative; left: 0px; float: left; top: 0px; text-align: left; padding-left: 20px; padding-top: 20px;" id="div_list_kat">
-                <asp:Label ID="Label1" runat="server" Text="Список категорий"></asp:Label><br/>
-                 <asp:BulletedList ID="CategoryList" runat="server" DisplayMode="LinkButton" OnClick="CategoryList_Click"></asp:BulletedList>
-      </div>
-      <div aria-orientation="horizontal" style="display: block; position: static;  right: 50%; text-align: center; overflow: hidden; vertical-align: top; padding-top: 20px;" id ="div_cr_kat">
-                   <asp:Label ID="Label2" runat="server" Text="Создание категории"></asp:Label> <br/><br/><br/>
-                 <asp:Label ID="Label3" runat="server" Text="Введите название категории"></asp:Label><br/><br/>
-                 <asp:TextBox id="Text1"  runat="server"/><br/>
-                 <asp:Label ID="LabelMes" runat="server" Font-Size="12px" ></asp:Label><br/><br/>
-                 <asp:Button id="cr_kat" Text="Создать" runat="server" OnClick="cr_kat_Click" /><br/>
-     </div>
+    <div class="PostViewContainer">
+        <h2 style="margin: 0;">
+            Category creation  
+        </h2>  <br/>
+        <asp:BulletedList ID="CategoryList" CssClass="CategoryList" DisplayMode="LinkButton" OnClick="CategoryList_OnClick" runat="server"/>
+        <p style="margin-bottom: 0; padding-bottom: 5px; padding-top: 5px;">
+            <b>    <asp:Label Text="Input category name:" runat="server"/> </b>
+          
+            <asp:TextBox ID="textboxCategoryName" CssClass="textboxPostTitle" Width="200px" runat="server"/>
+        </p>
+        <asp:RequiredFieldValidator ControlToValidate="textboxCategoryName" ErrorMessage="Category name must be specified"  ForeColor="Red" runat="server"/>
+        <asp:RegularExpressionValidator ControlToValidate="textboxCategoryName" ErrorMessage="Category name contains invalid characters" ValidationExpression="[\w|,.!? ]*" ForeColor="Red" runat="server"/>
+        <br/>
+        
+        <asp:Button ID="ButtonCreateCategory" Text="Create category" CssClass="buttonOnWhitePanel" OnClick="cr_kat_Click" runat="server"/>
+        <asp:Label ID="LabelMes" runat="server"/>
+    </div>
 </asp:Content>
 
 

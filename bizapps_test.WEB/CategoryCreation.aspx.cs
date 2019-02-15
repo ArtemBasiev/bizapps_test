@@ -20,28 +20,46 @@ namespace bizapps_test.WEB
     public partial class CategoryCreation : System.Web.UI.Page
     {
         [Ninject.Inject]
-        public ICategoryService categoryService { get; set; }
+        public ICategoryService CategoryService { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //----------------Заполняем список категорий с помощью метода GetCategories----------------------
-            try
+            if (Request.Cookies["login"] != null && Request.Cookies["sign"] != null && Request.Cookies["perm"] != null)
             {
-                CategoryList.Items.Clear();
-
-
-                foreach (var i in categoryService.GetAllCategories())
+                if (Request.Cookies["sign"].Value == SignGenerator.GetSign(Request.Cookies["login"].Value + "byte"))
                 {
-                    CategoryList.Items.Add(new ListItem(i.CategoryName, i.Id.ToString()));
+                    try
+                    {
+                        CategoryList.Items.Clear();
+
+
+                        foreach (var i in CategoryService.GetAllCategories())
+                        {
+                            CategoryList.Items.Add(new ListItem(i.CategoryName, i.Id.ToString()));
+                        }
+
+
+                    }
+                    catch (Exception ex)
+                    {
+                        LabelMes.ForeColor = Color.Red;
+                        LabelMes.Text = ex.Message;
+                    }
                 }
-
-
+                else
+                {
+                    return;
+                }
+                
             }
-            catch (Exception ex)
+            else
             {
-                LabelMes.ForeColor = Color.Red;
-                LabelMes.Text = ex.Message;
+                Response.Redirect("~/MainPage.aspx");
             }
+
+
+            //----------------Заполняем список категорий с помощью метода GetCategories----------------------
+           
         }
 
         protected void cr_kat_Click(object sender, EventArgs e)
@@ -51,14 +69,14 @@ namespace bizapps_test.WEB
             try
             {
 
-                categoryService.CreateCategory(new CategoryDto 
+                CategoryService.CreateCategory(new CategoryDto 
                 {
-                    CategoryName = Text1.Text
+                    CategoryName = textboxCategoryName.Text
                 });         
                 Response.Redirect(Request.Path);
 
-                LabelMes.Text = "Категория успешно добавлена";
-                LabelMes.ForeColor = Color.Green;
+                //LabelMes.Text = "Категория успешно добавлена";
+                //LabelMes.ForeColor = Color.Green;
                 
 
             }
@@ -70,7 +88,8 @@ namespace bizapps_test.WEB
 
         }
 
-        protected void CategoryList_Click(object sender, BulletedListEventArgs e)
+
+        protected void CategoryList_OnClick(object sender, BulletedListEventArgs e)
         {
             Response.Redirect("~/CategoryUpdateDelete.aspx?CategoryId=" + CategoryList.Items[e.Index].Value);
         }

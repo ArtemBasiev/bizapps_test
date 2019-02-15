@@ -20,37 +20,53 @@ namespace bizapps_test.WEB
     public partial class PostCreation : System.Web.UI.Page
     {
         [Ninject.Inject]
-        public ICategoryService categoryService { get; set; }
+        public ICategoryService CategoryService { get; set; }
         [Ninject.Inject]
-        public IPostService postService { get; set; }
+        public IPostService PostService { get; set; }
+
+        //public string PostImage { get; set; } = "";
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            //----------------Заполняем checkboxlist категорий с помощью метода GetCategories----------------------
-            //if (!this.IsPostBack)
-            //{
-            //preBodyHolder.InnerText = "<p><p/>   <p><p/>   <p><p/>  <p><p/>  <p><p/>";
-            //}
-            try
-
-        {
-
-                    foreach (var i in categoryService.GetAllCategories())
+            if (Request.Cookies["login"] != null && Request.Cookies["sign"] != null && Request.Cookies["perm"] != null)
+            {
+                if (Request.Cookies["sign"].Value == SignGenerator.GetSign(Request.Cookies["login"].Value + "byte"))
+                {
+                    if (!this.IsPostBack)
                     {
-                        CategoryCheckBox newCategoryCheckBox = new CategoryCheckBox(i.CategoryName, i.Id);
-                        CategoryCheckBoxPanel.Controls.Add(newCategoryCheckBox);
+                        preBodyHolder.InnerText = "<p><p/>   <p><p/>   <p><p/>  <p><p/>  <p><p/>";
+                    }
+                    try
+
+                    {
+
+                        foreach (var i in CategoryService.GetAllCategories())
+                        {
+                            CategoryCheckBox newCategoryCheckBox = new CategoryCheckBox(i.CategoryName, i.Id);
+                            CategoryCheckBoxPanel.Controls.Add(newCategoryCheckBox);
+
+                        }
+
 
                     }
-
-
+                    catch (Exception ex)
+                    {
+                        LabelMes.ForeColor = Color.Red;
+                        LabelMes.Text = ex.Message;
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
-                    LabelMes.ForeColor = Color.Red;
-                    LabelMes.Text = ex.Message;
+                    return;
                 }
-            //}
+            }
+            else
+            {
+                Response.Redirect("~/MainPage.aspx");
+            }
+        
+          
+           
 
         }
 
@@ -69,10 +85,11 @@ namespace bizapps_test.WEB
                     }
                 }
 
-                postService.CreatePost(new PostDto
+                PostService.CreatePost(new PostDto
                 {
                     Title = textboxPostTitle.Text,
-                    Body = preBodyHolder.InnerText
+                    Body = HttpUtility.HtmlEncode(preBodyHolder.InnerText),
+                    PostImage = ImageFileUpload.FileName
                 }, 1,
                 postCategories);
 
@@ -86,5 +103,10 @@ namespace bizapps_test.WEB
                 LabelMes.Text = "Ошибка" + ex.Message;
             }
         }
+
+        //protected void ImageFileUpload_OnDataBinding(object sender, EventArgs e)
+        //{
+        //    PostImage = ImageFileUpload.FileName;
+        //}
     }
 }

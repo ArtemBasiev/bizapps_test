@@ -29,6 +29,8 @@ namespace bizapps_test.DAL.Repositories
             cmd.Parameters["@Title"].Value = post.Title;
             cmd.Parameters.Add(new SqlParameter("@Body", SqlDbType.Text));
             cmd.Parameters["@Body"].Value = post.Body;
+            cmd.Parameters.Add(new SqlParameter("@PostImage", SqlDbType.VarChar, 100));
+            cmd.Parameters["@PostImage"].Value = post.PostImage;
             cmd.Parameters.Add(new SqlParameter("@NewPostId", SqlDbType.Int, 50, ParameterDirection.InputOutput, false, 0, 0, "@NewPostId", DataRowVersion.Original, null));
             cmd.Parameters["@NewPostId"].Value = ParameterDirection.InputOutput;
             try
@@ -61,6 +63,8 @@ namespace bizapps_test.DAL.Repositories
             cmd.Parameters["@Title"].Value = post.Title;
             cmd.Parameters.Add(new SqlParameter("@Body", SqlDbType.Text));
             cmd.Parameters["@Body"].Value = post.Body;
+            cmd.Parameters.Add(new SqlParameter("@PostImage", SqlDbType.VarChar, 100));
+            cmd.Parameters["@PostImage"].Value = post.PostImage;
             cmd.Parameters.Add(new SqlParameter("@NewPostId", SqlDbType.Int, 50, ParameterDirection.InputOutput, false, 0, 0, "@NewPostId", DataRowVersion.Original, null));
             cmd.Parameters["@NewPostId"].Value = ParameterDirection.InputOutput;
             try
@@ -92,6 +96,8 @@ namespace bizapps_test.DAL.Repositories
             cmd.Parameters["@Title"].Value = "";
             cmd.Parameters.Add(new SqlParameter("@Body", SqlDbType.Text));
             cmd.Parameters["@Body"].Value = "";
+            cmd.Parameters.Add(new SqlParameter("@PostImage", SqlDbType.VarChar, 100));
+            cmd.Parameters["@PostImage"].Value = "";
             cmd.Parameters.Add(new SqlParameter("@NewPostId", SqlDbType.Int, 50, ParameterDirection.InputOutput, false, 0, 0, "@NewPostId", DataRowVersion.Original, null));
             cmd.Parameters["@NewPostId"].Value = ParameterDirection.InputOutput;
             try
@@ -121,7 +127,7 @@ namespace bizapps_test.DAL.Repositories
 
                 while (reader.Read())
                 {
-                    Post post = new Post((int)reader["PostId"], (string)reader["Title"], "", (DateTime)reader["CreationDate"]);
+                    Post post = new Post((int)reader["PostId"], (string)reader["Title"], "", (DateTime)reader["CreationDate"], (string)reader["PostImage"]);
                     posts.Add(post);
                 }
                 reader.Close();
@@ -148,7 +154,7 @@ namespace bizapps_test.DAL.Repositories
 
                 while (reader.Read())
                 {
-                    Post post = new Post((int)reader["PostId"], (string)reader["Title"], "", (DateTime)reader["CreationDate"]);
+                    Post post = new Post((int)reader["PostId"], (string)reader["Title"], "", (DateTime)reader["CreationDate"], (string)reader["PostImage"]);
                     posts.Add(post);
                 }
                 reader.Close();
@@ -175,7 +181,7 @@ namespace bizapps_test.DAL.Repositories
 
                 while (reader.Read())
                 {
-                    Post post = new Post((int)reader["PostId"], (string)reader["Title"], "", (DateTime)reader["CreationDate"]);
+                    Post post = new Post((int)reader["PostId"], (string)reader["Title"], "", (DateTime)reader["CreationDate"], (string)reader["PostImage"]);
                     posts.Add(post);
                 }
                 reader.Close();
@@ -202,7 +208,7 @@ namespace bizapps_test.DAL.Repositories
 
                 while (reader.Read())
                 {
-                    Post post = new Post((int)reader["PostId"], (string)reader["Title"], "", (DateTime)reader["CreationDate"]);
+                    Post post = new Post((int)reader["PostId"], (string)reader["Title"], "", (DateTime)reader["CreationDate"], (string)reader["PostImage"]);
                     posts.Add(post);
                 }
                 reader.Close();
@@ -228,7 +234,7 @@ namespace bizapps_test.DAL.Repositories
                 SqlDataReader reader = cmd.ExecuteReader(CommandBehavior.SingleRow);
 
                 reader.Read();
-                Post post = new Post((int)reader["PostId"], (string)reader["Title"], (string)reader["Body"], (DateTime)reader["CreationDate"]);
+                Post post = new Post((int)reader["PostId"], (string)reader["Title"], (string)reader["Body"], (DateTime)reader["CreationDate"], (string)reader["PostImage"]);
                 reader.Close();
                 return post;
 

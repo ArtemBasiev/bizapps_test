@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -25,8 +26,14 @@ namespace bizapps_test.WEB
                 if (Request.QueryString["PostId"] != null)
                 {
                     PostDto post = PostService.GetPost(Convert.ToInt32(Request.QueryString["PostId"]));
+
+                    if (File.Exists(MapPath("Images/" + post.PostImage.Trim())))
+                    {
+                        imgpostview.Src = @"/Images/" + post.PostImage.Trim();
+                    }
+
                     PostTitle.InnerText = post.Title;
-                    divBodyHolder.InnerHtml = post.Body;
+                    divBodyHolder.InnerHtml = HttpUtility.HtmlDecode(post.Body);
                     labelDate.Text = post.CreationDate.ToString("yyyy MMMM dd");
                     IEnumerable<CategoryDto> postcategories = CategoryService.GetPostCategories(Convert.ToInt32(Request.QueryString["PostId"]));
 
@@ -49,7 +56,15 @@ namespace bizapps_test.WEB
                 }
                
             }
-            
+
+            if (Request.Cookies["login"] != null && Request.Cookies["sign"] != null && Request.Cookies["perm"] != null)
+            {
+                if (Request.Cookies["sign"].Value == SignGenerator.GetSign(Request.Cookies["login"].Value + "byte"))
+                {
+                   ButtonChangePost.Visible = true;
+                }
+            }
+
         }
 
         protected void ButtonChangePost_OnClick(object sender, EventArgs e)

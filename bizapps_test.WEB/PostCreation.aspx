@@ -11,13 +11,15 @@
     <div class="PostViewContainer">
       <p>
          <b>   <asp:Label Text="Choose post image:" runat="server"/>  </b> 
-        <label >   <asp:FileUpload ID="ImageFileUpload" runat="server" />  </label> 
+        <label >   <asp:FileUpload ID="ImageFileUpload"  runat="server" />  </label> 
       </p>  <br/>
         <p style="margin-bottom: 0; padding-bottom: 5px; padding-top: 5px;">
             <b>    <asp:Label Text="Input post title:" runat="server"/> </b>
           
             <asp:TextBox ID="textboxPostTitle" CssClass="textboxPostTitle" Width="400px" runat="server"/>
         </p>
+        <asp:RequiredFieldValidator ControlToValidate="textboxPostTitle" ErrorMessage="Title must be specified"  ForeColor="Red" runat="server"/>
+        <asp:RegularExpressionValidator ControlToValidate="textboxPostTitle" ErrorMessage="Title contains invalid characters" ValidationExpression="[\w|,.!? ]*" ForeColor="Red" runat="server"/>
         <br/>
         <b> <asp:Label Text="Input post content:" runat="server"/>  </b>
         

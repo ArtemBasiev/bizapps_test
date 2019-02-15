@@ -21,8 +21,8 @@ namespace bizapps_test.WEB
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Request.QueryString["user"]=="admin")
-            {
+            //if (Request.QueryString["user"]=="admin")
+            //{
                 if (Request.Cookies["login"] != null && Request.Cookies["sign"] != null)
                 {
                     if (Request.Cookies["sign"].Value == SignGenerator.GetSign(Request.Cookies["login"].Value + "byte"))
@@ -35,7 +35,7 @@ namespace bizapps_test.WEB
                     AuthForm.Visible = true;
                 }
                
-            }
+            //}
 
             if (!IsPostBack)
             {
@@ -53,9 +53,19 @@ namespace bizapps_test.WEB
             {
                 if (Request.Cookies["sign"].Value == SignGenerator.GetSign(Request.Cookies["login"].Value+"byte"))
                 {
-                    adminpanel.Visible = true;
+                    LabelUserName.Text = Request.Cookies["login"].Value;
+                    LogoutPanel.Visible = true;
+                    if (Request.Cookies["perm"] != null)
+                    {
+                        adminpanel.Visible = true;
+                    }
+                    
+
                 }
             }
+
+        
+
         }
 
         protected void CategoryList_OnClick(object sender, BulletedListEventArgs e)
@@ -77,6 +87,16 @@ namespace bizapps_test.WEB
                     BlogUserDto newbloguserDto = BlogUserService.GetBlogUserNameAndPassword(bloguserDto);
                     HttpCookie login = new HttpCookie("login", newbloguserDto.UserName);
                     HttpCookie sign = new HttpCookie("sign", SignGenerator.GetSign(newbloguserDto.UserName + "byte"));
+
+                    try
+                    {
+                    int userId = BlogUserService.GetAdminPermission(newbloguserDto.UserName);
+                    HttpCookie perm = new HttpCookie("perm", "admin");
+                    Response.Cookies.Add(perm);
+                }
+                    catch 
+                    {
+                    }
 
                     Response.Cookies.Add(login);
                     Response.Cookies.Add(sign);
@@ -103,6 +123,11 @@ namespace bizapps_test.WEB
             {
                 Response.Cookies["login"].Expires = DateTime.Now.AddDays(-1);
                 Response.Cookies["sign"].Expires = DateTime.Now.AddDays(-1);
+                if (Request.Cookies["perm"] != null)
+                {
+                    Response.Cookies["perm"].Expires = DateTime.Now.AddDays(-1);
+                }
+               
                 Response.Redirect("~/MainPage.aspx");
             }
         }

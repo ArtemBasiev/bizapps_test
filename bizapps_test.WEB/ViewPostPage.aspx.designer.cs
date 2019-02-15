@@ -13,6 +13,15 @@ namespace bizapps_test.WEB {
     public partial class ViewPostPage {
         
         /// <summary>
+        /// imgpostview control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlImage imgpostview;
+        
+        /// <summary>
         /// PostTitle control.
         /// </summary>
         /// <remarks>

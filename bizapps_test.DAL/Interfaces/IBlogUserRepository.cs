@@ -21,5 +21,7 @@ namespace bizapps_test.DAL.Interfaces
 
          BlogUser GetBlogUserByNameAndPassword(string userName, string userPassword);
 
+        int GetAdminPermission(string userName);
+
     }
 }

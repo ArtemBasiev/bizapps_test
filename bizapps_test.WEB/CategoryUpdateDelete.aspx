@@ -1,25 +1,42 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="CategoryUpdateDelete.aspx.cs" Inherits="bizapps_test.WEB.CategoryUpdateDelete" %>
 
 <asp:Content ID="HeadContent" ContentPlaceHolderID="head" runat="server">
-    <title>Изменение, удаление категории</title>
-    </asp:Content> 
+    <title>Category update</title>
+</asp:Content> 
 
-
-<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="server">
-         <asp:HyperLink ID="linkDefault" NavigateUrl="~/Default.aspx" Text="Выйти" runat="server" style="float: left;"/> 
- <br/>  <asp:Label ID="Label"  runat="server" Text="Изменение, удаление категории"></asp:Label>  
-</asp:Content>
+ 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div aria-orientation="horizontal" style="display: block; position: relative; left: 0px; height:400px; width:40%; height:500px; float: left; top: 0px; text-align: left; padding-left: 20px; padding-top: 20px;" id="div_categories">
-        <asp:Button ID="ButtonDeleteCategory" runat="server" Text="Удалить категорию" OnClick="ButtonDeleteCategory_Click"></asp:Button><br/><br/>
+    <div class="PostViewContainer">
+        <h2 style="margin: 0;">
+            Category update  
+        </h2>  <br/>
+        <p style="margin-bottom: 0; padding-bottom: 5px; padding-top: 5px;">
+            <b>    <asp:Label Text="Input category name:" runat="server"/> </b>
+          
+            <asp:TextBox ID="textboxCategoryName" CssClass="textboxPostTitle" Width="200px" runat="server"/>
+        </p>
+        <asp:RequiredFieldValidator ControlToValidate="textboxCategoryName" ErrorMessage="Category name must be specified"  ForeColor="Red" runat="server"/>
+        <asp:RegularExpressionValidator ControlToValidate="textboxCategoryName" ErrorMessage="Category name contains invalid characters" ValidationExpression="[\w|,.!? ]*" ForeColor="Red" runat="server"/>
+        <br/>
+        
+        <asp:Button ID="ButtonSaveChanges" Text="Save changes" CssClass="buttonOnWhitePanel" OnClick="ButtonUpdateCategory_Click" runat="server"/>
+        <button id="ButtonDelete"  class="buttonOnWhitePanel" style="background-color: #c63632;" data-toggle="modal" data-target="#ModalDelete">Delete category</button>
+        <div id="ModalDelete" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button class="close" data-dismiss="modal">x</button>
+                        <h4 class="modal-title">Are you sure about deleting this category?</h4>
+                    </div>
+                    <div class="modal-body">
+                        <button class="btn btn-danger" CausesValidation="False" OnServerClick="ButtonDeleteCategory_Click" runat="server">Conform</button>
+                        <button class="btn btn-info" data-dismiss="modal"> Cancel </button>
+                    </div>
+
+                </div>
+            </div>
         </div>
-       <div aria-orientation="horizontal" style="display: block; position: static; left: 0px; float:inherit; width:50%; top: 0px; text-align:center; padding-left: 40px; padding-top: 20px;" id="div_list_user">
-                 <asp:Label ID="LabelCategoryName" runat="server" Text="Введите наименование категории"></asp:Label><br/><br/>
-                 <asp:TextBox id="CategoryNameText"  runat="server"/><br/><br/><br/>
-
-
-                 <asp:Label ID="LabelMes" runat="server" Font-Size="12px" ></asp:Label><br/><br/>
-                 <asp:Button id="ButtonUpdateCategory" Text="Сохранить изменения" runat="server" OnClick="ButtonUpdateCategory_Click"/><br/><br/>
-      </div>
+        <asp:Label ID="LabelMes" runat="server"/>
+    </div>
 </asp:Content>

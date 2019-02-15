@@ -20,54 +20,88 @@ namespace bizapps_test.WEB
     public partial class PostUpdate : System.Web.UI.Page
     {
         [Ninject.Inject]
-        public ICategoryService categoryService { get; set; }
+        public ICategoryService CategoryService { get; set; }
         [Ninject.Inject]
-        public IPostService postService { get; set; }
+        public IPostService PostService { get; set; }
 
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!this.IsPostBack)
+            if (Request.Cookies["login"] != null && Request.Cookies["sign"] != null && Request.Cookies["perm"] != null)
             {
-                try
+                if (Request.Cookies["sign"].Value == SignGenerator.GetSign(Request.Cookies["login"].Value + "byte"))
                 {
-                    //------------------Заполняем список категорий поста---------------------------
-                    foreach (var i in categoryService.GetAllCategories())
+                    if (!this.IsPostBack)
                     {
-                        int IsEquals=0;
-                        foreach (var j in (List<CategoryDto>)categoryService.GetPostCategories(Convert.ToInt32(Request.QueryString["PostId"])))
+                        try
                         {
-                            if(i.Id==j.Id)
+                            PostDto updatedPost = PostService.GetPost(Convert.ToInt32(Request.QueryString["PostId"]));
+                            textboxPostTitle.Text = updatedPost.Title;
+                            preBodyHolder.InnerText = HttpUtility.HtmlDecode(updatedPost.Body);
+                        }
+                        catch (Exception ex)
+                        {
+                            LabelMes.ForeColor = Color.Red;
+                            LabelMes.Text = ex.Message;
+                        }
+
+
+                    }
+
+
+                    try
+                    {
+                        //------------------Заполняем список категорий поста---------------------------
+                        foreach (var i in CategoryService.GetAllCategories())
+                        {
+                            int isEquals = 0;
+                            foreach (var j in (List<CategoryDto>)CategoryService.GetPostCategories(Convert.ToInt32(Request.QueryString["PostId"])))
                             {
-                                IsEquals = 1;
+                                if (i.Id == j.Id)
+                                {
+                                    isEquals = 1;
+                                }
+                            }
+
+                            if (isEquals == 1)
+                            {
+                                CategoryCheckBox newCategoryCheckBox = new CategoryCheckBox(i.CategoryName, i.Id, true);
+                                CategoryCheckBoxPanel.Controls.Add(newCategoryCheckBox);
+
+                            }
+
+
+                            else
+                            {
+                                CategoryCheckBox newCategoryCheckBox = new CategoryCheckBox(i.CategoryName, i.Id);
+                                CategoryCheckBoxPanel.Controls.Add(newCategoryCheckBox);
                             }
                         }
 
-                        if (IsEquals==1)
-                        { 
-                            CategoryCheckBoxPanel.Controls.Add(new CategoryCheckBox(i.CategoryName, i.Id, true));
-
-                        }
 
 
-                        else
-                        {
-                            CategoryCheckBoxPanel.Controls.Add(new CategoryCheckBox(i.CategoryName, i.Id));
-                        }
+
                     }
-
-                    PostDto UpdatedPost = postService.GetPost(Convert.ToInt32(Request.QueryString["PostId"]));
-                    textboxPostTitle.Text = UpdatedPost.Title;
-                    preBodyHolder.InnerText = UpdatedPost.Body;
-
-
+                    catch (Exception ex)
+                    {
+                        LabelMes.ForeColor = Color.Red;
+                        LabelMes.Text = ex.Message;
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
-                    LabelMes.ForeColor = Color.Red;
-                    LabelMes.Text = ex.Message;
+                    return;
                 }
             }
+            else
+            {
+                Response.Redirect("~/MainPage.aspx");
+            }
+
+
+
+          
+           
         }
 
         protected void ButtonUpdatePost_Click(object sender, EventArgs e)
@@ -85,11 +119,12 @@ namespace bizapps_test.WEB
                     }
                 }
 
-                postService.UpdatePost(new PostDto
+                PostService.UpdatePost(new PostDto
                 {
                     Id = Convert.ToInt32(Request.QueryString["PostId"]),
                     Title = textboxPostTitle.Text,
-                    Body = preBodyHolder.InnerText
+                    Body = HttpUtility.HtmlEncode(preBodyHolder.InnerText),
+                    PostImage = ImageFileUpload.FileName
                 },
                 postCategories);
 
@@ -108,7 +143,7 @@ namespace bizapps_test.WEB
         {
             try
             {
-                postService.DeletePost(new PostDto
+                PostService.DeletePost(new PostDto
                 {
                     Id = Convert.ToInt32(Request.QueryString["PostId"])
                 });

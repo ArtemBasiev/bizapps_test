@@ -16,17 +16,34 @@
           
             <asp:TextBox ID="textboxPostTitle" CssClass="textboxPostTitle" Width="400px" runat="server"/>
         </p>
+        <asp:RequiredFieldValidator ControlToValidate="textboxPostTitle" ErrorMessage="Title must be specified"  ForeColor="Red" runat="server"/>
+        <asp:RegularExpressionValidator ControlToValidate="textboxPostTitle" ErrorMessage="Title contains invalid characters" ValidationExpression="[\w|,.!? ]*" ForeColor="Red" runat="server"/>
         <br/>
         <b> <asp:Label Text="Input post content:" runat="server"/>  </b>
         
-        <textarea class="divBodyHolder preBodyHolder" id="preBodyHolder"  runat="server">
+        <textarea class="divBodyHolder preBodyHolder" id="preBodyHolder"  runat="server"> </textarea> <br/>
           
-        </textarea>
-        <br/>
         <asp:Panel ID="CategoryCheckBoxPanel" CssClass="CategoryCheckBoxPanel" runat="server"></asp:Panel>
         
-        <asp:Button ID="ButtonCreatePost" Text="Save changes" CssClass="buttonOnWhitePanel" OnClick="ButtonUpdatePost_Click" runat="server"/>
-        <asp:Button ID="ButtonDeletePost" Text="Delete post" CssClass="buttonOnWhitePanel" OnClick="ButtonDeletePost_OnClick" runat="server"/>
+        <asp:Button ID="ButtonCreatePost"  Text="Save changes" CssClass="buttonOnWhitePanel" OnClick="ButtonUpdatePost_Click" runat="server"/>
+
+        <button id="ButtonDelete"  class="buttonOnWhitePanel" style="background-color: #c63632;" data-toggle="modal" data-target="#ModalDelete">Delete post</button>
+        <div id="ModalDelete" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button class="close" data-dismiss="modal">x</button>
+                        <h4 class="modal-title">Are you sure about deleting this post?</h4>
+                    </div>
+                    <div class="modal-body">
+                        <button class="btn btn-danger" CausesValidation="False" OnServerClick="ButtonDeletePost_OnClick" runat="server">Conform</button>
+                        <button class="btn btn-info" data-dismiss="modal"> Cancel </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
         <asp:Label ID="LabelMes" runat="server"/>
     </div>
 </asp:Content>

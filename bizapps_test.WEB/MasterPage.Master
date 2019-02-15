@@ -28,15 +28,6 @@
                      <li >About</li>
                      <li >Contacts</li>
                  </ul>
-                     
-                  <%--   <asp:BulletedList DisplayMode="HyperLink" class ="navbar navbar-nav navbar-right list-inline" id="navbarlist" runat="server">
-                         <Items>
-                             <asp:ListItem Value="~/MainPage.aspx" Text="MainPage"></asp:ListItem>
-                             <asp:ListItem Text="Categories"></asp:ListItem>
-                             <asp:ListItem Text="About"> </asp:ListItem>
-                             <asp:ListItem Text="Contacts"></asp:ListItem>
-                         </Items>
-                     </asp:BulletedList>--%>
                  </div>
              </div>
 
@@ -108,15 +99,20 @@
                                   <div class="sidebarlistcontainer">
                                       <ul class="SideBarList">
                                           <il> <a href="PostCreation.aspx"> Post creation </a></il> <br/>
-                                          <il> <a> Category creation</a></il>
+                                          <il> <a href="CategoryCreation.aspx"> Category creation</a></il>
                                       </ul>
                                   </div>
-                               <p style="margin-top: 20px; margin-left: 10px;">
-                                   <button id="ButtonLogOut" style="margin-right: 5px;" OnServerClick="ButtonLogOut_OnServerClick" runat="server"> Log out</button>
-                                   <button id="ButtonChangePassword"> Change password</button>
-                               </p>
+                              </div>
+
+                              <div class="panel panel-default sidebar" id="LogoutPanel" Visible="False" style="text-align: left;" runat="server" >
+                                  <asp:Label ID="LabelUserName" runat="server"/>
+                                  <p style="margin-top: 20px; margin-left: 10px;">
+                                      <button id="ButtonLogOut" CausesValidation="False" style="margin-right: 5px;" OnServerClick="ButtonLogOut_OnServerClick" runat="server"> Log out</button>
+                                      <button id="ButtonChangePassword" CausesValidation="False"> Change password</button>
+                                  </p>
                                 
                               </div>
+
                           </div>
                           </div>
 

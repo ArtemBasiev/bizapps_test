@@ -200,5 +200,40 @@ namespace bizapps_test.DAL.Repositories
             }
         }
 
+        public int GetAdminPermission(string userName)
+        {
+            SqlCommand cmd = new SqlCommand("select * from GetAdminPermission('" + userName + "')", Con);
+
+            try
+            {
+                Con.Open();
+                SqlDataReader reader = cmd.ExecuteReader(CommandBehavior.SingleRow);
+
+                reader.Read();
+                if (reader.HasRows)
+                {
+                    int userId = (int)reader["UserId"];
+                    reader.Close();
+                    return userId;
+                }
+                else
+                {
+                    reader.Close();
+                    throw new ApplicationException("Permission don't got");
+                }
+
+
+
+            }
+            catch (SqlException e)
+            {
+                throw new ApplicationException(e.Message);
+            }
+            finally
+            {
+                Con.Close();
+            }
+        }
+
     }
 }

@@ -17,7 +17,7 @@
                     <asp:TemplateField>
                        <ItemTemplate>
                            <div class=" blogpanel">
-                              <img src="Images/img-post-default.jpg" class="postimage" >
+                              <img src=<%# Eval("PostImage") %> class="postimage" >
                               <h2>  <%# Eval("Title") %>  </h2> 
                                <p>  <%# Eval("CreationDate") %>  </p>
                            <%--   <p> <%# Eval("Body") %> </p>--%>
@@ -25,7 +25,6 @@
                                   Read More
                                   <i class="glyphicon  glyphicon-arrow-right"></i>
                               </button> 
-                            <%--   <asp:Button ID="ButtonShowMore" OnClick="ButtonShowMore_OnServerClick" runat="server"/>--%>
                                <br/>
                                <asp:HiddenField ID="PostId" Value=<%# Eval("PostId") %>  runat="server" />
                               <p> Categories:  <%# Eval("Categories") %>  </p>

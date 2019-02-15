@@ -9,17 +9,19 @@ using bizapps_test.BLL.DTO;
 using bizapps_test.BLL.Interfaces;
 using bizapps_test.WEB.SpecialItems;
 using System.Collections;
+using System.IO;
+using System.Reflection;
 
 namespace bizapps_test.WEB
 {
     public partial class MainPage : System.Web.UI.Page
     {
         [Ninject.Inject]
-        public IBlogUserService bloguserService { get; set; }
+        public IBlogUserService BloguserService { get; set; }
         [Ninject.Inject]
-        public IPostService postService { get; set; }
+        public IPostService PostService { get; set; }
          [Ninject.Inject]
-        public ICategoryService categoryService { get; set; }
+        public ICategoryService CategoryService { get; set; }
      
 
         protected void Page_Load(object sender, EventArgs e)
@@ -54,31 +56,31 @@ namespace bizapps_test.WEB
 
             if (categoryOption == "allcategories" && categoryOption!= null)
                 {
-                   posts = postService.GetUserPostsByUserName("admin");
+                   posts = PostService.GetUserPostsByUserName("admin");
                 }
                 else
                 {
                     if (categoryOption == "withoutcategory" && categoryOption != null)
                     {
-                        posts = postService.GetPostsByUserNameWithoutCategory("admin");
+                        posts = PostService.GetPostsByUserNameWithoutCategory("admin");
                     }
                     else
                     {
-                        posts = postService.GetPostsByUserNameAndCategory("admin", Convert.ToInt32(Request.QueryString["category"]));
+                        posts = PostService.GetPostsByUserNameAndCategory("admin", Convert.ToInt32(Request.QueryString["category"]));
                     }
                 }
                 DataTable dt = new DataTable();
                 dt.Columns.Add("PostId");
                 dt.Columns.Add("Title");
                 dt.Columns.Add("CreationDate");
-                //dt.Columns.Add("Body");
+                dt.Columns.Add("PostImage");
                 dt.Columns.Add("Categories");
 
                 foreach (PostDto post in posts)
                 {
 
                     string categoryString = "";
-                    IEnumerable<CategoryDto> postCategories = categoryService.GetPostCategories(post.Id);
+                    IEnumerable<CategoryDto> postCategories = CategoryService.GetPostCategories(post.Id);
                     foreach (CategoryDto category in postCategories)
                     {
                         categoryString += category.CategoryName + ", ";
@@ -92,7 +94,18 @@ namespace bizapps_test.WEB
                     newRow["Title"] = post.Title;
                     newRow["PostId"] = post.Id;
                     newRow["CreationDate"] = post.CreationDate.ToString("D");
-                    //newRow["Body"] = post.Body;
+
+              
+              
+                if (File.Exists(MapPath("Images/" + post.PostImage.Trim())))
+                    {
+                        newRow["PostImage"] = @"/Images/" + post.PostImage.Trim();
+                    }
+                    else
+                    {
+                    newRow["PostImage"] = "/Images/img-post-default.jpg";
+                    }
+                    
 
                     if (categoryString == "")
                     {

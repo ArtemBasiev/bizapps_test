@@ -26,13 +26,9 @@ namespace bizapps_test.BLL.Services
             //----------------------------------------Добавляем новый пост--------------------------------
             try
             {
-                if (categoryListDto.Count==0)
-                {
-                    throw new ApplicationException("Пост должен принадлежать хотя бы к одной из категорий");
-                }
 
                 
-                 int newpostId = PostRepository.CreatePost(new Post(postDto.Title, postDto.Body), userId);
+                 int newpostId = PostRepository.CreatePost(new Post(postDto.Title, postDto.Body, postDto.PostImage), userId);
 
                 foreach (CategoryDto categoryDto in categoryListDto)
                 {
@@ -56,22 +52,22 @@ namespace bizapps_test.BLL.Services
             try
             {
 
-                int updpostId = PostRepository.UpdatePost(new Post(postDto.Id, postDto.Title, postDto.Body));
+                int updpostId = PostRepository.UpdatePost(new Post(postDto.Id, postDto.Title, postDto.Body, postDto.PostImage));
                 IEnumerable<Category> postCategories = CategoryRepository.GetPostCategories(updpostId);
-                int isIdentic;
+                int isEqual;
                 foreach(Category postCat in postCategories)
                 {
-                    isIdentic = 0;
+                    isEqual = 0;
                     foreach (CategoryDto catDto in categoryListDto)
                     { 
                         if (catDto.Id==postCat.Id)
                         {
-                            isIdentic = 1;
+                            isEqual = 1;
                         }
                         else { }
                     }
 
-                    if (isIdentic == 0)
+                    if (isEqual == 0)
                     {
                         PostRepository.DeleteCategoryFromPost(postCat.Id, updpostId);
                     }
@@ -123,6 +119,7 @@ namespace bizapps_test.BLL.Services
                     newpostDto.Title = post.Title;
                     newpostDto.Body = post.Body;
                     newpostDto.CreationDate = post.CreationDate;
+                    newpostDto.PostImage = post.PostImage;
                     dtoPosts.Add(newpostDto);
                 }
 
@@ -150,6 +147,7 @@ namespace bizapps_test.BLL.Services
                     newpostDto.Title = post.Title;
                     newpostDto.Body = post.Body;
                     newpostDto.CreationDate = post.CreationDate;
+                    newpostDto.PostImage = post.PostImage;
                     dtoPosts.Add(newpostDto);
                 }
 
@@ -177,6 +175,7 @@ namespace bizapps_test.BLL.Services
                     newpostDto.Title = post.Title;
                     newpostDto.Body = post.Body;
                     newpostDto.CreationDate = post.CreationDate;
+                    newpostDto.PostImage = post.PostImage;
                     dtoPosts.Add(newpostDto);
                 }
 
@@ -203,6 +202,7 @@ namespace bizapps_test.BLL.Services
                     newpostDto.Title = post.Title;
                     newpostDto.Body = post.Body;
                     newpostDto.CreationDate = post.CreationDate;
+                    newpostDto.PostImage = post.PostImage;
                     dtoPosts.Add(newpostDto);
                 }
 
@@ -228,7 +228,8 @@ namespace bizapps_test.BLL.Services
                     Id =post.Id,
                     Title = post.Title,
                     Body =post.Body,
-                    CreationDate = post.CreationDate
+                    CreationDate = post.CreationDate,
+                    PostImage = post.PostImage
                 };
 
                 return postDto;

@@ -133,5 +133,21 @@ namespace bizapps_test.BLL.Services
                 throw new ApplicationException(e.Message);
             }
         }
+
+        public int GetAdminPermission(string userName)
+        {
+            try
+            {
+                //-----------------------------Получаем пользователя---------------------------------------
+                int userId = BloguserRepository.GetAdminPermission(userName);
+
+                return userId;
+            }
+            catch (Exception e)
+            {
+                throw new ApplicationException(e.Message);
+            }
+
+        }
     }
 }
