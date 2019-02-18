@@ -79,14 +79,17 @@
   <ItemGroup>
     <Compile Include="DTO\BlogUserDto.cs" />
     <Compile Include="DTO\CategoryDto.cs" />
+    <Compile Include="DTO\CommentDto.cs" />
     <Compile Include="DTO\PostDto.cs" />
     <Compile Include="Infrastructure\ServiceModule.cs" />
     <Compile Include="Interfaces\IBlogUserService.cs" />
     <Compile Include="Interfaces\ICategoryService.cs" />
+    <Compile Include="Interfaces\ICommentService.cs" />
     <Compile Include="Interfaces\IPostService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\BlogUserService.cs" />
     <Compile Include="Services\CategoryService.cs" />
+    <Compile Include="Services\CommentService.cs" />
     <Compile Include="Services\PostService.cs" />
   </ItemGroup>
   <ItemGroup>

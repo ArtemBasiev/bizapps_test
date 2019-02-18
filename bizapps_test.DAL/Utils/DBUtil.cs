@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.SqlClient;
+﻿using System.Data.SqlClient;
 
 namespace bizapps_test.DAL.Utils
 {
-    public static class DBUtil
+    public static class DbUtil
     {
-        public static SqlConnection GetDBConnection(string Flag="0")
+        public static SqlConnection GetDbConnection(string flag="0")
         {
             string datasource;
             string database;
 
-            if (Flag =="T")
+            if (flag =="T")
             {
                  datasource = @"DESKTOP-5QPRQC5\SQLEXPRESS";
                 database = "test_BizappsTest";
@@ -28,7 +23,7 @@ namespace bizapps_test.DAL.Utils
             }
          
 
-            return DBSQLServerUtil.GetDBConnection(datasource, database);
+            return DbSqlServerUtil.GetDbConnection(datasource, database);
 
         }
     }

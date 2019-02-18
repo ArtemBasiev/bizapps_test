@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity.Core.Common.EntitySql;
-using System.Linq;
 using System.Web;
-using System.Web.Security;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using bizapps_test.BLL.DTO;
 using bizapps_test.BLL.Interfaces;
@@ -44,7 +40,7 @@ namespace bizapps_test.WEB
                 foreach (CategoryDto category in categories)
                 {
                     ListItem listitem = new ListItem(category.CategoryName, category.Id.ToString());
-                    this.CategoryList.Items.Add(listitem);
+                    CategoryList.Items.Add(listitem);
                 }
             }
 
@@ -90,12 +86,13 @@ namespace bizapps_test.WEB
 
                     try
                     {
-                    int userId = BlogUserService.GetAdminPermission(newbloguserDto.UserName);
+                    BlogUserService.GetAdminPermission(newbloguserDto.UserName);
                     HttpCookie perm = new HttpCookie("perm", "admin");
                     Response.Cookies.Add(perm);
                 }
-                    catch 
+                    catch (Exception)
                     {
+                        
                     }
 
                     Response.Cookies.Add(login);
@@ -104,7 +101,7 @@ namespace bizapps_test.WEB
                   
                
                 }
-                catch (Exception exception)
+                catch (Exception)
                 {
                     e.Authenticated = false;
                 }
@@ -119,11 +116,11 @@ namespace bizapps_test.WEB
 
         protected void ButtonLogOut_OnServerClick(object sender, EventArgs e)
         {
-            if (Request.Cookies["login"] != null&& Request.Cookies["sign"] != null)
+            if (Response.Cookies["login"] != null&& Response.Cookies["sign"] != null)
             {
                 Response.Cookies["login"].Expires = DateTime.Now.AddDays(-1);
                 Response.Cookies["sign"].Expires = DateTime.Now.AddDays(-1);
-                if (Request.Cookies["perm"] != null)
+                if (Response.Cookies["perm"] != null)
                 {
                     Response.Cookies["perm"].Expires = DateTime.Now.AddDays(-1);
                 }

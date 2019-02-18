@@ -1,17 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Data;
 using System.Drawing;
-using System.Data.SqlClient;
-using Ninject;
-using Ninject.Modules;
-using bizapps_test.BLL.Infrastructure;
 using bizapps_test.BLL.Interfaces;
-using System.Web.Routing;
 using bizapps_test.BLL.DTO;
 using bizapps_test.WEB.SpecialItems;
 
@@ -32,7 +23,7 @@ namespace bizapps_test.WEB
             {
                 if (Request.Cookies["sign"].Value == SignGenerator.GetSign(Request.Cookies["login"].Value + "byte"))
                 {
-                    if (!this.IsPostBack)
+                    if (!IsPostBack)
                     {
                         preBodyHolder.InnerText = "<p><p/>   <p><p/>   <p><p/>  <p><p/>  <p><p/>";
                     }
@@ -55,10 +46,10 @@ namespace bizapps_test.WEB
                         LabelMes.Text = ex.Message;
                     }
                 }
-                else
-                {
-                    return;
-                }
+                //else
+                //{
+                //    return;
+                //}
             }
             else
             {
@@ -79,7 +70,7 @@ namespace bizapps_test.WEB
 
                 foreach (CategoryCheckBox categoryItem in CategoryCheckBoxPanel.Controls)
                 {
-                    if (categoryItem.Checked == true)
+                    if (categoryItem.Checked)
                     {
                         postCategories.Add(new CategoryDto { Id = categoryItem.CategoryId});
                     }

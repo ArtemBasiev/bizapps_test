@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using bizapps_test.DAL.Entities;
-using bizapps_test.BLL.Infrastructure;
 using bizapps_test.BLL.Interfaces;
 using bizapps_test.BLL.DTO;
 using bizapps_test.DAL.Interfaces;
-using Ninject;
 using System.Data.SqlClient;
 
 
@@ -15,7 +13,7 @@ namespace bizapps_test.BLL.Services
 
     public class CategoryService: ICategoryService
     {
-        [Ninject.Inject]
+        
         public ICategoryRepository CategoryRepository { get; set; }
 
         public CategoryService(ICategoryRepository categoryRepository)

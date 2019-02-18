@@ -22,6 +22,20 @@
     </span> <br/>
         
       <asp:Button ID="ButtonChangePost" Text="Change post" Visible="False"  CssClass="buttonOnWhitePanel" OnClick="ButtonChangePost_OnClick" runat="server"/>
+        <asp:GridView ID="CommentGridview"  ShowHeader="False" GridLines="None" Width="100%" CellPadding="0"    AutoGenerateColumns="false" runat="server"  >
+            <Columns>
+                <asp:TemplateField>
+                    <ItemTemplate>
+                        <div>
+                            <p style="margin: 0; margin-bottom: 2px;"> <label id="CommentUserName"><%# Eval("UserName") %></label> <label id="CommentDate"><%# Eval("CreationDate") %> </label>  </p>
+                            <p style="margin: 0; margin-bottom: 2px;"> <%# Eval("CommentText") %> </p>
+                            <br/>
+                            <asp:HiddenField ID="CommentId" Value=<%# Eval("CommentId") %>  runat="server" />
+                        </div>
+                    </ItemTemplate>
+                </asp:TemplateField>
+            </Columns>
+        </asp:GridView>
     </div>
     
 

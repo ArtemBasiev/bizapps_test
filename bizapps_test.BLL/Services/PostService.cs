@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using bizapps_test.DAL.Entities;
-using bizapps_test.BLL.Infrastructure;
 using bizapps_test.BLL.Interfaces;
 using bizapps_test.BLL.DTO;
 using System.Data.SqlClient;

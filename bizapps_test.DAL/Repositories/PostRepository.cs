@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using bizapps_test.DAL.Utils;
 using System.Data.SqlClient;
 using System.Data;
@@ -13,7 +10,7 @@ namespace bizapps_test.DAL.Repositories
 {
     public class PostRepository: IPostRepository
     {
-        public static SqlConnection Con = DBUtil.GetDBConnection();
+        public static SqlConnection Con = DbUtil.GetDbConnection();
 
         public int CreatePost(Post post, int userId)
         {
@@ -118,7 +115,7 @@ namespace bizapps_test.DAL.Repositories
 
         public IEnumerable<Post> GetUserPosts(int userId)
         {
-            List<Post> posts = new List<Post> { };
+            List<Post> posts = new List<Post> ();
             SqlCommand cmd = new SqlCommand("select * from GetAllUserPosts(" + userId + ")", Con);
             try
             {
@@ -145,7 +142,7 @@ namespace bizapps_test.DAL.Repositories
 
        public IEnumerable<Post> GetUserPostsByUserName(string userName)
         {
-            List<Post> posts = new List<Post> { };
+            List<Post> posts = new List<Post> ();
             SqlCommand cmd = new SqlCommand("select * from GetUserPostsByName('" + userName + "') order by CreationDate desc", Con);
             try
             {
@@ -172,7 +169,7 @@ namespace bizapps_test.DAL.Repositories
 
         public IEnumerable<Post> GetPostsByUserNameWithoutCategory(string userName)
         {
-            List<Post> posts = new List<Post> { };
+            List<Post> posts = new List<Post> ();
             SqlCommand cmd = new SqlCommand("select * from GetUserPostsWithoutCategory('" + userName + "') order by CreationDate desc", Con);
             try
             {
@@ -199,7 +196,7 @@ namespace bizapps_test.DAL.Repositories
 
         public IEnumerable<Post> GetPostsByUserNameAndCategory(string userName, int categoryId)
         {
-            List<Post> posts = new List<Post> { };
+            List<Post> posts = new List<Post> ();
             SqlCommand cmd = new SqlCommand("select * from GetUserPostsByUserNameAndCategory('" + userName + "', "+categoryId+ ") order by CreationDate desc", Con);
             try
             {

@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using bizapps_test.DAL.Utils;
-using System.Data.SqlClient;
-using System.Data;
+﻿
 
 namespace bizapps_test.DAL.Entities
 {
@@ -17,18 +10,18 @@ namespace bizapps_test.DAL.Entities
         public Category(int catId, string categoryName)
         {
  
-            this.Id = catId;
-            this.CategoryName = categoryName;
+            Id = catId;
+            CategoryName = categoryName;
         }
 
         public Category(string categoryName)
         {
-            this.CategoryName = categoryName;
+            CategoryName = categoryName;
         }
 
         public Category(int categoryId)
         {
-            this.Id = categoryId;
+            Id = categoryId;
         }
         public Category()
         {

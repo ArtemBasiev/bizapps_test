@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using bizapps_test.DAL.Utils;
 using System.Data.SqlClient;
 using System.Data;
@@ -13,7 +10,7 @@ namespace bizapps_test.DAL.Repositories
 {
     public class CategoryRepository : ICategoryRepository
     {
-        public static SqlConnection Con = DBUtil.GetDBConnection();
+        public static SqlConnection Con = DbUtil.GetDbConnection();
 
 
         public int CreateCategory(Category category)
@@ -129,7 +126,7 @@ namespace bizapps_test.DAL.Repositories
         }
         public IEnumerable<Category> GetAllCategories()
         {
-            List<Category> categories = new List<Category> { };
+            List<Category> categories = new List<Category> ();
             SqlCommand cmd = new SqlCommand("select * from GetAllCategories()", Con);
             try
             {
@@ -156,7 +153,7 @@ namespace bizapps_test.DAL.Repositories
 
         public IEnumerable<Category> GetPostCategories(int postId)
         {
-            List<Category> categories = new List<Category> { };
+            List<Category> categories = new List<Category>();
             SqlCommand cmd = new SqlCommand("select * from GetPostCategories(" + postId + ")", Con);
             try
             {
@@ -184,7 +181,7 @@ namespace bizapps_test.DAL.Repositories
 
        public  IEnumerable<Category> GetBlogCategories(string userName)
         {
-            List<Category> categories = new List<Category> { };
+            List<Category> categories = new List<Category> ();
             SqlCommand cmd = new SqlCommand("select * from GetBlogCategories('" + userName + "')", Con);
             try
             {

@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using bizapps_test.DAL.Utils;
-using System.Data.SqlClient;
-using System.Data;
 
 namespace bizapps_test.DAL.Entities
 {
@@ -18,53 +11,53 @@ namespace bizapps_test.DAL.Entities
         public DateTime CreationDate { get; private set; }
         public string PostImage { get; private set; }
 
-        public static SqlConnection Con = DBUtil.GetDBConnection();
+        //public static SqlConnection Con = DBUtil.GetDBConnection();
 
 
         public Post(int postId, string title, string body, DateTime creationDate, string postImage)
         {
-            this.Id = postId;
-            this.Title = title;
-            this.Body = body;
-            this.CreationDate = creationDate;
-            this.PostImage = postImage;
+            Id = postId;
+            Title = title;
+            Body = body;
+            CreationDate = creationDate;
+            PostImage = postImage;
         }
 
 
         public Post(int postId, string title, string body, DateTime creationDate)
         {
-            this.Id = postId;
-            this.Title = title;
-            this.Body = body;
-            this.CreationDate = creationDate;
+            Id = postId;
+            Title = title;
+            Body = body;
+            CreationDate = creationDate;
         }
 
 
         public Post(int postId, string title, string body, string postImage)
         {
-            this.Id = postId;
-            this.Title = title;
-            this.Body = body;
-            this.PostImage = postImage;
+            Id = postId;
+            Title = title;
+            Body = body;
+            PostImage = postImage;
         }
 
         public Post( string title, string body, string postImage)
         {
          
-            this.Title = title;
-            this.Body = body;
-            this.PostImage = postImage;
+            Title = title;
+            Body = body;
+            PostImage = postImage;
         }
 
         public Post(string title, string body)
         {
-            this.Title = title;
-            this.Body = body;
+            Title = title;
+            Body = body;
         }
 
         public Post(int postId)
         {
-            this.Id = postId;
+            Id = postId;
         }
 
 

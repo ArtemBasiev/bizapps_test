@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using bizapps_test.DAL.Utils;
-using System.Data.SqlClient;
-using System.Data;
+﻿
 
 namespace bizapps_test.DAL.Entities
 {
@@ -21,41 +14,41 @@ namespace bizapps_test.DAL.Entities
 
         public BlogUser(int userId, string userName, string userPassword, string blogName)
         {
-            this.Id = userId;
-            this.UserName = userName;
-            this.UserPassword = userPassword;
-            this.BlogName = blogName;
+            Id = userId;
+            UserName = userName;
+            UserPassword = userPassword;
+            BlogName = blogName;
         }
 
 
         public BlogUser(string userName, string userPassword, string blogName)
         {
-            this.UserName = userName;
-            this.UserPassword = userPassword;
-            this.BlogName = blogName;
+            UserName = userName;
+            UserPassword = userPassword;
+            BlogName = blogName;
         }
 
         public BlogUser(int userId, string userName, string blogName)
          {
-             this.Id = userId;
-             this.UserName = userName;
-             this.BlogName = blogName;
+             Id = userId;
+             UserName = userName;
+             BlogName = blogName;
          }
 
         public BlogUser(int userId, string userName)
         {
-            this.Id = userId;
-            this.UserName = userName;
+            Id = userId;
+            UserName = userName;
         }
 
         public BlogUser(int userId)
         {
-            this.Id = userId;
+            Id = userId;
         }
 
         public BlogUser(string userName)
         {
-            this.UserName = userName;
+            UserName = userName;
         }
 
 

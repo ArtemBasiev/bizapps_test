@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="MainPage.aspx.cs" Inherits="bizapps_test.WEB.MainPage" %>
- <%@ Register TagPrefix="local" TagName="ItemPost" Src="~/SpecialItems/ItemPost.ascx" %> 
+
 
 
 <asp:Content ID="HeadContent" ContentPlaceHolderID="head" runat="server">
@@ -20,7 +20,6 @@
                               <img src=<%# Eval("PostImage") %> class="postimage" >
                               <h2>  <%# Eval("Title") %>  </h2> 
                                <p>  <%# Eval("CreationDate") %>  </p>
-                           <%--   <p> <%# Eval("Body") %> </p>--%>
                               <button id="ButtonShowMore" OnServerClick="ButtonShowMore_OnServerClick" class="ButtonShowMore" runat="server">
                                   Read More
                                   <i class="glyphicon  glyphicon-arrow-right"></i>

@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using bizapps_test.DAL.Utils;
-using System.Data.SqlClient;
-using System.Data;
-using bizapps_test.DAL.Interfaces;
+﻿using System.Collections.Generic;
 using bizapps_test.DAL.Entities;
 
 namespace bizapps_test.DAL.Interfaces

@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using bizapps_test.DAL.Entities;
-using bizapps_test.BLL.Infrastructure;
 using bizapps_test.BLL.Interfaces;
 using bizapps_test.BLL.DTO;
-using AutoMapper;
-using Ninject;
 using System.Data.SqlClient;
 using bizapps_test.DAL.Interfaces;
 
@@ -38,12 +35,12 @@ namespace bizapps_test.BLL.Services
 
         }
 
-       public int UpdateBlogUser(BlogUserDto bloguserDTO)
+       public int UpdateBlogUser(BlogUserDto bloguserDto)
         {
             //----------------------------------------Обновляем существующего пользователя--------------------------------
             try
             {
-              return  BloguserRepository.UpdateBlogUser(new BlogUser(bloguserDTO.Id, bloguserDTO.UserName, bloguserDTO.UserPassword,  bloguserDTO.BlogName));
+              return  BloguserRepository.UpdateBlogUser(new BlogUser(bloguserDto.Id, bloguserDto.UserName, bloguserDto.UserPassword,  bloguserDto.BlogName));
             }
             catch (SqlException e)
             {

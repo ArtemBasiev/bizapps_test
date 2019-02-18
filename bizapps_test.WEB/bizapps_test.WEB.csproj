@@ -220,6 +220,7 @@
     <Compile Include="ChangeUser.aspx.designer.cs">
       <DependentUpon>ChangeUser.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CommentDateGenerator.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -241,7 +242,6 @@
     <Compile Include="MasterPage.Master.designer.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
     </Compile>
-    <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="PostCreation.aspx.cs">
       <DependentUpon>PostCreation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

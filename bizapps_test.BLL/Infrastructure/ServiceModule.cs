@@ -1,10 +1,4 @@
-﻿using System;
-using Ninject.Modules;
-using Ninject;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Ninject.Modules;
 using bizapps_test.DAL.Interfaces;
 using bizapps_test.DAL.Repositories;
 
@@ -17,6 +11,7 @@ namespace bizapps_test.BLL.Infrastructure
             Bind<IBlogUserRepository>().To<BlogUserRepository>().InTransientScope();
             Bind<ICategoryRepository>().To<CategoryRepository>().InTransientScope();
             Bind<IPostRepository>().To<PostRepository>().InTransientScope();
+            Bind<ICommentRepository>().To<CommentRepository>().InTransientScope();
         }
 
 

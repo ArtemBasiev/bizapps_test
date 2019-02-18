@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data;
 using System.Drawing;
-using System.Data.SqlClient;
-using Ninject;
-using Ninject.Modules;
-using bizapps_test.BLL.Infrastructure;
 using bizapps_test.BLL.Interfaces;
-using System.Web.Routing;
 using bizapps_test.BLL.DTO;
 
 
@@ -46,10 +36,10 @@ namespace bizapps_test.WEB
                         LabelMes.Text = ex.Message;
                     }
                 }
-                else
-                {
-                    return;
-                }
+                //else
+                //{
+                //    //return;
+                //}
                 
             }
             else

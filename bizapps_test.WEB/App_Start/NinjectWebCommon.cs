@@ -8,7 +8,6 @@ namespace bizapps_test.WEB.App_Start
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
     using Ninject;
     using Ninject.Web.Common;
-    using bizapps_test.BLL.Services;
     using bizapps_test.BLL.Infrastructure;
 
     public static class NinjectWebCommon 
@@ -61,7 +60,7 @@ namespace bizapps_test.WEB.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            DIConfiguration.SetupDI(kernel);
+            DiConfiguration.SetupDi(kernel);
 
         }        
     }

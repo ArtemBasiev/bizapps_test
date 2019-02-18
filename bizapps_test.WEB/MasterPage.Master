@@ -13,7 +13,7 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <nav class="navbar  header">
+    <nav class="navbar navbar-fixed-top  header"  >
         
          <div id ="headdiv" class="container ">
      
@@ -38,7 +38,7 @@
         
         <div class="container" style=" height: auto;" >
                       <form runat="server" role="form" >
-                          <div class="row" style="height: auto; margin-bottom: 60px;">
+                          <div class="row" style="height: auto; padding-top: 140px; margin-bottom: 60px;">
                           <div class="col-lg-9" style="padding-right: 30px; padding-left: 0;" >
                               <asp:ContentPlaceHolder ID="ContentPlaceHolder1"   runat="server">
                               </asp:ContentPlaceHolder>
@@ -122,15 +122,15 @@
                    </form>                  
         </div>
 
-    <%--   <div class="navbar-fixed-bottom footer" >
+       <div class=" footer" >
           
-               <div class="container-fluid">
+               <div class="container">
                    <div class="container">
-                       <span> 2019  All rights reserved</span>
+                       <span id="footer-text"> 2019  All rights reserved</span>
                    </div>
               </div>
 
-       </div>--%>
+       </div>
        
 
 

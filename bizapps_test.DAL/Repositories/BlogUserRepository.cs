@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using bizapps_test.DAL.Utils;
 using System.Data.SqlClient;
 using System.Data;
@@ -13,7 +10,7 @@ namespace bizapps_test.DAL.Repositories
 {
     public class BlogUserRepository: IBlogUserRepository
     {
-        public static SqlConnection Con = DBUtil.GetDBConnection();
+        public static SqlConnection Con = DbUtil.GetDbConnection();
 
 
         public int CreateBlogUser(BlogUser blogUser)
@@ -114,7 +111,7 @@ namespace bizapps_test.DAL.Repositories
 
         public IEnumerable<BlogUser> GetAllBlogUsers()
         {
-            List<BlogUser> users = new List<BlogUser> { };
+            List<BlogUser> users = new List<BlogUser>();
             SqlCommand cmd = new SqlCommand("select * from GetAllUsers()", Con);
             try
             {

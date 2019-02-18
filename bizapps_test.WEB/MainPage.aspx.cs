@@ -1,20 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using bizapps_test.BLL.DTO;
 using bizapps_test.BLL.Interfaces;
-using bizapps_test.WEB.SpecialItems;
-using System.Collections;
 using System.IO;
-using System.Reflection;
 
 namespace bizapps_test.WEB
 {
-    public partial class MainPage : System.Web.UI.Page
+    public partial class MainPage : Page
     {
         [Ninject.Inject]
         public IBlogUserService BloguserService { get; set; }
@@ -54,13 +49,13 @@ namespace bizapps_test.WEB
                  
 
 
-            if (categoryOption == "allcategories" && categoryOption!= null)
+            if (categoryOption == "allcategories")
                 {
                    posts = PostService.GetUserPostsByUserName("admin");
                 }
                 else
                 {
-                    if (categoryOption == "withoutcategory" && categoryOption != null)
+                    if (categoryOption == "withoutcategory")
                     {
                         posts = PostService.GetPostsByUserNameWithoutCategory("admin");
                     }
@@ -117,8 +112,8 @@ namespace bizapps_test.WEB
 
                 }
 
-                this.main_gridview.DataSource = dt;
-                this.main_gridview.DataBind();
+                main_gridview.DataSource = dt;
+                main_gridview.DataBind();
 
             //}
            

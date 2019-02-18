@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI.WebControls;
+﻿using System.Web.UI.WebControls;
 
 namespace bizapps_test.WEB.SpecialItems
 {
@@ -14,15 +10,15 @@ namespace bizapps_test.WEB.SpecialItems
 
         public CategoryCheckBox(string categoryName, int categoryId, bool isChecked)
         {
-            this.Text = categoryName;
-            this.CategoryId = categoryId;
-            this.Checked = isChecked;
+            Text = categoryName;
+            CategoryId = categoryId;
+            Checked = isChecked;
         }
 
         public CategoryCheckBox(string categoryName, int categoryId)
         {
-            this.Text = categoryName;
-            this.CategoryId = categoryId;
+            Text = categoryName;
+            CategoryId = categoryId;
         }
 
 

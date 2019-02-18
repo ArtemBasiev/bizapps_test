@@ -231,7 +231,14 @@ body {
 
 
 .footer {
+    padding-top: 15px;
+    padding-bottom: 15px;
     background-color: #2d2d2d;
+    height: 110px;
+}
+
+#footer-text {
+    color: #ffffff;
 }
 
 .brand {
@@ -549,3 +556,14 @@ body {
             text-decoration: none;
             border-bottom: 3px solid #4f7b93;
         }
+
+#CommentUserName {
+    color: #3f5363;
+    font-size: 12px;
+    margin: 0;
+}
+
+#CommentDate {
+    margin: 0;
+    font-size: 10px;
+}
