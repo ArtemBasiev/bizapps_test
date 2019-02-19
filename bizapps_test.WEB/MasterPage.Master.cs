@@ -110,6 +110,11 @@ namespace bizapps_test.WEB
 
         protected void AuthForm_OnLoggedIn(object sender, EventArgs e)
         {
+            if (Request.Url.ToString().Contains("ViewPostPage.aspx"))
+            {
+                Response.Redirect("~/ViewPostPage.aspx?PostId="+Request.QueryString["PostId"]);
+            }
+
             Response.Redirect("~/MainPage.aspx");
         }
 

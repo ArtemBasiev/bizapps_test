@@ -266,6 +266,7 @@
     <Compile Include="SpecialItems\ItemPost.ascx.designer.cs">
       <DependentUpon>ItemPost.ascx</DependentUpon>
     </Compile>
+    <Compile Include="SpecialItems\ValueButton.cs" />
     <Compile Include="UserCreation.aspx.cs">
       <DependentUpon>UserCreation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -17,31 +17,31 @@ namespace bizapps_test.WEB
             {
                 if ((deferenceDate.TotalMinutes > 1) && (deferenceDate.TotalMinutes < 60))
                 {
-                    dateString = string.Format("{0:0}", deferenceDate.TotalMinutes)+" meanutes ago";
+                    dateString = Math.Round(deferenceDate.TotalMinutes, 0, MidpointRounding.ToEven)+" minutes ago";
                 }
                 else
                 {
                     if ((deferenceDate.TotalHours >= 1) && (deferenceDate.TotalHours < 24))
                     {
-                        dateString = string.Format("{0:0}", deferenceDate.TotalHours) + " hours ago";
+                        dateString = Math.Round(deferenceDate.TotalHours, 0, MidpointRounding.ToEven) + " hours ago";
                     }
                     else
                     {
                         if ((deferenceDate.TotalDays >= 1) && (deferenceDate.TotalDays < 31))
                         {
-                            dateString = string.Format("{0:0}", deferenceDate.TotalDays) + " days ago";
+                            dateString = Math.Round(deferenceDate.TotalDays, 0, MidpointRounding.ToEven) + " days ago";
                         }
                         else
                         {
-                            if ((deferenceDate.TotalDays >= 31) && (deferenceDate.TotalDays < 365))
+                            if ((deferenceDate.TotalDays >= 31) && (deferenceDate.TotalDays < 364))
                             {
-                                dateString = string.Format("{0:0}", deferenceDate.TotalDays/30) + " months ago";
+                                dateString = Math.Round(deferenceDate.TotalDays/30, 0, MidpointRounding.ToEven)+ " months ago";
                             }
                             else
                             {
-                                if (deferenceDate.TotalDays > 365)
+                                if (deferenceDate.TotalDays > 364)
                                 {
-                                    dateString = string.Format("{0:0}", deferenceDate.TotalDays / 365) + " years ago";
+                                    dateString = Math.Round(deferenceDate.TotalDays / 364, 0, MidpointRounding.ToEven) + " years ago";
                                 }
                             }
                         }

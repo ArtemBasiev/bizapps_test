@@ -7,10 +7,13 @@ using System.Web;
 using bizapps_test.BLL.DTO;
 using bizapps_test.BLL.Interfaces;
 using bizapps_test;
+using System.Web.UI;
+using System.Web.UI.HtmlControls;
+using bizapps_test.WEB.SpecialItems;
 
 namespace bizapps_test.WEB
 {
-    public partial class ViewPostPage : System.Web.UI.Page
+    public partial class ViewPostPage : Page
     {
 
         [Ninject.Inject] public IPostService PostService { get; set; }
@@ -64,11 +67,19 @@ namespace bizapps_test.WEB
 
             }
 
-            if (Request.Cookies["login"] != null && Request.Cookies["sign"] != null && Request.Cookies["perm"] != null)
+            if (Request.Cookies["login"] != null && Request.Cookies["sign"] != null )
             {
+                
                 if (Request.Cookies["sign"].Value == SignGenerator.GetSign(Request.Cookies["login"].Value + "byte"))
                 {
-                    ButtonChangePost.Visible = true;
+                    ButtonPostComment.Visible = true;
+                    LabelCommentUser.Text = "You signed in as " + Request.Cookies["login"].Value;
+                    if (Request.Cookies["perm"] != null)
+                    {
+                        ButtonChangePost.Visible = true;
+                    }
+                        
+                   
                 }
             }
 
@@ -102,6 +113,42 @@ namespace bizapps_test.WEB
 
             CommentGridview.DataSource = dt;
             CommentGridview.DataBind();
+           
+
+        }
+
+        protected void BindDataDependentCommentList(GridView inputGridView)
+        {
+            if (inputGridView != null)
+            {
+                HiddenField hfCommentId = (HiddenField)inputGridView.Parent.FindControl("CommentId");
+                if((hfCommentId.Value!=null)&(hfCommentId.Value!=""))
+                {
+                    IEnumerable<CommentDto> comments = CommentService.GetCommentAnswers(Convert.ToInt32(hfCommentId.Value));
+
+                    DataTable dt = new DataTable();
+                    dt.Columns.Add("CommentId");
+                    dt.Columns.Add("CommentText");
+                    dt.Columns.Add("CreationDate");
+                    dt.Columns.Add("UserName");
+
+
+                    foreach (CommentDto comment in comments)
+                    {
+                        DataRow newRow = dt.NewRow();
+                        newRow["CommentId"] = comment.Id;
+                        newRow["CommentText"] = comment.CommentText;
+                        newRow["CreationDate"] = CommentDateGenerator.GetDateString(comment.CreationDate);
+                        newRow["UserName"] = comment.UserName;
+                        dt.Rows.Add(newRow);
+                    }
+
+                    inputGridView.DataSource = dt;
+                    inputGridView.DataBind();
+                }
+              
+            }
+          
 
         }
 
@@ -110,6 +157,145 @@ namespace bizapps_test.WEB
             CommentGridview.PageIndex = e.NewPageIndex;
             CommentGridview.DataBind();
             BindDataCommentList();
+        }
+
+        protected void ButtonPostComment_OnClick(object sender, EventArgs e)
+        {
+            if (Request.Cookies["login"] != null && Request.Cookies["sign"] != null)
+            {
+
+                if (Request.Cookies["sign"].Value == SignGenerator.GetSign(Request.Cookies["login"].Value + "byte"))
+                {
+                    try
+                    {
+                        CommentService.CreateComment(new CommentDto
+                        {
+                            CommentText = CommentTextArea.Value,
+                            UserName = Request.Cookies["login"].Value
+                        }, Convert.ToInt32(Request.QueryString["PostId"]));
+
+                        Response.Redirect("~/ViewPostPage.aspx?PostId=" + Request.QueryString["PostId"]);
+                     
+                    }
+                    catch (Exception ex)
+                    {
+                        LabelCommentUser.Text = ex.Message;
+                    }
+                   
+
+
+
+                }
+            }
+          
+        }
+
+  
+
+        protected void CommentGridview_OnRowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            BindDataDependentCommentList((GridView)e.Row.FindControl("DependentCommentGridview"));
+
+            if (Request.Cookies["login"] != null && Request.Cookies["sign"] != null)
+            {
+
+                if (Request.Cookies["sign"].Value == SignGenerator.GetSign(Request.Cookies["login"].Value + "byte"))
+                {
+                    if ((Label)e.Row.FindControl("CommentUserName") != null)
+                    {
+                        Label userNameLabel = (Label)e.Row.FindControl("CommentUserName");
+                        if (userNameLabel.Text == Request.Cookies["login"].Value)
+                        {
+                            LinkButton deleteButton = (LinkButton)e.Row.FindControl("openDeleteCommentModal");
+                            deleteButton.Visible = true;
+
+
+
+                            //Control delDiv = e.Row.FindControl("ModalDeleteBody");
+                            //ValueButton buttonDelete = new ValueButton();
+                            ////buttonDelete.CssClass = "btn btn-danger";
+                            //buttonDelete.ID = "buttonDeleteComment";
+                            //buttonDelete.Text = "Conform";
+                            //buttonDelete.CausesValidation = false;
+                            //buttonDelete.Click += buttonDeleteComment_OnServerClick;
+                            //HiddenField hfCommentId = (HiddenField) e.Row.FindControl("CommentId");
+                            //buttonDelete.ButtonValue = hfCommentId.Value;
+
+                            //delDiv.Controls.Add(buttonDelete);
+                        }
+                    }
+
+                }
+            }
+
+
+        
+                
+        }
+
+
+
+        //protected void buttonDeleteComment_OnServerClick(object sender, EventArgs e)
+        //{
+        //    if (Request.Cookies["login"] != null && Request.Cookies["sign"] != null)
+        //    {
+
+        //        if (Request.Cookies["sign"].Value == SignGenerator.GetSign(Request.Cookies["login"].Value + "byte"))
+        //        {
+        //            try
+        //            {
+                        
+        //                Button senderButton = (Button)sender;
+        //                HiddenField hfCommentId = (HiddenField) senderButton.Parent.FindControl("CommentId");
+        //                CommentService.DeleteComment(new CommentDto
+        //                {
+        //                    Id = Convert.ToInt32(hfCommentId.Value)
+        //                });
+
+        //                Response.Redirect("~/ViewPostPage.aspx?PostId=" + Request.QueryString["PostId"]);
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                LabelCommentUser.Text = ex.Message;
+        //            }
+
+
+
+
+        //        }
+        //    }
+         
+        //}
+
+        protected void CommentGridview_OnRowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            if (Request.Cookies["login"] != null && Request.Cookies["sign"] != null)
+            {
+
+                if (Request.Cookies["sign"].Value == SignGenerator.GetSign(Request.Cookies["login"].Value + "byte"))
+                {
+                    try
+                    {
+
+                        
+                       HiddenField hfCommentId = (HiddenField)CommentGridview.Rows[e.RowIndex].FindControl("CommentId");
+                        CommentService.DeleteComment(new CommentDto
+                        {
+                            Id = Convert.ToInt32(hfCommentId.Value)
+                        });
+
+                        Response.Redirect("~/ViewPostPage.aspx?PostId=" + Request.QueryString["PostId"]);
+                    }
+                    catch (Exception ex)
+                    {
+                        LabelCommentUser.Text = ex.Message;
+                    }
+
+
+
+
+                }
+            }
         }
     }
 }

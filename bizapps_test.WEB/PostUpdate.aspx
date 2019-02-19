@@ -33,7 +33,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button class="close" data-dismiss="modal">x</button>
-                        <h4 class="modal-title">Are you sure about deleting this post?</h4>
+                        <h4 class="modal-title">Are you sure you want to delete this post? You cannot undo this action.</h4>
                     </div>
                     <div class="modal-body">
                         <button class="btn btn-danger" CausesValidation="False" OnServerClick="ButtonDeletePost_OnClick" runat="server">Conform</button>

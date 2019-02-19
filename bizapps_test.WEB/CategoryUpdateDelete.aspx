@@ -27,7 +27,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button class="close" data-dismiss="modal">x</button>
-                        <h4 class="modal-title">Are you sure about deleting this category?</h4>
+                        <h4 class="modal-title">Are you sure you want to delete this category? You cannot undo this action.</h4>
                     </div>
                     <div class="modal-body">
                         <button class="btn btn-danger" CausesValidation="False" OnServerClick="ButtonDeleteCategory_Click" runat="server">Conform</button>
