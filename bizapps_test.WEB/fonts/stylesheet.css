@@ -558,8 +558,8 @@ body {
         }
 
 .CommentUserName {
-    color: #3f5363;
-    font-size: 12px;
+    color: #000000;
+    font-size: 13px;
     margin: 0;
 }
 
@@ -572,8 +572,8 @@ body {
 .commentarea {
     max-height: 200px;
     min-height: 80px;
-    min-width: 600px;
-    max-width: 600px;
+    min-width: 100%;
+    max-width: 100%;
     border-radius: 2px;
     border-width: 2px;
     padding: 10px;
@@ -586,7 +586,7 @@ body {
 .comment-container {
     width: 100%;
     padding-left: 40px;
-    padding-right: 40px;
+    padding-right: 100px;
 }
 
 .dependentcomment-container {
@@ -597,14 +597,18 @@ body {
     background-image: none;
     background: none;
     border: none;
-    font-size: 10px;
+    font-size: 13px;
+    color: #3f5363;
+    text-decoration: none;
 }
 
-    .button-open-modal:active, .button-open-modal:focus {
+    .button-open-modal:hover, .button-open-modal:active, .button-open-modal:focus, .button-open-modal a:hover {
+        color: #000000;
+        text-decoration: none;
         outline: none !important;
         box-shadow: none !important;
-        border-bottom: 1px solid #737f85;
     }
+
 
 .delbuttoncontainer {
     visibility: hidden;
@@ -613,4 +617,57 @@ body {
 
 .delete-button-activator:hover .delbuttoncontainer {
     visibility: visible;
+}
+
+.delete-button-activator {
+    width: 100%;
+}
+
+.divCommentEdit {
+    display: none;
+}
+
+.button-cancel {
+    background: none;
+    color: #000000;
+    border: none;
+    padding: 10px;
+    font-size: 13px;
+}
+
+    .button-cancel:hover, .button-cancel:active, .button-cancel:focus {
+        color: #445669;
+        outline: none !important;
+        box-shadow: none !important;
+    }
+
+.button-save-edit  {
+    background: none;
+    color: #ffffff;
+    border: none;
+    padding: 10px;
+    font-size: 13px;
+    float: right;
+    background-color: #3f5363;
+    border-bottom-right-radius: 3px;
+  
+}
+
+    .button-save-edit:hover, .button-save-edit:focus, .button-save-edit:active, .button-save-edit a:hover {
+        background-color: #2d2d2d;
+        outline: none !important;
+        box-shadow: none !important;
+        text-decoration: none;
+        color: #ffffff;
+    }
+
+    .button-save-edit a {
+        text-decoration: none;
+    }
+
+.panel-edit {
+    margin: 0;
+    border-bottom-left-radius: 3px;
+    border: 2px solid #3f5363;
+    height: auto;
 }

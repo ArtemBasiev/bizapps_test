@@ -24,9 +24,10 @@ namespace bizapps_test.WEB
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            BindDataCommentList();
+            
             if (!IsPostBack)
             {
+                BindDataCommentList();
                 if (Request.QueryString["PostId"] != null)
                 {
                    
@@ -201,27 +202,18 @@ namespace bizapps_test.WEB
 
                 if (Request.Cookies["sign"].Value == SignGenerator.GetSign(Request.Cookies["login"].Value + "byte"))
                 {
-                    if ((Label)e.Row.FindControl("CommentUserName") != null)
+                    if ((HtmlGenericControl)e.Row.FindControl("CommentUserName") != null)
                     {
-                        Label userNameLabel = (Label)e.Row.FindControl("CommentUserName");
-                        if (userNameLabel.Text == Request.Cookies["login"].Value)
+                        HtmlGenericControl userNameLabel = (HtmlGenericControl)e.Row.FindControl("CommentUserName");
+                        if (userNameLabel.InnerText == Request.Cookies["login"].Value)
                         {
                             LinkButton deleteButton = (LinkButton)e.Row.FindControl("openDeleteCommentModal");
                             deleteButton.Visible = true;
+                            
+                            HtmlButton editButton = (HtmlButton)e.Row.FindControl("openEditForm");
+                            editButton.Visible = true;
+                        
 
-
-
-                            //Control delDiv = e.Row.FindControl("ModalDeleteBody");
-                            //ValueButton buttonDelete = new ValueButton();
-                            ////buttonDelete.CssClass = "btn btn-danger";
-                            //buttonDelete.ID = "buttonDeleteComment";
-                            //buttonDelete.Text = "Conform";
-                            //buttonDelete.CausesValidation = false;
-                            //buttonDelete.Click += buttonDeleteComment_OnServerClick;
-                            //HiddenField hfCommentId = (HiddenField) e.Row.FindControl("CommentId");
-                            //buttonDelete.ButtonValue = hfCommentId.Value;
-
-                            //delDiv.Controls.Add(buttonDelete);
                         }
                     }
 
@@ -234,38 +226,6 @@ namespace bizapps_test.WEB
         }
 
 
-
-        //protected void buttonDeleteComment_OnServerClick(object sender, EventArgs e)
-        //{
-        //    if (Request.Cookies["login"] != null && Request.Cookies["sign"] != null)
-        //    {
-
-        //        if (Request.Cookies["sign"].Value == SignGenerator.GetSign(Request.Cookies["login"].Value + "byte"))
-        //        {
-        //            try
-        //            {
-                        
-        //                Button senderButton = (Button)sender;
-        //                HiddenField hfCommentId = (HiddenField) senderButton.Parent.FindControl("CommentId");
-        //                CommentService.DeleteComment(new CommentDto
-        //                {
-        //                    Id = Convert.ToInt32(hfCommentId.Value)
-        //                });
-
-        //                Response.Redirect("~/ViewPostPage.aspx?PostId=" + Request.QueryString["PostId"]);
-        //            }
-        //            catch (Exception ex)
-        //            {
-        //                LabelCommentUser.Text = ex.Message;
-        //            }
-
-
-
-
-        //        }
-        //    }
-         
-        //}
 
         protected void CommentGridview_OnRowDeleting(object sender, GridViewDeleteEventArgs e)
         {
@@ -297,5 +257,42 @@ namespace bizapps_test.WEB
                 }
             }
         }
+
+
+        protected void CommentGridview_OnRowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+            if (Request.Cookies["login"] != null && Request.Cookies["sign"] != null)
+            {
+
+                if (Request.Cookies["sign"].Value == SignGenerator.GetSign(Request.Cookies["login"].Value + "byte"))
+                {
+                    try
+                    {
+
+                        //TextBox commentArea = (TextBox)CommentGridview.Rows[e.RowIndex].FindControl("EditCommentTextArea");
+                        HtmlTextArea commentArea = (HtmlTextArea)CommentGridview.Rows[e.RowIndex].FindControl("EditCommentTextArea");
+                        HiddenField hfCommentId = (HiddenField)CommentGridview.Rows[e.RowIndex].FindControl("CommentId");
+                        CommentService.UpdateComment(new CommentDto
+                        {
+                            Id = Convert.ToInt32(hfCommentId.Value),
+                            CommentText = commentArea.Value
+
+                        });
+
+                        Response.Redirect("~/ViewPostPage.aspx?PostId=" + Request.QueryString["PostId"]);
+                    }
+                    catch (Exception ex)
+                    {
+                        LabelCommentUser.Text = ex.Message;
+                    }
+
+
+
+
+                }
+            }
+        }
+
+    
     }
 }
