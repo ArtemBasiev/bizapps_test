@@ -5,3 +5,14 @@ C:\Users\ARTEM\documents\visual studio 2013\Projects\bizapps_test\bizapps_test.D
 C:\Users\ARTEM\documents\visual studio 2013\Projects\bizapps_test\bizapps_test.DAL.Tests\obj\Debug\bizapps_test.DAL.Tests.csprojResolveAssemblyReference.cache
 C:\Users\ARTEM\documents\visual studio 2013\Projects\bizapps_test\bizapps_test.DAL.Tests\obj\Debug\bizapps_test.DAL.Tests.dll
 C:\Users\ARTEM\documents\visual studio 2013\Projects\bizapps_test\bizapps_test.DAL.Tests\obj\Debug\bizapps_test.DAL.Tests.pdb
+C:\Users\basiev.a\Documents\Visual Studio 2017\Projects\bizapps_test\bizapps_test.DAL.Tests\bin\Debug\bizapps_test.DAL.Tests.dll
+C:\Users\basiev.a\Documents\Visual Studio 2017\Projects\bizapps_test\bizapps_test.DAL.Tests\bin\Debug\bizapps_test.DAL.Tests.pdb
+C:\Users\basiev.a\Documents\Visual Studio 2017\Projects\bizapps_test\bizapps_test.DAL.Tests\bin\Debug\bizapps_test.DAL.dll
+C:\Users\basiev.a\Documents\Visual Studio 2017\Projects\bizapps_test\bizapps_test.DAL.Tests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\basiev.a\Documents\Visual Studio 2017\Projects\bizapps_test\bizapps_test.DAL.Tests\bin\Debug\bizapps_test.DAL.pdb
+C:\Users\basiev.a\Documents\Visual Studio 2017\Projects\bizapps_test\bizapps_test.DAL.Tests\bin\Debug\bizapps_test.DAL.dll.config
+C:\Users\basiev.a\Documents\Visual Studio 2017\Projects\bizapps_test\bizapps_test.DAL.Tests\obj\Debug\bizapps_test.DAL.Tests.csprojAssemblyReference.cache
+C:\Users\basiev.a\Documents\Visual Studio 2017\Projects\bizapps_test\bizapps_test.DAL.Tests\obj\Debug\bizapps_test.DAL.Tests.csproj.CoreCompileInputs.cache
+C:\Users\basiev.a\Documents\Visual Studio 2017\Projects\bizapps_test\bizapps_test.DAL.Tests\obj\Debug\bizapps_test.DAL.Tests.csproj.CopyComplete
+C:\Users\basiev.a\Documents\Visual Studio 2017\Projects\bizapps_test\bizapps_test.DAL.Tests\obj\Debug\bizapps_test.DAL.Tests.dll
+C:\Users\basiev.a\Documents\Visual Studio 2017\Projects\bizapps_test\bizapps_test.DAL.Tests\obj\Debug\bizapps_test.DAL.Tests.pdb

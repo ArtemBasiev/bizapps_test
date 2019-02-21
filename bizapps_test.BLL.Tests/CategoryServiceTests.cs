@@ -12,22 +12,22 @@ namespace bizapps_test.BLL.Tests
     [TestClass]
     public class CategoryServiceTests
     {
-        public CategoryDto categoryDTO { get; set; }
+        public CategoryDto CategoryDto { get; set; }
 
         [TestInitialize]
         public void TestInitialize()
         {
-            categoryDTO = new CategoryDto();
+            CategoryDto = new CategoryDto();
         }
 
         [TestMethod]
         public void CreateCategory_WhenAddNewCategory_Working()
         {
             int expectedCategoryId = 1;
-            ICategoryRepository categoryRepository = Mock.Of<ICategoryRepository>(Id => Id.CreateCategory(It.IsAny<Category>()) == expectedCategoryId);
+            ICategoryRepository categoryRepository = Mock.Of<ICategoryRepository>(id => id.CreateCategory(It.IsAny<Category>()) == expectedCategoryId);
 
             CategoryService categoryService = new CategoryService(categoryRepository);
-            int resultCategoryId =  categoryService.CreateCategory(categoryDTO);
+            int resultCategoryId =  categoryService.CreateCategory(CategoryDto);
 
             Assert.AreEqual(expectedCategoryId, resultCategoryId);
         }
@@ -37,10 +37,10 @@ namespace bizapps_test.BLL.Tests
         public void CreateCategory_WhenAddNewCategory_CatchException()
         {
             Mock<ICategoryRepository> categoryRepository = new Mock<ICategoryRepository>(MockBehavior.Strict);
-            categoryRepository.Setup(Id => Id.CreateCategory(It.IsAny<Category>())).Throws(new ApplicationException());
+            categoryRepository.Setup(id => id.CreateCategory(It.IsAny<Category>())).Throws(new ApplicationException());
 
             CategoryService categoryService = new CategoryService(categoryRepository.Object);
-            categoryService.CreateCategory(categoryDTO);
+            categoryService.CreateCategory(CategoryDto);
         }
 
 
@@ -48,10 +48,10 @@ namespace bizapps_test.BLL.Tests
         public void UpdateCategory_WhenUpdateCategory_Working()
         {
             int expectedCategoryId = 1;
-            ICategoryRepository categoryRepository = Mock.Of<ICategoryRepository>(Id => Id.UpdateCategory(It.IsAny<Category>()) == expectedCategoryId);
+            ICategoryRepository categoryRepository = Mock.Of<ICategoryRepository>(id => id.UpdateCategory(It.IsAny<Category>()) == expectedCategoryId);
 
             CategoryService categoryService = new CategoryService(categoryRepository);
-            int resultCategoryId = categoryService.UpdateCategory(categoryDTO);
+            int resultCategoryId = categoryService.UpdateCategory(CategoryDto);
 
             Assert.AreEqual(expectedCategoryId, resultCategoryId);
         }
@@ -61,10 +61,10 @@ namespace bizapps_test.BLL.Tests
         public void UpdateCategory_WhenUpdateCategory_CatchException()
         {
             Mock<ICategoryRepository> categoryRepository = new Mock<ICategoryRepository>(MockBehavior.Strict);
-            categoryRepository.Setup(Id => Id.UpdateCategory(It.IsAny<Category>())).Throws(new ApplicationException());
+            categoryRepository.Setup(id => id.UpdateCategory(It.IsAny<Category>())).Throws(new ApplicationException());
 
             CategoryService categoryService = new CategoryService(categoryRepository.Object);
-           categoryService.UpdateCategory(categoryDTO);
+           categoryService.UpdateCategory(CategoryDto);
         }
 
 
@@ -72,10 +72,10 @@ namespace bizapps_test.BLL.Tests
         public void DeleteCategory_WhenDeleteCategory_Working()
         {
             int expectedCategoryId = 1;
-            ICategoryRepository categoryRepository = Mock.Of<ICategoryRepository>(Id => Id.DeleteCategory(It.IsAny<Category>()) == expectedCategoryId);
+            ICategoryRepository categoryRepository = Mock.Of<ICategoryRepository>(id => id.DeleteCategory(It.IsAny<Category>()) == expectedCategoryId);
 
             CategoryService categoryService = new CategoryService(categoryRepository);
-            int resultCategoryId = categoryService.DeleteCategory(categoryDTO);
+            int resultCategoryId = categoryService.DeleteCategory(CategoryDto);
 
             Assert.AreEqual(expectedCategoryId, resultCategoryId);
         }
@@ -85,10 +85,10 @@ namespace bizapps_test.BLL.Tests
         public void DeleteCategory_WhenDeleteCategory_CatchException()
         {
             Mock<ICategoryRepository> categoryRepository = new Mock<ICategoryRepository>(MockBehavior.Strict);
-            categoryRepository.Setup(Id => Id.DeleteCategory(It.IsAny<Category>())).Throws(new ApplicationException());
+            categoryRepository.Setup(id => id.DeleteCategory(It.IsAny<Category>())).Throws(new ApplicationException());
 
             CategoryService categoryService = new CategoryService(categoryRepository.Object);
-            categoryService.DeleteCategory(categoryDTO);
+            categoryService.DeleteCategory(CategoryDto);
         }
 
 

@@ -67,6 +67,15 @@ namespace bizapps_test.WEB {
         protected global::System.Web.UI.WebControls.Button ButtonChangePost;
         
         /// <summary>
+        /// commentcontainer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl commentcontainer;
+        
+        /// <summary>
         /// CommentTextArea control.
         /// </summary>
         /// <remarks>
@@ -76,13 +85,22 @@ namespace bizapps_test.WEB {
         protected global::System.Web.UI.HtmlControls.HtmlTextArea CommentTextArea;
         
         /// <summary>
-        /// LabelCommentUser control.
+        /// servermessagebox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelCommentUser;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl servermessagebox;
+        
+        /// <summary>
+        /// servermessageboxtext control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl servermessageboxtext;
         
         /// <summary>
         /// ButtonPostComment control.
@@ -92,6 +110,15 @@ namespace bizapps_test.WEB {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button ButtonPostComment;
+        
+        /// <summary>
+        /// LabelCommentUser control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelCommentUser;
         
         /// <summary>
         /// CommentGridview control.

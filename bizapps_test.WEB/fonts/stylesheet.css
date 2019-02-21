@@ -574,10 +574,20 @@ body {
     min-height: 80px;
     min-width: 100%;
     max-width: 100%;
-    border-radius: 2px;
+    border-radius: 3px;
     border-width: 2px;
     padding: 10px;
+    border-bottom: none;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    resize: none;
+    border-color: #dbdfe4;
 }
+
+    .commentarea:hover, .commentarea:active, .commentarea:focus {
+        outline: none !important;
+        box-shadow: none !important;
+    }
 
 .button-post {
     background-color: #737f85;
@@ -648,13 +658,13 @@ body {
     padding: 10px;
     font-size: 13px;
     float: right;
-    background-color: #3f5363;
+    background-color: #778288;
     border-bottom-right-radius: 3px;
   
 }
 
     .button-save-edit:hover, .button-save-edit:focus, .button-save-edit:active, .button-save-edit a:hover {
-        background-color: #2d2d2d;
+        background-color: #606d74;
         outline: none !important;
         box-shadow: none !important;
         text-decoration: none;
@@ -668,6 +678,55 @@ body {
 .panel-edit {
     margin: 0;
     border-bottom-left-radius: 3px;
-    border: 2px solid #3f5363;
-    height: auto;
+    border: 2px solid #dbdfe4;
+    height: 38px;
+    position: static;
+    border-bottom-right-radius: 3px;
+    background-color: #f6f8f9;
+   
+}
+
+.commentarea-message {
+    color: #a7afb4;
+    padding: 8px;
+    float: left;
+    font-size: 13px;
+}
+
+.comment-validator-container {
+    background-color: #f05f70;
+    margin: 0;
+    border: none;
+
+}
+
+
+.comment-validator[style*="inline"] {
+    display: block !important;
+    height: 40px;
+    padding: 12px;
+}
+
+.btn-closevalidator {
+    float: right;
+    background: none;
+    border: none;
+    color: #ffffff;
+
+}
+
+    .btn-closevalidator:hover, .btn-closevalidator:focus, .btn-closevalidator:active {
+        opacity: 0.5;
+        outline: none !important;
+        box-shadow: none !important;
+    }
+
+.server-messagebox {
+    height: 40px;
+    padding: 12px;
+    margin: 0;
+    background: inherit;
+    display: block;
+    border: none;
+    color: #ffffff;
 }

@@ -12,22 +12,22 @@ namespace bizapps_test.BLL.Tests
     [TestClass]
     public class BlogUserServiceTests
     {
-        public BlogUserDto bloguserDTO { get; set; }
+        public BlogUserDto BloguserDto { get; set; }
 
         [TestInitialize]
         public void TestInitialize()
         {
-            bloguserDTO = new BlogUserDto();
+            BloguserDto = new BlogUserDto();
         }
 
         [TestMethod]
         public void CreateBlogUser_WhenAddNewUser_Working()
         {
             int expectedUserId = 1;
-            IBlogUserRepository bloguserRepository = Mock.Of<IBlogUserRepository>(Id => Id.CreateBlogUser(It.IsAny<BlogUser>()) == expectedUserId);
+            IBlogUserRepository bloguserRepository = Mock.Of<IBlogUserRepository>(id => id.CreateBlogUser(It.IsAny<BlogUser>()) == expectedUserId);
 
             BlogUserService bloguserService = new BlogUserService(bloguserRepository);
-            int resultUserId = bloguserService.CreateBlogUser(bloguserDTO);
+            int resultUserId = bloguserService.CreateBlogUser(BloguserDto);
 
             Assert.AreEqual(expectedUserId, resultUserId);
         }
@@ -37,10 +37,10 @@ namespace bizapps_test.BLL.Tests
         public void CreateBlogUser_WhenAddNewUser_CatchException()
         {
             Mock<IBlogUserRepository> bloguserRepository = new Mock<IBlogUserRepository>(MockBehavior.Strict);
-            bloguserRepository.Setup(Id => Id.CreateBlogUser(It.IsAny<BlogUser>())).Throws(new ApplicationException());
+            bloguserRepository.Setup(id => id.CreateBlogUser(It.IsAny<BlogUser>())).Throws(new ApplicationException());
 
             BlogUserService bloguserService = new BlogUserService(bloguserRepository.Object);
-            bloguserService.CreateBlogUser(bloguserDTO);
+            bloguserService.CreateBlogUser(BloguserDto);
         }
 
 
@@ -48,10 +48,10 @@ namespace bizapps_test.BLL.Tests
         public void UpdateBlogUser_WhenUpdateUser_Working()
         {
             int expectedUserId = 1;
-            IBlogUserRepository bloguserRepository = Mock.Of<IBlogUserRepository>(Id => Id.UpdateBlogUser(It.IsAny<BlogUser>()) == expectedUserId);
+            IBlogUserRepository bloguserRepository = Mock.Of<IBlogUserRepository>(id => id.UpdateBlogUser(It.IsAny<BlogUser>()) == expectedUserId);
 
             BlogUserService bloguserService = new BlogUserService(bloguserRepository);
-            int resultUserId = bloguserService.UpdateBlogUser(bloguserDTO);
+            int resultUserId = bloguserService.UpdateBlogUser(BloguserDto);
 
             Assert.AreEqual(expectedUserId, resultUserId);
         }
@@ -61,10 +61,10 @@ namespace bizapps_test.BLL.Tests
         public void UpdateBlogUser_WhenUpdateUser_CatchException()
         {
             Mock<IBlogUserRepository> bloguserRepository = new Mock<IBlogUserRepository>(MockBehavior.Strict);
-            bloguserRepository.Setup(Id => Id.UpdateBlogUser(It.IsAny<BlogUser>())).Throws(new ApplicationException());
+            bloguserRepository.Setup(id => id.UpdateBlogUser(It.IsAny<BlogUser>())).Throws(new ApplicationException());
 
             BlogUserService bloguserService = new BlogUserService(bloguserRepository.Object);
-            bloguserService.UpdateBlogUser(bloguserDTO);
+            bloguserService.UpdateBlogUser(BloguserDto);
         }
 
 
@@ -72,10 +72,10 @@ namespace bizapps_test.BLL.Tests
         public void DeleteBlogUser_WhenDeleteUser_Working()
         {
             int expectedUserId = 1;
-            IBlogUserRepository bloguserRepository = Mock.Of<IBlogUserRepository>(Id => Id.DeleteBlogUser(It.IsAny<BlogUser>()) == expectedUserId);
+            IBlogUserRepository bloguserRepository = Mock.Of<IBlogUserRepository>(id => id.DeleteBlogUser(It.IsAny<BlogUser>()) == expectedUserId);
 
             BlogUserService bloguserService = new BlogUserService(bloguserRepository);
-            int resultUserId = bloguserService.DeleteBlogUser(bloguserDTO);
+            int resultUserId = bloguserService.DeleteBlogUser(BloguserDto);
 
             Assert.AreEqual(expectedUserId, resultUserId);
         }
@@ -85,10 +85,10 @@ namespace bizapps_test.BLL.Tests
         public void DeleteBlogUser_WhenDeleteUser_CatchException()
         {
             Mock<IBlogUserRepository> bloguserRepository = new Mock<IBlogUserRepository>(MockBehavior.Strict);
-            bloguserRepository.Setup(Id => Id.DeleteBlogUser(It.IsAny<BlogUser>())).Throws(new ApplicationException());
+            bloguserRepository.Setup(id => id.DeleteBlogUser(It.IsAny<BlogUser>())).Throws(new ApplicationException());
 
             BlogUserService bloguserService = new BlogUserService(bloguserRepository.Object);
-            bloguserService.DeleteBlogUser(bloguserDTO);
+            bloguserService.DeleteBlogUser(BloguserDto);
         }
 
 
@@ -120,7 +120,7 @@ namespace bizapps_test.BLL.Tests
         public void GetAllUsers_WhenGetUsers_Working()
         {
             int expectedUserId = 1;
-            IBlogUserRepository bloguserRepository = Mock.Of<IBlogUserRepository>(blogusers => blogusers.GetAllBlogUsers() == new List<BlogUser> { new BlogUser(expectedUserId) });
+            IBlogUserRepository bloguserRepository = Mock.Of<IBlogUserRepository>(blogusers => blogusers.GetAllBlogUsers() ==new List<BlogUser> { new BlogUser(expectedUserId) }) ;
 
             BlogUserService bloguserService = new BlogUserService(bloguserRepository);
             List<BlogUserDto> gettedBlogUsers = (List<BlogUserDto>)bloguserService.GetAllUsers();
@@ -139,5 +139,55 @@ namespace bizapps_test.BLL.Tests
             BlogUserService bloguserService = new BlogUserService(bloguserRepository.Object);
             bloguserService.GetAllUsers();
         }
+
+
+        [TestMethod]
+        public void GetBlogUserNameAndPassword_WhenGetNameAndPassword_Working()
+        {
+            string expectedUserName = "user";
+            IBlogUserRepository bloguserRepository = Mock.Of<IBlogUserRepository>(bloguser => bloguser.GetBlogUserByNameAndPassword(It.IsAny<string>(), It.IsAny<string>()) ==  new BlogUser(expectedUserName));
+
+            BlogUserService bloguserService = new BlogUserService(bloguserRepository);
+            BlogUserDto gettedBlogUser = bloguserService.GetBlogUserNameAndPassword(new BlogUserDto());
+            string resultUserName = gettedBlogUser.UserName;
+
+            Assert.AreEqual(expectedUserName, resultUserName);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ApplicationException))]
+        public void GetBlogUserNameAndPassword_WhenGetNameAndPassword_CatchException()
+        {
+            Mock<IBlogUserRepository> bloguserRepository = new Mock<IBlogUserRepository>(MockBehavior.Strict);
+            bloguserRepository.Setup(user => user.GetBlogUserByNameAndPassword(It.IsAny<string>(), It.IsAny<string>())).Throws(new ApplicationException());
+
+            BlogUserService bloguserService = new BlogUserService(bloguserRepository.Object);
+            bloguserService.GetBlogUserNameAndPassword(new BlogUserDto());
+        }
+
+        [TestMethod]
+        public void GetAdminPermission_WhenGetPermission_Working()
+        {
+            int expectedUserId = 1;
+            IBlogUserRepository bloguserRepository = Mock.Of<IBlogUserRepository>(bloguser => bloguser.GetAdminPermission(It.IsAny<string>()) == expectedUserId);
+
+            BlogUserService bloguserService = new BlogUserService(bloguserRepository);
+            int resultUserId = bloguserService.GetAdminPermission(It.IsAny<string>());
+
+            Assert.AreEqual(expectedUserId, resultUserId);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ApplicationException))]
+        public void GetAdminPermission_WhenGetPermission_CatchException()
+        {
+   
+            Mock<IBlogUserRepository> bloguserRepository = new Mock<IBlogUserRepository>(MockBehavior.Strict);
+            bloguserRepository.Setup(user => user.GetAdminPermission(It.IsAny<string>())).Throws(new ApplicationException());
+
+            BlogUserService bloguserService = new BlogUserService(bloguserRepository.Object);
+            bloguserService.GetAdminPermission(It.IsAny<string>());
+        }
+
     }
 }

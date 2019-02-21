@@ -41,6 +41,14 @@ namespace bizapps_test.DAL.Entities
             UserName = userName;
         }
 
+
+        public BlogUser(string userName, string userPassword)
+        {
+           
+            UserName = userName;
+            UserPassword = userPassword;
+        }
+
         public BlogUser(int userId)
         {
             Id = userId;

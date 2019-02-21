@@ -22,11 +22,16 @@ namespace bizapps_test.WEB
 
         [Ninject.Inject] public ICommentService CommentService { get; set; }
 
+        
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+           
+            Page.Init += Page_Init;
+
             if (!IsPostBack)
             {
+                MaintainScrollPositionOnPostBack = true;
                 BindDataCommentList();
                 if (Request.QueryString["PostId"] != null)
                 {
@@ -74,17 +79,31 @@ namespace bizapps_test.WEB
                 if (Request.Cookies["sign"].Value == SignGenerator.GetSign(Request.Cookies["login"].Value + "byte"))
                 {
                     ButtonPostComment.Visible = true;
+                    ButtonPostComment.Text = "Post as " + Request.Cookies["login"].Value;
                     LabelCommentUser.Text = "You signed in as " + Request.Cookies["login"].Value;
                     if (Request.Cookies["perm"] != null)
                     {
                         ButtonChangePost.Visible = true;
+                       
                     }
                         
                    
                 }
             }
 
+        
         }
+
+        private void Page_Init(object sender, EventArgs e)
+        {
+            if ((Session["focuselement"] != null) && (FindControl((string)Session["focuselement"]) != null))
+            {
+                Page.SetFocus((string)Session["focuselement"]);
+                Session["focuselement"] = null;
+            }
+        }
+
+     
 
         protected void ButtonChangePost_OnClick(object sender, EventArgs e)
         {
@@ -153,12 +172,7 @@ namespace bizapps_test.WEB
 
         }
 
-        protected void CommentGridview_OnPageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            CommentGridview.PageIndex = e.NewPageIndex;
-            CommentGridview.DataBind();
-            BindDataCommentList();
-        }
+      
 
         protected void ButtonPostComment_OnClick(object sender, EventArgs e)
         {
@@ -175,12 +189,17 @@ namespace bizapps_test.WEB
                             UserName = Request.Cookies["login"].Value
                         }, Convert.ToInt32(Request.QueryString["PostId"]));
 
+
+                        Session["focuselement"] = "ButtonChangePost";
+                        //Server.TransferRequest(Request.Url.AbsolutePath, false);
                         Response.Redirect("~/ViewPostPage.aspx?PostId=" + Request.QueryString["PostId"]);
-                     
+
+
                     }
                     catch (Exception ex)
                     {
-                        LabelCommentUser.Text = ex.Message;
+                        servermessageboxtext.InnerText = ex.Message;
+                        servermessagebox.Visible = true;
                     }
                    
 
@@ -212,7 +231,10 @@ namespace bizapps_test.WEB
                             
                             HtmlButton editButton = (HtmlButton)e.Row.FindControl("openEditForm");
                             editButton.Visible = true;
-                        
+
+                            Label userMessage = (Label) e.Row.FindControl("LabelCommentUserEdit");
+                            userMessage.Text = "You signed in as "+Request.Cookies["login"].Value;
+
 
                         }
                     }

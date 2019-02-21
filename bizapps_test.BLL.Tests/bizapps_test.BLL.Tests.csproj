@@ -70,6 +70,7 @@
   <ItemGroup>
     <Compile Include="BlogUserServiceTests.cs" />
     <Compile Include="CategoryServiceTests.cs" />
+    <Compile Include="CommentServiceTests.cs" />
     <Compile Include="PostServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

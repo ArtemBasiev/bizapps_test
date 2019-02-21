@@ -182,6 +182,8 @@
     <Content Include="CategoryCreation.aspx" />
     <Content Include="PostCreation.aspx" />
     <Content Include="PostUpdate.aspx" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="SpecialItems\ItemPost.ascx" />
     <Content Include="StyleTest.css" />
     <Content Include="UserCreation.aspx" />
