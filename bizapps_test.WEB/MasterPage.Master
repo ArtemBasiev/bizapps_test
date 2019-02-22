@@ -13,13 +13,13 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <nav class="navbar navbar-fixed-top  header"  >
+    <nav class="navbar  header"  >
         
          <div id ="headdiv" class="container ">
      
              <div class="row">
                  <div class="col-lg-3">
-                     <a class="navbar-brand brand" href="#">  itBL<i class="glyphicon glyphicon-cog"> </i>GER</a>
+                     <a class="navbar-brand brand" href="MainPage.aspx">itBL<i class="glyphicon glyphicon-cog"> </i>GER</a>
                  </div>
                  <div class="col-lg-9">
                  <ul class ="navbar navbar-nav navbar-right list-inline" id="navbarlist" runat="server">
@@ -38,13 +38,13 @@
         
         <div class="container" style=" height: auto;" >
                       <form runat="server" role="form" >
-                          <div class="row" style="height: auto; padding-top: 140px; margin-bottom: 60px;">
+                          <div class="row" style="height: auto;  margin-bottom: 60px;">
                           <div class="col-lg-9" style="padding-right: 30px; padding-left: 0;" >
                               <asp:ContentPlaceHolder ID="ContentPlaceHolder1"   runat="server">
                               </asp:ContentPlaceHolder>
                             
                           </div>  
-                          <div class="col-lg-3 sidebarcontainer"  >
+                          <div class="col-lg-3 sidebarcontainer pinned">
                               <asp:ContentPlaceHolder ID="ContentPlaceHolder2"   runat="server">
                               </asp:ContentPlaceHolder>
                              
@@ -59,7 +59,7 @@
                                 
                               </div>
                               
-                                 <asp:Login ID="AuthForm" VisibleWhenLoggedIn="False"  OnLoggedIn="AuthForm_OnLoggedIn" OnAuthenticate="AuthForm_OnAuthenticate" Visible="False" runat="server">
+                                 <asp:Login ID="AuthForm" VisibleWhenLoggedIn="False"  OnLoggedIn="AuthForm_OnLoggedIn"  OnAuthenticate="AuthForm_OnAuthenticate" Visible="False" runat="server">
                                             <LayoutTemplate>
                                                 <div class="panel panel-default sidebar" id="loginform">
                                                 <h4>Log In</h4>
@@ -144,6 +144,12 @@
    
     <script src="Scripts/jquery-1.9.0.js"></script>
     <script src="Scripts/bootstrap.js"></script>
+    <script src="Scripts/jquery.pin.js"></script>
+<script>
+    $(".pinned").pin({
+        containerSelector: ".container"
+    })
+</script>
   <%-- <script>
        function CategoryList_OnClick() {
            document.getElementById("CategoryList").CategoryList.toggle('activeitem');
