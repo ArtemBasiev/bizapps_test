@@ -12,6 +12,8 @@ namespace bizapps_test.DAL.Interfaces
 
          int DeleteBlogUser(BlogUser blogUser);
 
+        int ChangePassword(BlogUser blogUser);
+
          IEnumerable<BlogUser> GetAllBlogUsers();
 
          BlogUser GetBlogUserById(int blogUserId);

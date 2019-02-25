@@ -27,7 +27,7 @@ namespace bizapps_test.DAL.Repositories
             cmd.Parameters["@UserPassword"].Value = blogUser.UserPassword;
             cmd.Parameters.Add(new SqlParameter("@BlogName", SqlDbType.VarChar, 50));
             cmd.Parameters["@BlogName"].Value = blogUser.BlogName;
-            cmd.Parameters.Add(new SqlParameter("@NewUserId", SqlDbType.Int, 50, ParameterDirection.InputOutput, false, 0, 0, "@NewPostId", DataRowVersion.Original, null));
+            cmd.Parameters.Add(new SqlParameter("@NewUserId", SqlDbType.Int, 50, ParameterDirection.InputOutput, false, 0, 0, "@NewUserId", DataRowVersion.Original, null));
             cmd.Parameters["@NewUserId"].Value = ParameterDirection.InputOutput;
             try
             {
@@ -59,7 +59,7 @@ namespace bizapps_test.DAL.Repositories
             cmd.Parameters["@UserPassword"].Value = blogUser.UserPassword;
             cmd.Parameters.Add(new SqlParameter("@BlogName", SqlDbType.VarChar, 50));
             cmd.Parameters["@BlogName"].Value = blogUser.BlogName;
-            cmd.Parameters.Add(new SqlParameter("@NewUserId", SqlDbType.Int, 50, ParameterDirection.InputOutput, false, 0, 0, "@NewPostId", DataRowVersion.Original, null));
+            cmd.Parameters.Add(new SqlParameter("@NewUserId", SqlDbType.Int, 50, ParameterDirection.InputOutput, false, 0, 0, "@NewUserId", DataRowVersion.Original, null));
             cmd.Parameters["@NewUserId"].Value = ParameterDirection.InputOutput;
             try
             {
@@ -91,13 +91,39 @@ namespace bizapps_test.DAL.Repositories
             cmd.Parameters["@UserPassword"].Value = "";
             cmd.Parameters.Add(new SqlParameter("@BlogName", SqlDbType.VarChar, 50));
             cmd.Parameters["@BlogName"].Value = "";
-            cmd.Parameters.Add(new SqlParameter("@NewUserId", SqlDbType.Int, 50, ParameterDirection.InputOutput, false, 0, 0, "@NewPostId", DataRowVersion.Original, null));
+            cmd.Parameters.Add(new SqlParameter("@NewUserId", SqlDbType.Int, 50, ParameterDirection.InputOutput, false, 0, 0, "@NewUserId", DataRowVersion.Original, null));
             cmd.Parameters["@NewUserId"].Value = ParameterDirection.InputOutput;
             try
             {
                 Con.Open();
                 cmd.ExecuteNonQuery();
                 return (int)cmd.Parameters["@NewUserId"].Value;
+            }
+            catch (SqlException e)
+            {
+                throw new ApplicationException(e.Message);
+            }
+            finally
+            {
+                Con.Close();
+            }
+        }
+
+        public int ChangePassword(BlogUser blogUser)
+        {
+            SqlCommand cmd = new SqlCommand("ChangePassword", Con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@UserName", SqlDbType.VarChar, 50));
+            cmd.Parameters["@UserName"].Value = blogUser.UserName;
+            cmd.Parameters.Add(new SqlParameter("@Password", SqlDbType.VarChar, 50));
+            cmd.Parameters["@Password"].Value = blogUser.UserPassword;
+            cmd.Parameters.Add(new SqlParameter("@UserId", SqlDbType.Int, 50, ParameterDirection.InputOutput, false, 0, 0, "@UserId", DataRowVersion.Original, null));
+            cmd.Parameters["@UserId"].Value = ParameterDirection.InputOutput;
+            try
+            {
+                Con.Open();
+                cmd.ExecuteNonQuery();
+                return (int)cmd.Parameters["@UserId"].Value;
             }
             catch (SqlException e)
             {

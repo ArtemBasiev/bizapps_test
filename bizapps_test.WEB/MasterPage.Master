@@ -36,7 +36,7 @@
          </div>
     </nav>
         
-        <div class="container" style=" height: auto;" >
+        <div class="container" id="wrap" style=" height: auto;" >
                       <form runat="server" role="form" >
                           <div class="row" style="height: auto;  margin-bottom: 60px;">
                           <div class="col-lg-9" style="padding-right: 30px; padding-left: 0;" >
@@ -90,6 +90,7 @@
                                                                                     ValidationGroup="AuthForm"
                                                                                     runat="server"/> <br/>
                                                  <asp:Button ID="Login" CssClass="Login" CommandName="Login" Text="LogIn" runat="server"/>
+                                                  <a href="CreateUser.aspx">Sign In</a> 
                                                 </div>
                                             </LayoutTemplate>
                                  </asp:Login>
@@ -108,7 +109,7 @@
                                   <asp:Label ID="LabelUserName" runat="server"/>
                                   <p style="margin-top: 20px; margin-left: 10px;">
                                       <button id="ButtonLogOut" CausesValidation="False" style="margin-right: 5px;" OnServerClick="ButtonLogOut_OnServerClick" runat="server"> Log out</button>
-                                      <button id="ButtonChangePassword" CausesValidation="False"> Change password</button>
+                                      <a href="ChangePassword.aspx">Change password</a> 
                                   </p>
                                 
                               </div>
@@ -119,18 +120,21 @@
                       
                           
 
-                   </form>                  
+                   </form>     
+      
         </div>
 
-       <div class=" footer" >
+      
+<footer   >
           
-               <div class="container">
-                   <div class="container">
-                       <span id="footer-text"> 2019  All rights reserved</span>
-                   </div>
-              </div>
+    <div class="container">
+                 
+        <span id="footer-text"> 2019  All rights reserved</span>
+               
+    </div>
 
-       </div>
+</footer>
+
        
 
 
@@ -158,4 +162,5 @@
 
 
 </body>
+
 </html>

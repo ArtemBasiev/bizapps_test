@@ -65,7 +65,19 @@ namespace bizapps_test.BLL.Services
 
         }
 
-       public IEnumerable<BlogUserDto> GetAllUsers()
+        public int ChangePassword(BlogUserDto blogUserDto)
+        {
+            try
+            {
+                return BloguserRepository.ChangePassword(new BlogUser(blogUserDto.UserName, blogUserDto.UserPassword));
+            }
+            catch (SqlException e)
+            {
+                throw new ApplicationException(e.Message);
+            }
+        }
+
+        public IEnumerable<BlogUserDto> GetAllUsers()
         {
             try
             {

@@ -98,8 +98,6 @@ namespace bizapps_test.WEB
                     Response.Cookies.Add(login);
                     Response.Cookies.Add(sign);
                     e.Authenticated = true;
-                  
-               
                 }
                 catch (Exception)
                 {
@@ -129,7 +127,11 @@ namespace bizapps_test.WEB
                 {
                     Response.Cookies["perm"].Expires = DateTime.Now.AddDays(-1);
                 }
-               
+                if (Request.Url.ToString().Contains("ViewPostPage.aspx"))
+                {
+                    Response.Redirect("~/ViewPostPage.aspx?PostId=" + Request.QueryString["PostId"]);
+                }
+
                 Response.Redirect("~/MainPage.aspx");
             }
         }

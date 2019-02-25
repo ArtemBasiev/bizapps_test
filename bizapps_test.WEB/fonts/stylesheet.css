@@ -247,9 +247,27 @@
     font-style: italic;
 }
 
+
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: #2d2d2d;
+    height: 60px;
+}
+
 body {
     font-family: "HelveticaNeueCyr", Helvetica, Arial, sans-serif;
-  
+    margin-bottom: 60px;
     background: #a4c8b9;
     height: auto;
 
@@ -300,12 +318,7 @@ body {
     }
 
 
-.footer {
-    padding-top: 15px;
-    padding-bottom: 15px;
-    background-color: #2d2d2d;
-    height: 110px;
-}
+
 
 #footer-text {
     color: #ffffff;
@@ -360,6 +373,19 @@ body {
             outline: none !important;
             box-shadow: none !important;
         }
+
+.sidebar a {
+    text-decoration: none;
+    color: #ffffff;
+
+}
+
+    .sidebar a:hover, .sidebar a:focus, .sidebar a:active {
+        text-decoration: none;
+        color: #09b09a;
+        border-bottom: 2px solid #09b09a;
+    }
+
 
 .sidebarcontainer {
    
@@ -479,6 +505,44 @@ body {
         color: #09b09a;
     }
 
+.pager {
+    margin-top: 10px;
+    background-color: #2c3d50;
+    width: 100%;
+    min-height: 40px;
+    padding: 10px;
+   
+    
+}
+
+.pager table {
+    position: static;
+}
+
+    .pager a {
+        text-decoration: none;
+        color: #ffffff;
+        padding-left: 10px;
+        padding-right: 10px;
+     
+    }
+
+
+    .pager span {
+        position: static;
+        color: #09b09a;
+        padding: 5px;
+        background-color: #2c5177;
+        border-radius: 3px;
+    }
+
+    .pager a:hover, .pager a:active, .pager a:focus {
+        text-decoration: none;
+        color: #09b09a;
+        border-bottom: 2px solid #09b09a;
+    }
+
+
 .postimage {
     height: 530px;
     width: 100%;
@@ -585,7 +649,7 @@ body {
     color: #ffffff;
     border-radius: 3px;
     border: none;
-    width: 120px;
+    width: auto;
     height: 30px;
     font-size: 15px;
 

@@ -6,6 +6,8 @@ using System.Web.UI.WebControls;
 using bizapps_test.BLL.DTO;
 using bizapps_test.BLL.Interfaces;
 using System.IO;
+using System.Linq;
+using System.Reflection;
 
 namespace bizapps_test.WEB
 {
@@ -21,6 +23,7 @@ namespace bizapps_test.WEB
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             if (!IsPostBack)
             {
                 BindDataList();
@@ -136,6 +139,23 @@ namespace bizapps_test.WEB
            Response.Redirect("~/ViewPostPage.aspx?PostId="+ hfPostId.Value);
         }
 
-     
+        public IEnumerable<int> GetPages()
+        {
+            return Enumerable.Range(1, main_gridview.PageCount);
+        }
+
+        protected void OnRepeaterCommand(object source, RepeaterCommandEventArgs e)
+        {
+            source.GetType()
+                .GetMethod("RaiseBubbleEvent", BindingFlags.NonPublic | BindingFlags.Instance)
+                .Invoke(source, new[]
+                {
+                    e.CommandSource,
+                    new CommandEventArgs(e.CommandName, e.CommandArgument)
+                });
+        }
+
+
+
     }
 }
